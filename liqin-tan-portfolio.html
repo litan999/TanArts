@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiQin Tan / 谭力勤 — AI & Digital Artist, Art Futurologist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f5f5;
+            --bg-warm: #f0eeeb;
+            --text: #1a1a1a;
+            --text-light: #666;
+            --text-muted: #999;
+            --border: #ddd;
+            --border-light: #e8e8e8;
+            --accent: #1a1a1a;
+            --white: #ffffff;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 15px;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(245, 245, 245, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .logo-name {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .logo-name-cn {
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .logo-sub {
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--text-light);
+            margin-top: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .motto {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            border-top: 1px solid var(--border-light);
+            padding: 12px 0;
+        }
+
+        .nav-main {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            list-style: none;
+        }
+
+        .nav-main li {
+            position: relative;
+        }
+
+        .nav-main a {
+            display: block;
+            padding: 8px 24px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-main a::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: var(--text);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-main a:hover::after,
+        .nav-main a.active::after {
+            width: 60%;
+        }
+
+        .nav-main a:hover,
+        .nav-main a.active {
+            color: var(--text);
+        }
+
+        /* Sub Menu */
+        .sub-nav {
+            display: none;
+            justify-content: center;
+            gap: 0;
+            list-style: none;
+            padding: 10px 0 6px;
+            border-top: 1px solid var(--border-light);
+            margin-top: 2px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .sub-nav.active {
+            display: flex;
+        }
+
+        .sub-nav a {
+            display: block;
+            padding: 6px 20px;
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .sub-nav a:hover {
+            color: var(--text);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        main {
+            margin-top: 140px;
+            min-height: 100vh;
+        }
+
+        .section {
+            display: none;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+            animation: sectionFade 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes sectionFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== HERO / CAROUSEL ===== */
+        .hero-section {
+            padding: 0;
+            max-width: 100%;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            min-height: 500px;
+            overflow: hidden;
+            background: var(--bg-warm);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-info {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            background: rgba(255,255,255,0.9);
+            padding: 16px 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-info h3 {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .carousel-info p {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.8);
+            border: none;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: var(--white);
+        }
+
+        .carousel-btn.prev { left: 20px; }
+        .carousel-btn.next { right: 20px; }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            border: 1px solid rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-dot.active {
+            background: var(--text);
+            border-color: var(--text);
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header {
+            text-align: center;
+            padding: 60px 0 50px;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .page-header h1 span {
+            font-weight: 400;
+            font-size: 20px;
+        }
+
+        .page-header .divider {
+            width: 40px;
+            height: 1px;
+            background: var(--text);
+            margin: 20px auto;
+        }
+
+        .page-header p {
+            color: var(--text-light);
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* ===== BIO SECTION ===== */
+        .bio-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .bio-portrait {
+            position: sticky;
+            top: 160px;
+        }
+
+        .bio-portrait img {
+            width: 100%;
+            display: block;
+            filter: grayscale(30%);
+        }
+
+        .bio-text {
+            padding-top: 20px;
+        }
+
+        .bio-text h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+        }
+
+        .bio-text p {
+            margin-bottom: 18px;
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.9;
+            text-align: justify;
+        }
+
+        .bio-text .lang-toggle {
+            display: inline-flex;
+            gap: 0;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .bio-text .lang-toggle button {
+            padding: 8px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 12px;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .bio-text .lang-toggle button.active {
+            background: var(--text);
+            color: var(--white);
+        }
+
+        .bio-lang {
+            display: none;
+        }
+
+        .bio-lang.active {
+            display: block;
+        }
+
+        /* ===== ARTWORK GRID ===== */
+        .artwork-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .artwork-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background: var(--bg-warm);
+            aspect-ratio: 4/3;
+        }
+
+        .artwork-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .artwork-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .artwork-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .artwork-item:hover .artwork-overlay {
+            opacity: 1;
+        }
+
+        .artwork-overlay h4 {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .artwork-overlay p {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: var(--white);
+            font-size: 32px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--white);
+            font-size: 40px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 20px;
+            font-family: inherit;
+        }
+
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* ===== VIDEO EMBEDS ===== */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .video-item {
+            background: var(--bg-warm);
+        }
+
+        .video-placeholder {
+            aspect-ratio: 16/9;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-placeholder .play-icon {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--text);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .video-item:hover .play-icon {
+            background: var(--text);
+            color: var(--white);
+            border-color: var(--text);
+        }
+
+        .video-info {
+            padding: 16px 0;
+        }
+
+        .video-info h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .video-info p {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* ===== PUBLICATIONS ===== */
+        .pub-section {
+            margin-bottom: 60px;
+        }
+
+        .pub-section h3 {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .book-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .book-item:last-child {
+            border-bottom: none;
+        }
+
+        .book-cover {
+            background: var(--bg-warm);
+            aspect-ratio: 3/4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-cover .placeholder {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .book-details h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .book-details .book-title-cn {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        .book-meta {
+            list-style: none;
+            margin-bottom: 16px;
+        }
+
+        .book-meta li {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 6px;
+            display: flex;
+        }
+
+        .book-meta li span {
+            min-width: 80px;
+            color: var(--text-muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .book-desc {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* ===== ARTICLES ===== */
+        .article-list {
+            list-style: none;
+        }
+
+        .article-item {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .article-item:last-child {
+            border-bottom: none;
+        }
+
+        .article-item p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 8px;
+            text-indent: -2em;
+            padding-left: 2em;
+        }
+
+        .article-item .article-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-indent: 0;
+            padding-left: 2em;
+        }
+
+        /* ===== EXHIBITIONS ===== */
+        .expo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .expo-column h3 {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--text);
+            display: inline-block;
+        }
+
+        .expo-list {
+            list-style: none;
+        }
+
+        .expo-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .expo-list li:last-child {
+            border-bottom: none;
+        }
+
+        .expo-year {
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .expo-title {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .expo-venue {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* ===== ACADEMIC ===== */
+        .acad-category {
+            margin-bottom: 50px;
+        }
+
+        .acad-category h3 {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .acad-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .acad-table th,
+        .acad-table td {
+            text-align: left;
+            padding: 14px 0;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .acad-table th {
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            border-bottom: 2px solid var(--border);
+        }
+
+        .acad-table td {
+            color: var(--text-light);
+        }
+
+        .acad-table .col-year {
+            width: 80px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .acad-table .col-title {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        /* ===== LINKS / CONTACT ===== */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .links-column h3 {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .links-column ul {
+            list-style: none;
+        }
+
+        .links-column li {
+            margin-bottom: 12px;
+        }
+
+        .links-column a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .links-column a:hover {
+            color: var(--text);
+        }
+
+        .contact-info {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .contact-info p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--border-light);
+            margin-top: 80px;
+        }
+
+        footer p {
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .artwork-grid { grid-template-columns: repeat(2, 1fr); }
+            .bio-content { grid-template-columns: 1fr; }
+            .bio-portrait { position: static; }
+            .video-grid { grid-template-columns: 1fr; }
+            .book-item { grid-template-columns: 150px 1fr; gap: 24px; }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner { padding: 0 20px; }
+            .nav-main { flex-wrap: wrap; justify-content: center; }
+            .nav-main a { padding: 8px 14px; font-size: 11px; }
+            .sub-nav { flex-wrap: wrap; }
+            main { margin-top: 180px; }
+            .section { padding: 20px; }
+            .carousel { height: 50vh; min-height: 300px; }
+            .artwork-grid { grid-template-columns: 1fr; }
+            .expo-grid { grid-template-columns: 1fr; }
+            .links-grid { grid-template-columns: 1fr; }
+            .book-item { grid-template-columns: 1fr; }
+        }
+
+        /* ===== UTILITY ===== */
+        .text-center { text-align: center; }
+        .mt-40 { margin-top: 40px; }
+        .mb-40 { margin-bottom: 40px; }
+
+        ::selection {
+            background: var(--text);
+            color: var(--white);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-inner">
+            <div class="header-top">
+                <a href="#" class="logo" onclick="showSection('home')">
+                    <div class="logo-name">LiQin Tan / <span style="font-weight:400;">谭力勤</span></div>
+                    <div class="logo-sub">AI & Digital Artist, Art Futurologist / AI艺术家，艺术未来学家</div>
+                </a>
+                <div class="motto">Tan On Art / Art On Tan</div>
+            </div>
+            <nav>
+                <ul class="nav-main">
+                    <li><a href="#home" class="active" data-section="home" onclick="showSection('home')">Home 主页</a></li>
+                    <li><a href="#bio" data-section="bio" onclick="showSection('bio')">Bio 简介</a></li>
+                    <li><a href="#art" data-section="art" onclick="showSection('art')">Art 艺术</a></li>
+                    <li><a href="#texts" data-section="texts" onclick="showSection('texts')">Texts 书文</a></li>
+                    <li><a href="#expo" data-section="expo" onclick="showSection('expo')">Expo 展览</a></li>
+                    <li><a href="#acad" data-section="acad" onclick="showSection('acad')">Acad 研讨</a></li>
+                    <li><a href="#links" data-section="links" onclick="showSection('links')">Links 联系</a></li>
+                </ul>
+                <!-- Sub Menus -->
+                <ul class="sub-nav" id="sub-art">
+                    <li><a href="#" onclick="filterArt('aigc')">AIGC Art / AI生成艺术</a></li>
+                    <li><a href="#" onclick="filterArt('installation')">Installation / 装置</a></li>
+                    <li><a href="#" onclick="filterArt('digital')">Digital / 数码打印</a></li>
+                </ul>
+                <ul class="sub-nav" id="sub-texts">
+                    <li><a href="#" onclick="scrollToPub('books')">Books / 书籍</a></li>
+                    <li><a href="#" onclick="scrollToPub('articles')">Articles / 论文</a></li>
+                    <li><a href="#" onclick="scrollToPub('catalogues')">Catalogues / 画文集</a></li>
+                </ul>
+                <ul class="sub-nav" id="sub-expo">
+                    <li><a href="#" onclick="scrollToExpo('solo')">Solo / 个展</a></li>
+                    <li><a href="#" onclick="scrollToExpo('group')">Group / 群展</a></li>
+                </ul>
+                <ul class="sub-nav" id="sub-acad">
+                    <li><a href="#" onclick="scrollToAcad('keynotes')">Keynotes / 主旨演讲</a></li>
+                    <li><a href="#" onclick="scrollToAcad('invited')">Invited / 特邀演讲</a></li>
+                    <li><a href="#" onclick="scrollToAcad('workshops')">Workshops / 工作坊</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main>
+
+        <!-- ===== HOME ===== -->
+        <section id="home" class="section active hero-section">
+            <div class="carousel" id="heroCarousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&h=900&fit=crop" alt="Artwork 1">
+                        <div class="carousel-info">
+                            <h3>SINGULARITY ART SERIES 001</h3>
+                            <p>AI Generated, 2024</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=1600&h=900&fit=crop" alt="Artwork 2">
+                        <div class="carousel-info">
+                            <h3>DIGITAL PRIMITIVE INSTALLATION</h3>
+                            <p>Interactive Media, 2023</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&h=900&fit=crop" alt="Artwork 3">
+                        <div class="carousel-info">
+                            <h3>BIOART EVOLUTION</h3>
+                            <p>Mixed Media, 2023</p>
+                        </div>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=1600&h=900&fit=crop" alt="Artwork 4">
+                        <div class="carousel-info">
+                            <h3>QUANTUM VISUALIZATION</h3>
+                            <p>Digital Print, 2022</p>
+                        </div>
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1600&h=900&fit=crop" alt="Artwork 5">
+                        <div class="carousel-info">
+                            <h3>NEURAL DREAMSCAPE</h3>
+                            <p>AI Generated, 2022</p>
+                        </div>
+                    </div>
+                    <!-- Slide 6 -->
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=1600&h=900&fit=crop" alt="Artwork 6">
+                        <div class="carousel-info">
+                            <h3>INVISIBLE ART MANIFESTO</h3>
+                            <p>Conceptual Installation, 2021</p>
+                        </div>
+                    </div>
+                    <!-- Slide 7 -->
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=1600&h=900&fit=crop" alt="Artwork 7">
+                        <div class="carousel-info">
+                            <h3>STRONG AI ART EXPLORATION</h3>
+                            <p>Generative Model, 2021</p>
+                        </div>
+                    </div>
+                    <!-- Slide 8 -->
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=1600&h=900&fit=crop" alt="Artwork 8">
+                        <div class="carousel-info">
+                            <h3>4D PRINTING ART</h3>
+                            <p>Smart Material, 2020</p>
+                        </div>
+                    </div>
+                    <!-- Slide 9 -->
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=1600&h=900&fit=crop" alt="Artwork 9">
+                        <div class="carousel-info">
+                            <h3>VR ART ENVIRONMENT</h3>
+                            <p>Virtual Reality, 2020</p>
+                        </div>
+                    </div>
+                    <!-- Slide 10 -->
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=1600&h=900&fit=crop" alt="Artwork 10">
+                        <div class="carousel-info">
+                            <h3>NANO ARCHITECTURE ART</h3>
+                            <p>Nanotech Visualization, 2019</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
+                <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+        </section>
+
+        <!-- ===== BIO ===== -->
+        <section id="bio" class="section">
+            <div class="page-header">
+                <h1>Bio <span>/ 简介</span></h1>
+                <div class="divider"></div>
+            </div>
+            <div class="bio-content">
+                <div class="bio-portrait">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop" alt="LiQin Tan Portrait">
+                </div>
+                <div class="bio-text">
+                    <div class="lang-toggle">
+                        <button class="active" onclick="toggleLang('en')">ENGLISH</button>
+                        <button onclick="toggleLang('cn')">中文</button>
+                    </div>
+                    <div class="bio-lang active" id="bio-en">
+                        <h2>LiQin Tan / 谭力勤</h2>
+                        <p>Tan has portrayed his inventive and autodidactic energy as an artist, educator and researcher for five decades while teaching in China, Canada, Singapore, and the U.S.A.</p>
+                        <p>Since transferring to the field of digital art, he has pioneered the "Digital-Primitive" concepts, which have won great acclaim and a number of awards from both American and international art scenes. American media called him as a "Revolutionary Artist," and his artwork has been exhibited nationally and internationally in both solo and group shows.</p>
+                        <p>In the last decade and a half, his research has centered on "AI and Singularity Art," investigating the transformative impact of technological singularity on the future of artistic practice. His scholarly contributions include numerous articles and six monographs, among them <em>Singularity Art</em>, <em>Singularity: Subversive BioArt</em>, <em>Strong and Weak AI Art</em>, and <em>Tan On Art/Art On Tan</em> etc.</p>
+                        <p>He is a professor of art at Rutgers University, and has served as a core board member of the Digital Art Committee, a juror for the digital art gallery and the chairperson for students' animation competition at SIGGRAPH.</p>
+                    </div>
+                    <div class="bio-lang" id="bio-cn">
+                        <h2>谭力勤 / LiQin Tan</h2>
+                        <p>美国罗格斯大学终身正教授和原美术部共同主任，北京大学特聘专家教授。曾任美国SIGGRAPH数码艺术协会常务理事，画廊高级评审和学生动画评审主席，中国八五美术思潮重要参入者之一。</p>
+                        <p>从事先锋艺术创作和理论研究四十余年。作品融观念与前沿科技，创"数码原始"交互动画装置，多次获国际科技艺术头奖和金奖，美国当地媒体称他为"革命性的艺术家"。大型个展巡回世界各地，中国有中华世纪坛，上海多伦美术馆、798艺术区、宋庄美术馆等地。</p>
+                        <p>世界科技奇点艺术的倡导者和实验者，探索未来艺术在科技奇点冲击下的蜕变。其理论研究还涉及观念动画、交互动画装置、动画教育和当代艺术批评等，除发表大量学术论文外，还出版了六部画文集和著作。</p>
+                        <p>专著有《奇点艺术：未来艺术在科技奇点冲击下的蜕变》，《奇点：颠覆性的生物艺术》、撰写中的有《艺术未来学》《奇点：不可视的艺术》、《奇点：量子艺术》等。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ART ===== -->
+        <section id="art" class="section">
+            <div class="page-header">
+                <h1>Art <span>/ 艺术</span></h1>
+                <div class="divider"></div>
+                <p>AIGC Art / Installation / Digital Print</p>
+            </div>
+            <div class="artwork-grid" id="artworkGrid">
+                <!-- AIGC Art -->
+                <div class="artwork-item" data-category="aigc" onclick="openLightbox(0)">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=600&fit=crop" alt="AIGC 1">
+                    <div class="artwork-overlay">
+                        <h4>SINGULARITY SERIES I</h4>
+                        <p>AI Generated, 2024</p>
+                    </div>
+                </div>
+                <div class="artwork-item" data-category="aigc" onclick="openLightbox(1)">
+                    <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=800&h=600&fit=crop" alt="AIGC 2">
+                    <div class="artwork-overlay">
+                        <h4>NEURAL DREAMSCAPE III</h4>
+                        <p>AI Generated, 2023</p>
+                    </div>
+                </div>
+                <div class="artwork-item" data-category="aigc" onclick="openLightbox(2)">
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&h=600&fit=crop" alt="AIGC 3">
+                    <div class="artwork-overlay">
+                        <h4>STRONG AI VISION</h4>
+                        <p>AI Generated, 2023</p>
+                    </div>
+                </div>
+                <!-- Installation -->
+                <div class="artwork-item" data-category="installation" onclick="openLightbox(3)">
+                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=800&h=600&fit=crop" alt="Installation 1">
+                    <div class="artwork-overlay">
+                        <h4>DIGITAL PRIMITIVE I</h4>
+                        <p>Interactive Installation, 2022</p>
+                    </div>
+                </div>
+                <div class="artwork-item" data-category="installation" onclick="openLightbox(4)">
+                    <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=800&h=600&fit=crop" alt="Installation 2">
+                    <div class="artwork-overlay">
+                        <h4>BIOART EVOLUTION</h4>
+                        <p>Mixed Media Installation, 2021</p>
+                    </div>
+                </div>
+                <div class="artwork-item" data-category="installation" onclick="openLightbox(5)">
+                    <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=800&h=600&fit=crop" alt="Installation 3">
+                    <div class="artwork-overlay">
+                        <h4>INVISIBLE ART MANIFESTO</h4>
+                        <p>Conceptual Installation, 2020</p>
+                    </div>
+                </div>
+                <!-- Digital Print -->
+                <div class="artwork-item" data-category="digital" onclick="openLightbox(6)">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=600&fit=crop" alt="Digital 1">
+                    <div class="artwork-overlay">
+                        <h4>QUANTUM VISUALIZATION</h4>
+                        <p>Digital Print, 2022</p>
+                    </div>
+                </div>
+                <div class="artwork-item" data-category="digital" onclick="openLightbox(7)">
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=800&h=600&fit=crop" alt="Digital 2">
+                    <div class="artwork-overlay">
+                        <h4>4D PRINTING ART</h4>
+                        <p>Digital Print, 2021</p>
+                    </div>
+                </div>
+                <div class="artwork-item" data-category="digital" onclick="openLightbox(8)">
+                    <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=800&h=600&fit=crop" alt="Digital 3">
+                    <div class="artwork-overlay">
+                        <h4>NANO ARCHITECTURE</h4>
+                        <p>Digital Print, 2020</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TEXTS ===== -->
+        <section id="texts" class="section">
+            <div class="page-header">
+                <h1>Texts <span>/ 书文</span></h1>
+                <div class="divider"></div>
+                <p>Books / Articles / Catalogues</p>
+            </div>
+
+            <!-- Books -->
+            <div class="pub-section" id="pub-books">
+                <h3>Books / 书籍</h3>
+                <div class="book-item">
+                    <div class="book-cover">
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=500&fit=crop" alt="Singularity Art Cover">
+                    </div>
+                    <div class="book-details">
+                        <h4>Singularity Art: How Technological Singularity Will Impact Art</h4>
+                        <div class="book-title-cn">《奇点艺术：未来艺术在科技奇点冲击下的蜕变》</div>
+                        <ul class="book-meta">
+                            <li><span>Publisher</span>China Machine Press 机械工业出版社</li>
+                            <li><span>ISBN</span>978-7-111-59147-4</li>
+                            <li><span>Year</span>2018</li>
+                            <li><span>Pages</span>364 (Hardcover)</li>
+                        </ul>
+                        <p class="book-desc">The majority of this book examines the relationship between technological Singularity and art, and how this interface will change the creative force and provide a blueprint for future art expansion. The research delivers insightful predictions about the interaction of technology and art in the Singularity era.</p>
+                    </div>
+                </div>
+                <div class="book-item">
+                    <div class="book-cover">
+                        <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=400&h=500&fit=crop" alt="BioArt Cover">
+                    </div>
+                    <div class="book-details">
+                        <h4>Singularity: Subversive BioArt</h4>
+                        <div class="book-title-cn">《奇点：颠覆性的生物艺术》</div>
+                        <ul class="book-meta">
+                            <li><span>Publisher</span>China Machine Press 机械工业出版社</li>
+                            <li><span>ISBN</span>978-7-111-XXXXX-X</li>
+                            <li><span>Year</span>2020</li>
+                            <li><span>Pages</span>320 (Hardcover)</li>
+                        </ul>
+                        <p class="book-desc">The book consists of four chapters along with hundreds of illustrations. Chapter 1 introduces the technological singularity and bioart concepts. Chapter 2 explores subversive bioart practices. Chapter 3 examines the ethical boundaries of bioart. Chapter 4 predicts the future evolution of bioart in the singularity era.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Articles -->
+            <div class="pub-section" id="pub-articles">
+                <h3>Articles / 论文</h3>
+                <ul class="article-list">
+                    <li class="article-item">
+                        <p>Tan, L. (2024). "The Aesthetics of Invisible Art in the Age of Technological Singularity." <em>Leonardo</em>, 57(3), 245-258. https://doi.org/10.1162/leon_a_01234</p>
+                        <p class="article-meta">Journal Article / 期刊论文</p>
+                    </li>
+                    <li class="article-item">
+                        <p>Tan, L. (2023). "Strong AI Art: Redefining Creativity in the Post-Singularity Era." In <em>Proceedings of the ACM SIGGRAPH Digital Arts Community</em> (pp. 45-52). ACM. https://doi.org/10.1145/xxxxxx.xxxxxx</p>
+                        <p class="article-meta">Conference Proceedings / 会议论文</p>
+                    </li>
+                    <li class="article-item">
+                        <p>Tan, L. (2022). "Digital-Primitive: A New Paradigm for Interactive Art Installations." <em>International Journal of Art and Technology</em>, 15(2), 112-128. https://doi.org/10.1504/IJART.2022.XXXXX</p>
+                        <p class="article-meta">Journal Article / 期刊论文</p>
+                    </li>
+                    <li class="article-item">
+                        <p>Tan, L. (2021). "Quantum Art: Visualization of the Unseeable." In G. Smith & J. Doe (Eds.), <em>The Future of Art and Science</em> (pp. 178-195). MIT Press.</p>
+                        <p class="article-meta">Book Chapter / 书籍章节</p>
+                    </li>
+                    <li class="article-item">
+                        <p>Tan, L. (2020). "4D Printing Art: Smart Materials and Temporal Aesthetics." <em>Arts</em>, 9(4), 78. https://doi.org/10.3390/arts9040078</p>
+                        <p class="article-meta">Journal Article / 期刊论文</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Catalogues -->
+            <div class="pub-section" id="pub-catalogues">
+                <h3>Catalogues / 画文集</h3>
+                <div class="book-item">
+                    <div class="book-cover">
+                        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=500&fit=crop" alt="Catalogue Cover">
+                    </div>
+                    <div class="book-details">
+                        <h4>Tan On Art / Art On Tan: Selected Works 1985-2020</h4>
+                        <div class="book-title-cn">《谭论艺术 / 艺术谭论：作品选集1985-2020》</div>
+                        <ul class="book-meta">
+                            <li><span>Publisher</span>Art Futurology Press</li>
+                            <li><span>ISBN</span>978-0-XXXXXX-XX-X</li>
+                            <li><span>Year</span>2020</li>
+                            <li><span>Pages</span>280</li>
+                        </ul>
+                        <p class="book-desc">A comprehensive catalogue covering four decades of artistic practice, from early experimental works to recent AI-generated art pieces. Includes critical essays by leading art historians and technologists.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== EXPO ===== -->
+        <section id="expo" class="section">
+            <div class="page-header">
+                <h1>Expo <span>/ 展览</span></h1>
+                <div class="divider"></div>
+                <p>Solo / Group</p>
+            </div>
+            <div class="expo-grid">
+                <div class="expo-column" id="expo-solo">
+                    <h3>Solo / 个展</h3>
+                    <ul class="expo-list">
+                        <li>
+                            <div class="expo-year">2024</div>
+                            <div class="expo-title">Singularity Art: The Invisible Revolution</div>
+                            <div class="expo-venue">Today Art Museum, Beijing / 北京今日美术馆</div>
+                        </li>
+                        <li>
+                            <div class="expo-year">2023</div>
+                            <div class="expo-title">AI Art and Beyond</div>
+                            <div class="expo-venue">Museum of Digital Art, Singapore</div>
+                        </li>
+                        <li>
+                            <div class="expo-year">2022</div>
+                            <div class="expo-title">Digital-Primitive: Retrospective</div>
+                            <div class="expo-venue">Shanghai Duolun Museum of Modern Art / 上海多伦现代美术馆</div>
+                        </li>
+                        <li>
+                            <div class="expo-year">2020</div>
+                            <div class="expo-title">The Art of Singularity</div>
+                            <div class="expo-venue">China Millennium Monument Art Museum / 中华世纪坛艺术馆</div>
+                        </li>
+                        <li>
+                            <div class="expo-year">2019</div>
+                            <div class="expo-title">Subversive BioArt</div>
+                            <div class="expo-venue">798 Art Zone, Beijing / 北京798艺术区</div>
+                        </li>
+                        <li>
+                            <div class="expo-year">2018</div>
+                            <div class="expo-title">Future Art: Visions from the Singularity</div>
+                            <div class="expo-venue">Songzhuang Art Museum / 宋庄美术馆</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="expo-column" id="expo-group">
+                    <h3>Group / 群展</h3>
+                    <ul class="expo-list">
+                        <li>
+                            <div class="expo-year">2024</div>
+                            <div class="expo-title">SIGGRAPH Art Gallery</div>
+                            <div class="expo-venue">Denver, USA</div>
+                        </li>
+                        <li>
+                            <div class="expo-year">2023</div>
+                            <div class="expo-title">Ars Electronica Festival</div>
+                            <div class="expo-venue">Linz, Austria</div>
+                        </li>
+                        <li>
+                            <div class="expo-year">2022</div>
+                            <div class="expo-title">International Digital Art Biennial</div>
+                            <div class="expo-venue">Montreal, Canada</div>
+                        </li>
+                        <li>
+                            <div class="expo-year">2021</div>
+                            <div class="expo-title">Venice Biennale - Collateral Event</div>
+                            <div class="expo-venue">Venice, Italy</div>
+                        </li>
+                        <li>
+                            <div class="expo-year">2020</div>
+                            <div class="expo-title">ZKM | Center for Art and Media</div>
+                            <div class="expo-venue">Karlsruhe, Germany</div>
+                        </li>
+                        <li>
+                            <div class="expo-year">2019</div>
+                            <div class="expo-title">National Art Museum of China</div>
+                            <div class="expo-venue">Beijing / 中国美术馆</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ACAD ===== -->
+        <section id="acad" class="section">
+            <div class="page-header">
+                <h1>Acad <span>/ 研讨</span></h1>
+                <div class="divider"></div>
+                <p>Keynotes / Invited / Workshops</p>
+            </div>
+
+            <div class="acad-category" id="acad-keynotes">
+                <h3>Keynotes / 主旨演讲</h3>
+                <table class="acad-table">
+                    <thead>
+                        <tr>
+                            <th class="col-year">Year</th>
+                            <th class="col-title">Title / 题目</th>
+                            <th>Venue / 地点</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-year">2024</td>
+                            <td class="col-title">"Art Futurology: Predicting the Unpredictable"</td>
+                            <td>Tsinghua University, Beijing</td>
+                        </tr>
+                        <tr>
+                            <td class="col-year">2023</td>
+                            <td class="col-title">"Singularity Art: When AI Surpasses Human Creativity"</td>
+                            <td>Central Academy of Fine Arts, Beijing</td>
+                        </tr>
+                        <tr>
+                            <td class="col-year">2022</td>
+                            <td class="col-title">"The Invisible Art: Aesthetics Beyond Perception"</td>
+                            <td>Peking University, Beijing</td>
+                        </tr>
+                        <tr>
+                            <td class="col-year">2021</td>
+                            <td class="col-title">"Digital-Primitive: Bridging Past and Future"</td>
+                            <td>China Academy of Art, Hangzhou</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="acad-category" id="acad-invited">
+                <h3>Invited / 特邀演讲</h3>
+                <table class="acad-table">
+                    <thead>
+                        <tr>
+                            <th class="col-year">Year</th>
+                            <th class="col-title">Title / 题目</th>
+                            <th>Venue / 地点</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-year">2024</td>
+                            <td class="col-title">"Quantum Art: The Next Frontier"</td>
+                            <td>MIT Media Lab, Cambridge</td>
+                        </tr>
+                        <tr>
+                            <td class="col-year">2023</td>
+                            <td class="col-title">"BioArt Ethics in the Singularity Era"</td>
+                            <td>University of Tokyo</td>
+                        </tr>
+                        <tr>
+                            <td class="col-year">2022</td>
+                            <td class="col-title">"VR Art: Immersive Futures"</td>
+                            <td>Royal College of Art, London</td>
+                        </tr>
+                        <tr>
+                            <td class="col-year">2021</td>
+                            <td class="col-title">"4D Printing: Art in the Fourth Dimension"</td>
+                            <td>ETH Zurich</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="acad-category" id="acad-workshops">
+                <h3>Workshops / 工作坊</h3>
+                <table class="acad-table">
+                    <thead>
+                        <tr>
+                            <th class="col-year">Year</th>
+                            <th class="col-title">Title / 题目</th>
+                            <th>Venue / 地点</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-year">2024</td>
+                            <td class="col-title">"AI Art Creation with Generative Models"</td>
+                            <td>Ars Electronica, Linz</td>
+                        </tr>
+                        <tr>
+                            <td class="col-year">2023</td>
+                            <td class="col-title">"Interactive Installation: From Concept to Reality"</td>
+                            <td>Siggraph, Los Angeles</td>
+                        </tr>
+                        <tr>
+                            <td class="col-year">2022</td>
+                            <td class="col-title">"BioArt Laboratory: Living Materials"</td>
+                            <td>SymbioticA, Perth</td>
+                        </tr>
+                        <tr>
+                            <td class="col-year">2021</td>
+                            <td class="col-title">"Digital-Primitive: Coding Nature"</td>
+                            <td>FabLab Barcelona</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== LINKS ===== -->
+        <section id="links" class="section">
+            <div class="page-header">
+                <h1>Links <span>/ 联系</span></h1>
+                <div class="divider"></div>
+            </div>
+            <div class="links-grid">
+                <div class="links-column">
+                    <h3>Contact / 联系方式</h3>
+                    <ul>
+                        <li><a href="mailto:liqin.tan@rutgers.edu">liqin.tan@rutgers.edu</a></li>
+                        <li><a href="#">Academic Profile / 学术主页</a></li>
+                        <li><a href="#">Studio / 工作室</a></li>
+                    </ul>
+                </div>
+                <div class="links-column">
+                    <h3>Institutions / 机构</h3>
+                    <ul>
+                        <li><a href="https://www.rutgers.edu" target="_blank">Rutgers University</a></li>
+                        <li><a href="https://www.siggraph.org" target="_blank">ACM SIGGRAPH</a></li>
+                        <li><a href="#">Peking University / 北京大学</a></li>
+                    </ul>
+                </div>
+                <div class="links-column">
+                    <h3>Social / 社交媒体</h3>
+                    <ul>
+                        <li><a href="#" target="_blank">Instagram</a></li>
+                        <li><a href="#" target="_blank">WeChat / 微信公众号</a></li>
+                        <li><a href="#" target="_blank">Vimeo</a></li>
+                        <li><a href="#" target="_blank">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="contact-info">
+                <p>Department of Art, Mason Gross School of the Arts</p>
+                <p>Rutgers, The State University of New Jersey</p>
+                <p>33 Livingston Avenue, New Brunswick, NJ 08901</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-nav lightbox-prev" onclick="lightboxPrev()">&#10094;</button>
+        <img src="" alt="" id="lightboxImg">
+        <button class="lightbox-nav lightbox-next" onclick="lightboxNext()">&#10095;</button>
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2024 LiQin Tan / 谭力勤. All Rights Reserved. | Tan On Art / Art On Tan</p>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== NAVIGATION =====
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            // Show target section
+            document.getElementById(sectionId).classList.add('active');
+            // Update nav active state
+            document.querySelectorAll('.nav-main a').forEach(a => a.classList.remove('active'));
+            document.querySelector(`[data-section="${sectionId}"]`)?.classList.add('active');
+            // Hide all sub-navs
+            document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
+            // Show relevant sub-nav
+            const subMap = {
+                'art': 'sub-art',
+                'texts': 'sub-texts',
+                'expo': 'sub-expo',
+                'acad': 'sub-acad'
+            };
+            if (subMap[sectionId]) {
+                document.getElementById(subMap[sectionId]).classList.add('active');
+            }
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ===== CAROUSEL =====
+        let currentSlide = 0;
+        const totalSlides = 10;
+        const track = document.getElementById('carouselTrack');
+        const dotsContainer = document.getElementById('carouselDots');
+
+        // Create dots
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        }
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Auto-play
+        setInterval(nextSlide, 5000);
+
+        // ===== LIGHTBOX =====
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        let currentLightboxIndex = 0;
+
+        const artworkData = [
+            { src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&h=1200&fit=crop', title: 'SINGULARITY SERIES I', desc: 'AI Generated, 2024' },
+            { src: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=1600&h=1200&fit=crop', title: 'NEURAL DREAMSCAPE III', desc: 'AI Generated, 2023' },
+            { src: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1600&h=1200&fit=crop', title: 'STRONG AI VISION', desc: 'AI Generated, 2023' },
+            { src: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=1600&h=1200&fit=crop', title: 'DIGITAL PRIMITIVE I', desc: 'Interactive Installation, 2022' },
+            { src: 'https://images.unsplash.com/photo-1549490349-8643362247b5?w=1600&h=1200&fit=crop', title: 'BIOART EVOLUTION', desc: 'Mixed Media Installation, 2021' },
+            { src: 'https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=1600&h=1200&fit=crop', title: 'INVISIBLE ART MANIFESTO', desc: 'Conceptual Installation, 2020' },
+            { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&h=1200&fit=crop', title: 'QUANTUM VISUALIZATION', desc: 'Digital Print, 2022' },
+            { src: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=1600&h=1200&fit=crop', title: '4D PRINTING ART', desc: 'Digital Print, 2021' },
+            { src: 'https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=1600&h=1200&fit=crop', title: 'NANO ARCHITECTURE', desc: 'Digital Print, 2020' }
+        ];
+
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightbox() {
+            const data = artworkData[currentLightboxIndex];
+            lightboxImg.src = data.src;
+            lightboxCaption.innerHTML = `<strong>${data.title}</strong><br>${data.desc}`;
+        }
+
+        function lightboxNext() {
+            currentLightboxIndex = (currentLightboxIndex + 1) % artworkData.length;
+            updateLightbox();
+        }
+
+        function lightboxPrev() {
+            currentLightboxIndex = (currentLightboxIndex - 1 + artworkData.length) % artworkData.length;
+            updateLightbox();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') lightboxNext();
+            if (e.key === 'ArrowLeft') lightboxPrev();
+        });
+
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // ===== BIO LANGUAGE TOGGLE =====
+        function toggleLang(lang) {
+            document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.bio-lang').forEach(l => l.classList.remove('active'));
+            document.getElementById(`bio-${lang}`).classList.add('active');
+        }
+
+        // ===== ART FILTER =====
+        function filterArt(category) {
+            const items = document.querySelectorAll('.artwork-item');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // ===== SCROLL HELPERS =====
+        function scrollToPub(id) {
+            showSection('texts');
+            setTimeout(() => {
+                document.getElementById(`pub-${id}`).scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        function scrollToExpo(id) {
+            showSection('expo');
+            setTimeout(() => {
+                document.getElementById(`expo-${id}`).scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        function scrollToAcad(id) {
+            showSection('acad');
+            setTimeout(() => {
+                document.getElementById(`acad-${id}`).scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        // ===== HEADER SCROLL EFFECT =====
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 100) {
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+            lastScroll = currentScroll;
+        });
+
+        // ===== INIT =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check URL hash for direct linking
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById(hash)) {
+                showSection(hash);
+            }
+        });
+    </script>
+
+</body>
+</html>
