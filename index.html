@@ -257,9 +257,10 @@
         height: 80vh;              /* 超宽屏上高度适中 */
         min-height: 800px;         /* 保证足够大 */
     }
-    .carousel-slide img {
-        object-fit: contain;       /* 超宽屏上完整显示，不裁剪 */
-        background-color: #808000; /* 留白区域显示深褐绿色 */
+   .carousel-slide img {
+        object-fit: contain;
+        object-position: top;         /* 顶部对齐，底部留白 */
+        background-color: #808000;
     }
 }
 .carousel-track {
