@@ -243,8 +243,12 @@
 
 @media (min-width: 1920px) {
     .carousel {
-        height: 78vh;             /* 宽屏（稍微增加） */
-        min-height: 600px;
+        height: 80vh;
+        min-height: 650px;
+    }
+    .carousel-slide img {
+        object-fit: contain;      /* 宽屏上改成contain，完整显示 */
+        background-color: #808000;
     }
 }
 
