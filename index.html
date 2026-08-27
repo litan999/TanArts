@@ -244,23 +244,23 @@
 @media (min-width: 1920px) {
     .carousel {
         height: 80vh;
-        min-height: 650px;
+        min-height: 800px;
     }
     .carousel-slide img {
         object-fit: contain;      /* 宽屏上改成contain，完整显示 */
-        object-position: top;  
+        object-position: center;  
         background-color: #808000;
     }
 }
         
 @media (min-width: 3440px) {
     .carousel {
-        height: 80vh;              /* 超宽屏上高度适中 */
-        min-height: 800px;         /* 保证足够大 */
+        height: 90vh;              /* 超宽屏上高度适中 */
+        min-height: 900px;         /* 保证足够大 */
     }
    .carousel-slide img {
         object-fit: contain;
-        object-position: top;         /* 顶部对齐，底部留白 */
+        object-position: center;         /* 顶部对齐，底部留白 */
         background-color: #808000;
     }
 }
@@ -281,7 +281,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    object-position: top;     
+    object-position: center;     
 }
         /* ===== PAGE HEADER ===== */
         .page-header {
