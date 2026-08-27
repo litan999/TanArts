@@ -251,7 +251,17 @@
         background-color: #808000;
     }
 }
-
+        
+@media (min-width: 3440px) {
+    .carousel {
+        height: 70vh;              /* 超宽屏上高度适中 */
+        min-height: 700px;         /* 保证足够大 */
+    }
+    .carousel-slide img {
+        object-fit: contain;       /* 超宽屏上完整显示，不裁剪 */
+        background-color: #808000; /* 留白区域显示深褐绿色 */
+    }
+}
 .carousel-track {
     display: flex;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
