@@ -1050,24 +1050,29 @@
 
 /* ===== 响应式 ===== */
 @media (max-width: 900px) {
-    .expo-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
+   .expo-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 40px !important;
+    align-items: start !important;
+    position: relative !important;
+}
+.expo-list-wrapper {
+    flex: 1 !important;
+    max-height: 650px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
 
-    .expo-carousel-wrapper {
-        position: relative;
-        top: 0;
-        aspect-ratio: 21 / 9;
-        min-height: 200px;
-        max-height: 320px;
-    }
-
-    .expo-list-wrapper {
-        max-height: 400px;
-    }
-
-    .expo-list li {
+.expo-carousel-wrapper {
+    flex: 1 !important;
+    position: sticky;
+    top: 120px;
+    aspect-ratio: 21 / 9;
+    min-height: 450px;
+    max-height: 900px;
+}
+.expo-list li {
         min-height: 50px;
         padding: 8px 10px;
     }
