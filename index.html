@@ -79,12 +79,6 @@
             line-height: 1.2;
         }
 
-        .logo-name-cn {
-            font-size: 16px;
-            font-weight: 500;
-            margin-top: 2px;
-        }
-
         .logo-sub {
             font-size: 11px;
             font-weight: 400;
@@ -153,7 +147,6 @@
             color: var(--text);
         }
 
-        /* Sub Menu */
         .sub-nav {
             display: none;
             justify-content: center;
@@ -218,128 +211,132 @@
             max-width: 100%;
         }
 
-      .carousel {
-    position: relative;
-    width: 100%;
-    height: 45vh;                 /* 手机（稍微降低，因为16:9更宽） */
-    min-height: 300px;
-    overflow: hidden;
-    background: #808000;
-}
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 45vh;
+            min-height: 300px;
+            overflow: hidden;
+            background: #808000;
+        }
 
-@media (min-width: 768px) {
-    .carousel {
-        height: 55vh;             /* 平板 */
-        min-height: 400px;
-    }
-}
+        @media (min-width: 768px) {
+            .carousel {
+                height: 55vh;
+                min-height: 400px;
+            }
+        }
 
-@media (min-width: 1200px) {
-    .carousel {
-        height: 70vh;             /* 桌面（保持不变） */
-        min-height: 500px;
-    }
-}
+        @media (min-width: 1200px) {
+            .carousel {
+                height: 70vh;
+                min-height: 500px;
+            }
+        }
 
-@media (min-width: 1920px) {
-    .carousel {
-        height: 80vh;
-        min-height: 800px;
-    }
-    .carousel-slide img {
-        object-fit: contain;      /* 宽屏上改成contain，完整显示 */
-        object-position: center;  
-        background-color: #808000;
-    }
-}
-        
-@media (min-width: 3440px) {
-    .carousel {
-        height: 90vh;              /* 超宽屏上高度适中 */
-        min-height: 900px;         /* 保证足够大 */
-    }
-   .carousel-slide img {
-        object-fit: contain;
-        object-position: center;         /* 顶部对齐，底部留白 */
-        background-color: #808000;
-    }
-}
-.carousel-track {
-    display: flex;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    height: 100%;
-}
+        @media (min-width: 1920px) {
+            .carousel {
+                height: 80vh;
+                min-height: 800px;
+            }
+            .carousel-slide img {
+                object-fit: contain;
+                object-position: center;
+                background-color: #808000;
+            }
+        }
 
-.carousel-slide {
-    min-width: 100%;
-    height: 100%;
-    position: relative;
-}
+        @media (min-width: 3440px) {
+            .carousel {
+                height: 90vh;
+                min-height: 900px;
+            }
+            .carousel-slide img {
+                object-fit: contain;
+                object-position: center;
+                background-color: #808000;
+            }
+        }
 
-.carousel-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    object-position: center;     
-}
-.carousel-info {
-    position: absolute;
-    bottom: 40px;
-    left: 40px;
-    background: #808000;
-    padding: 6px 20px;
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    z-index: 20;
-}
+        .carousel-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+        }
 
-.carousel-info h3 {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    margin-bottom: -4px;
-    color: #ffffff;
-}
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
 
-.carousel-info p {
-    font-size: 12px;
-    color: #ffffff;
-    margin-top: 0px;
-}
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.85);
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: #333;
-    transition: all 0.3s ease;
-    z-index: 30;                    /* 最高层级 */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            object-position: center;
+        }
 
-.carousel-btn:hover {
-    background: #ffffff;
-    transform: translateY(-50%) scale(1.05);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
+        .carousel-info {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            background: #808000;
+            padding: 6px 20px;
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            z-index: 20;
+        }
 
-.carousel-btn.prev { 
-    left: 20px; 
-}
+        .carousel-info h3 {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: -4px;
+            color: #ffffff;
+        }
 
-.carousel-btn.next { 
-    right: 20px; 
-}
+        .carousel-info p {
+            font-size: 12px;
+            color: #ffffff;
+            margin-top: 0px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.85);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #333;
+            transition: all 0.3s ease;
+            z-index: 30;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .carousel-btn:hover {
+            background: #ffffff;
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .carousel-btn.prev {
+            left: 20px;
+        }
+
+        .carousel-btn.next {
+            right: 20px;
+        }
+
         /* ===== PAGE HEADER ===== */
         .page-header {
             text-align: center;
@@ -700,448 +697,49 @@
         }
 
         /* ===== ARTICLES ===== */
-       .article-list {
-    list-style: none;
-}
-
-.article-item {
-    font-style: normal !important;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border-light);
-}
-.article-title em {
-    font-style: italic !important;
-}
-.article-item:last-child {
-    border-bottom: none;
-}
-
-.article-item .en {
-    font-size: 14px;
-    line-height: 1.4;
-    color: var(--text);
-    margin-bottom: 2px;
-    text-indent: -2em;
-    padding-left: 2em;
-    display: block;
-}
-
-.article-item .zh {
-    font-size: 11px;          
-    line-height: 1.3;
-    color: var(--text);
-    margin-bottom: 2px;
-    text-indent: -2em;
-    padding-left: 2em;
-    display: block;
-}
-
-.article-item .article-meta {
-    font-size: 12px;
-    color: var(--text-muted);
-    text-indent: 0;
-    padding-left: 2em;
-    margin-bottom: 0;
-    line-height: 1.3;
-}
-     /* ===== EXHIBITIONS（紧凑版） ===== */
-
-/* ---- 切换按钮间距缩小 ---- */
-.toggle-wrapper {
-    margin-bottom: 16px !important;  /* 缩小间距 */
-}
-
-/* ---- 展览列表 ---- */
-.expo-list-wrapper {
-    max-height: 650px;
-    overflow-y: auto;
-    padding-right: 8px;
-    position: relative;
-    z-index: 2;
-}
-
-/* 自定义滚动条 - 更宽，更明显，两端有灰色标记 */
-.expo-list-wrapper::-webkit-scrollbar {
-    width: 8px;                    /* 加宽 */
-}
-
-.expo-list-wrapper::-webkit-scrollbar-track {
-    background: #f0f0f0;
-    border-radius: 10px;
-    border: 1px solid #e0e0e0;
-}
-
-.expo-list-wrapper::-webkit-scrollbar-thumb {
-    background: #b0b0b0;
-    border-radius: 10px;
-    transition: background 0.3s;
-}
-
-.expo-list-wrapper::-webkit-scrollbar-thumb:hover {
-    background: #888;
-}
-
-/* 滚动条两端的小灰色标记（用伪元素实现） */
-.expo-list-wrapper::before,
-.expo-list-wrapper::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    width: 8px;
-    height: 12px;
-    background: #d0d0d0;
-    border-radius: 4px;
-    z-index: 10;
-    pointer-events: none;
-}
-
-.expo-list-wrapper::before {
-    top: -2px;
-    border-radius: 4px 4px 0 0;
-}
-
-.expo-list-wrapper::after {
-    bottom: -2px;
-    border-radius: 0 0 4px 4px;
-}
-
-/* ---- 列表项 - 紧凑，无彩色标签 ---- */
-.expo-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.expo-list li {
-    margin-bottom: 0;
-    padding: 10px 14px 10px 12px;   /* 上下内边距缩小 */
-    border-bottom: 1px solid var(--border-light);
-    cursor: pointer;
-    transition: background 0.2s, border-color 0.2s;
-    border-left: 3px solid transparent;  /* 变细 */
-    border-radius: 0;
-    min-height: 60px;              /* 高度减小 */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.expo-list li:hover {
-    background: #f5f7fa;
-}
-
-.expo-list li.active {
-    background: #eef2f7;
-    border-left-color: #b31b1b;
-}
-
-.expo-list li:last-child {
-    border-bottom: none;
-}
-
-/* ---- 年份 - 更小 ---- */
-.expo-year {
-    font-size: 12px;
-    font-weight: 600;
-    color: #b31b1b;
-    letter-spacing: 0.5px;
-    margin-bottom: 2px;
-}
-
-/* ---- 展览标题 - 更紧凑 ---- */
-.expo-title {
-    font-style: normal !important;
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 1px;
-    line-height: 1.5;
-    color: var(--text);
-}
-
-.expo-title em {
-    font-style: italic !important;
-}
-
-.expo-title-zh {
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--text-light);
-    font-style: normal !important;
-    font-family: 'Noto Sans SC', serif;
-}
-
-.expo-title-zh em {
-    font-style: italic !important;
-}
-
-/* ---- 右侧图片轮播（保持原有大小） ---- */
-.expo-carousel-wrapper {
-    position: sticky;
-    top: 120px;
-    background: #f8f9fb;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--border-light);
-    aspect-ratio: 21 / 9;
-    display: flex;
-    flex-direction: column;
-    min-height: 450px;
-    max-height: 800px;
-    width: 100%;
-    z-index: 1;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-}
-
-/* ---- 其余轮播样式保持不变 ---- */
-.carousel-container {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-    background: #1a1e24;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.carousel-slides {
-    display: flex;
-    transition: transform 0.4s ease;
-    width: 100%;
-    height: 100%;
-}
-
-.carousel-slide {
-    min-width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #1a1e24;
-    position: relative;
-}
-
-.carousel-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    background: #1a1e24;
-}
-
-.carousel-slide .no-image-placeholder {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 16px;
-    text-align: center;
-    padding: 20px;
-}
-
-.carousel-slide .no-image-placeholder span {
-    display: block;
-    font-size: 56px;
-    margin-bottom: 10px;
-}
-
-/* 导航箭头 */
-.carousel-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.85);
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    color: #1a1e24;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    z-index: 10;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    pointer-events: none;
-}
-
-.expo-carousel-wrapper:hover .carousel-nav {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.carousel-nav:hover {
-    background: #ffffff;
-    transform: translateY(-50%) scale(1.1);
-}
-
-.carousel-nav.prev {
-    left: 12px;
-}
-
-.carousel-nav.next {
-    right: 12px;
-}
-
-/* 底部指示器 */
-.carousel-dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    background: rgba(0, 0, 0, 0.6);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    flex-wrap: wrap;
-    min-height: 32px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 5;
-}
-
-.carousel-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.4);
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0;
-}
-
-.carousel-dot.active {
-    background: #ffffff;
-    transform: scale(1.2);
-}
-
-.carousel-dot:hover {
-    background: rgba(255, 255, 255, 0.8);
-}
-
-.carousel-dot.active:hover {
-    background: #ffffff;
-}
-
-.carousel-counter {
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.6);
-    margin-left: 8px;
-    font-family: 'Inter', sans-serif;
-}
-
-/* ===== Group 默认隐藏 ===== */
-.expo-group-list {
-    display: none;
-}
-
-.expo-group-list.active {
-    display: block;
-}
-
-.expo-solo-list {
-    display: block;
-}
-
-.expo-solo-list.hidden {
-    display: none;
-}
-
-  /* ===== 响应式 ===== */
-        @media (max-width: 1024px) {
-            .artwork-grid { grid-template-columns: repeat(2, 1fr); }
-            .bio-content { grid-template-columns: 1fr; }
-            .bio-portrait { position: static; }
-            .video-grid { grid-template-columns: 1fr; }
-            .book-item { grid-template-columns: 150px 1fr; gap: 24px; }
+        .article-list {
+            list-style: none;
         }
 
-        @media (max-width: 768px) {
-            .header-inner { padding: 0 20px; }
-            .nav-main { flex-wrap: wrap; justify-content: center; }
-            .nav-main a { padding: 8px 14px; font-size: 11px; }
-            .sub-nav { flex-wrap: wrap; }
-            main { margin-top: 180px; }
-            .section { padding: 20px; }
-            .carousel { height: 50vh; min-height: 300px; }
-            .artwork-grid { grid-template-columns: 1fr; }
-            /* .expo-grid 不在这里定义，保持双栏 */
-            .links-grid { grid-template-columns: 1fr; }
-            .book-item { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 480px) {
-    /* ===== 强制 Expo 在手机上也是双栏 ===== */
-    .expo-grid {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 16px !important;
-    }
-    
-    .expo-list-wrapper {
-        max-height: 400px !important;
-    }
-    
-    .expo-carousel-wrapper {
-        position: relative !important;  /* 手机上取消粘性定位 */
-        top: 0 !important;
-        min-height: 150px;
-        max-height: 220px;
-    }
-            
-    .expo-title {
-        font-size: 12px;
-    }
-    .expo-title-zh {
-        font-size: 11px;
-    }
-    .expo-year {
-        font-size: 11px;
-    }
-    .expo-list li {
-        min-height: 44px;
-        padding: 6px 8px;
-    }
-    .carousel-nav {
-        width: 26px;
-        height: 26px;
-        font-size: 14px;
-    }
-    .toggle-wrapper {
-        width: 100%;
-    }
-    .toggle-btn {
-        flex: 1;
-        text-align: center;
-        padding: 6px 12px !important;
-        font-size: 12px !important;
-    }
-}
-
-        /* ===== 强制 Expo 双栏布局（覆盖所有媒体查询） ===== */
-        .expo-grid {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr !important;
-            gap: 40px !important;
-            align-items: start !important;
+        .article-item {
+            font-style: normal !important;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
         }
 
-        .expo-list-wrapper {
-            max-height: 650px !important;
-            overflow-y: auto !important;
-            padding-right: 8px !important;
+        .article-item:last-child {
+            border-bottom: none;
         }
 
-        .expo-carousel-wrapper {
-            position: sticky !important;
-            top: 120px !important;
-            aspect-ratio: 21 / 9 !important;
-            min-height: 450px !important;
-            max-height: 800px !important;
-            width: 100% !important;
+        .article-item .en {
+            font-size: 14px;
+            line-height: 1.4;
+            color: var(--text);
+            margin-bottom: 2px;
+            text-indent: -2em;
+            padding-left: 2em;
+            display: block;
         }
-    </style>
-</head>
+
+        .article-item .zh {
+            font-size: 11px;
+            line-height: 1.3;
+            color: var(--text);
+            margin-bottom: 2px;
+            text-indent: -2em;
+            padding-left: 2em;
+            display: block;
+        }
+
+        .article-item .article-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-indent: 0;
+            padding-left: 2em;
+            margin-bottom: 0;
+            line-height: 1.3;
+        }
+
         /* ===== ACADEMIC ===== */
         .acad-category {
             margin-bottom: 50px;
@@ -1241,21 +839,298 @@
             margin-bottom: 8px;
         }
 
-        /* ===== FOOTER ===== */
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid var(--border-light);
-            margin-top: 80px;
+        /* ===== EXHIBITIONS（紧凑版） ===== */
+        .toggle-wrapper {
+            margin-bottom: 16px !important;
         }
 
-        footer p {
+        .expo-list-wrapper {
+            max-height: 650px;
+            overflow-y: auto;
+            padding-right: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .expo-list-wrapper::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .expo-list-wrapper::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .expo-list-wrapper::-webkit-scrollbar-thumb {
+            background: #b0b0b0;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        .expo-list-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #888;
+        }
+
+        .expo-list-wrapper::before,
+        .expo-list-wrapper::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            width: 8px;
+            height: 12px;
+            background: #d0d0d0;
+            border-radius: 4px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .expo-list-wrapper::before {
+            top: -2px;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .expo-list-wrapper::after {
+            bottom: -2px;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .expo-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .expo-list li {
+            margin-bottom: 0;
+            padding: 10px 14px 10px 12px;
+            border-bottom: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            border-left: 3px solid transparent;
+            border-radius: 0;
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .expo-list li:hover {
+            background: #f5f7fa;
+        }
+
+        .expo-list li.active {
+            background: #eef2f7;
+            border-left-color: #b31b1b;
+        }
+
+        .expo-list li:last-child {
+            border-bottom: none;
+        }
+
+        .expo-year {
             font-size: 12px;
-            color: var(--text-muted);
-            letter-spacing: 1px;
+            font-weight: 600;
+            color: #b31b1b;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
         }
 
-        /* ===== RESPONSIVE ===== */
+        .expo-title {
+            font-style: normal !important;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 1px;
+            line-height: 1.5;
+            color: var(--text);
+        }
+
+        .expo-title em {
+            font-style: italic !important;
+        }
+
+        .expo-title-zh {
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--text-light);
+            font-style: normal !important;
+            font-family: 'Noto Sans SC', serif;
+        }
+
+        .expo-title-zh em {
+            font-style: italic !important;
+        }
+
+        .expo-carousel-wrapper {
+            position: sticky;
+            top: 120px;
+            background: #f8f9fb;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            aspect-ratio: 21 / 9;
+            display: flex;
+            flex-direction: column;
+            min-height: 450px;
+            max-height: 800px;
+            width: 100%;
+            z-index: 1;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .carousel-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background: #1a1e24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.4s ease;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1a1e24;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            background: #1a1e24;
+        }
+
+        .carousel-slide .no-image-placeholder {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 16px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .carousel-slide .no-image-placeholder span {
+            display: block;
+            font-size: 56px;
+            margin-bottom: 10px;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.85);
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #1a1e24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .expo-carousel-wrapper:hover .carousel-nav {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .carousel-nav:hover {
+            background: #ffffff;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav.prev {
+            left: 12px;
+        }
+
+        .carousel-nav.next {
+            right: 12px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            min-height: 32px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 5;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .carousel-dot.active {
+            background: #ffffff;
+            transform: scale(1.2);
+        }
+
+        .carousel-dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .carousel-dot.active:hover {
+            background: #ffffff;
+        }
+
+        .carousel-counter {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-left: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .expo-group-list {
+            display: none;
+        }
+
+        .expo-group-list.active {
+            display: block;
+        }
+
+        .expo-solo-list {
+            display: block;
+        }
+
+        .expo-solo-list.hidden {
+            display: none;
+        }
+
+        /* ===== 响应式 ===== */
         @media (max-width: 1024px) {
             .artwork-grid { grid-template-columns: repeat(2, 1fr); }
             .bio-content { grid-template-columns: 1fr; }
@@ -1273,9 +1148,90 @@
             .section { padding: 20px; }
             .carousel { height: 50vh; min-height: 300px; }
             .artwork-grid { grid-template-columns: 1fr; }
-            .expo-grid { grid-template-columns: 1fr; }
+            /* 不定义 .expo-grid，保持双栏 */
             .links-grid { grid-template-columns: 1fr; }
             .book-item { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .expo-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 16px !important;
+            }
+            .expo-list-wrapper {
+                max-height: 400px !important;
+            }
+            .expo-carousel-wrapper {
+                position: relative !important;
+                top: 0 !important;
+                min-height: 150px;
+                max-height: 220px;
+            }
+            .expo-title {
+                font-size: 12px;
+            }
+            .expo-title-zh {
+                font-size: 11px;
+            }
+            .expo-year {
+                font-size: 11px;
+            }
+            .expo-list li {
+                min-height: 44px;
+                padding: 6px 8px;
+            }
+            .carousel-nav {
+                width: 26px;
+                height: 26px;
+                font-size: 14px;
+            }
+            .toggle-wrapper {
+                width: 100%;
+            }
+            .toggle-btn {
+                flex: 1;
+                text-align: center;
+                padding: 6px 12px !important;
+                font-size: 12px !important;
+            }
+        }
+
+        /* ===== 强制 Expo 双栏布局（覆盖所有媒体查询） ===== */
+        .expo-grid {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 40px !important;
+            align-items: start !important;
+        }
+
+        .expo-list-wrapper {
+            max-height: 650px !important;
+            overflow-y: auto !important;
+            padding-right: 8px !important;
+        }
+
+        .expo-carousel-wrapper {
+            position: sticky !important;
+            top: 120px !important;
+            aspect-ratio: 21 / 9 !important;
+            min-height: 450px !important;
+            max-height: 800px !important;
+            width: 100% !important;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--border-light);
+            margin-top: 80px;
+        }
+
+        footer p {
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
         }
 
         /* ===== UTILITY ===== */
@@ -1290,7 +1246,6 @@
     </style>
 </head>
 <body>
-
     <!-- ===== HEADER ===== -->
     <header>
         <div class="header-inner">
@@ -1311,7 +1266,6 @@
                     <li><a href="#acad" data-section="acad" onclick="showSection('acad')">Acad 研讨</a></li>
                     <li><a href="#links" data-section="links" onclick="showSection('links')">Links 联系</a></li>
                 </ul>
-                <!-- Sub Menus -->
                 <ul class="sub-nav" id="sub-art">
                     <li><a href="#" onclick="filterArt('aigc')">AIGC Art / AI生成艺术</a></li>
                     <li><a href="#" onclick="filterArt('installation')">Installation / 装置</a></li>
@@ -1319,8 +1273,8 @@
                 </ul>
                 <ul class="sub-nav" id="sub-texts">
                     <li><a href="#" onclick="scrollToPub('books')">Books / 著作</a></li>
-                    <li><a href="#" onclick="scrollToPub('articles')">Catalogues / 画文集</a></li>
-                    <li><a href="#" onclick="scrollToPub('catalogues')">Articles / 论文</a></li>
+                    <li><a href="#" onclick="scrollToPub('catalogues')">Catalogues / 画文集</a></li>
+                    <li><a href="#" onclick="scrollToPub('articles')">Articles / 论文</a></li>
                 </ul>
                 <ul class="sub-nav" id="sub-expo">
                     <li><a href="#" onclick="scrollToExpo('solo')">Solo / 个展</a></li>
@@ -1345,11 +1299,11 @@
                     <div class="carousel-slide">
                         <img src="HScreen SinArt.jpg" alt="Artwork 1">
                         <div class="carousel-info">
-                            <h3>SINGULARITY ART BOOKS </h3>
+                            <h3>SINGULARITY ART BOOKS</h3>
                             <p style="color:#000000 !important;">2018-2019</p>
                         </div>
                     </div>
-                     <!-- Slide 2 -->
+                    <!-- Slide 2 -->
                     <div class="carousel-slide">
                         <img src="HScreen Installation.jpg" alt="Artwork 2">
                         <div class="carousel-info">
@@ -1361,8 +1315,8 @@
                     <div class="carousel-slide">
                         <img src="HScreen AIGC-P.jpg" alt="Artwork 3">
                         <div class="carousel-info">
-                            <h3>AIGC OIL PAINTING  /AI生成油画</h3>
-                            <p style="color:#000000 !important;"> AIGC & Digital Printing, 2025-</p>
+                            <h3>AIGC OIL PAINTING /AI生成油画</h3>
+                            <p style="color:#000000 !important;">AIGC & Digital Printing, 2025-</p>
                         </div>
                     </div>
                     <!-- Slide 4 -->
@@ -1373,20 +1327,20 @@
                             <p style="color:#000000 !important;">AI Generated, 2026</p>
                         </div>
                     </div>
-                     <!-- Slide 5 -->
+                    <!-- Slide 5 -->
                     <div class="carousel-slide">
                         <img src="HScreen AIGC-P2.jpg" alt="Artwork 5">
                         <div class="carousel-info">
                             <h3>AIGC OIL PAINTING /AI生成油画</h3>
-                            <p style="color:#000000 !important;"> AIGC & Digital Printing, 2025-</p>
+                            <p style="color:#000000 !important;">AIGC & Digital Printing, 2025-</p>
                         </div>
                     </div>
                     <!-- Slide 6 -->
                     <div class="carousel-slide">
                         <img src="HScreen Prints.jpg" alt="Artwork 6">
                         <div class="carousel-info">
-                            <h3>DIDITAL METAL PRINTS /金属数字打印</h3>
-                            <p style="color:#000000 !important;"> Mixed Media, 2001-2013</p>
+                            <h3>DIGITAL METAL PRINTS /金属数字打印</h3>
+                            <p style="color:#000000 !important;">Mixed Media, 2001-2013</p>
                         </div>
                     </div>
                     <!-- Slide 7 -->
@@ -1396,20 +1350,20 @@
                             <h3>AIGC VIDEO / AI生成影像</h3>
                             <p style="color:#000000 !important;">AI Generated, 2026</p>
                         </div>
-                     </div>
+                    </div>
                     <!-- Slide 8 -->
                     <div class="carousel-slide">
                         <img src="HScreen Rawhide.jpg" alt="Artwork 8">
                         <div class="carousel-info">
                             <h3>RAWHIDE INSTALLATION /兽皮动画投射装置</h3>
-                            <p style="color:#000000 !important;"> Rawhide Projection & Prints, 2003</p>
+                            <p style="color:#000000 !important;">Rawhide Projection & Prints, 2003</p>
                         </div>
                     </div>
                     <!-- Slide 9 -->
                     <div class="carousel-slide">
                         <img src="HScreen Installation2.jpg" alt="Artwork 9">
                         <div class="carousel-info">
-                            <h3>ANIMATION INSTALLATION /动画交互装置 </h3>
+                            <h3>ANIMATION INSTALLATION /动画交互装置</h3>
                             <p style="color:#000000 !important;">Interactive Installation, 2008</p>
                         </div>
                     </div>
@@ -1418,7 +1372,7 @@
                         <img src="HScreen Soloshow.jpg" alt="Artwork 10">
                         <div class="carousel-info">
                             <h3>EXHIBITION / 展览</h3>
-                            <p style="color:#000000!important;"> Solo Show Opening, 2008</p>
+                            <p style="color:#000000!important;">Solo Show Opening, 2008</p>
                         </div>
                     </div>
                 </div>
@@ -1454,7 +1408,7 @@
                     <div class="bio-lang" id="bio-cn">
                         <h2>谭力勤 / LiQin Tan</h2>
                         <p>美国罗格斯大学（Rutgers University）终身正教授和前美术部共同主任，北京大学特聘专家教授。曾任美国SIGGRAPH数码艺术协会常务理事，画廊高级评审和学生动画评审主席，中国八五美术思潮重要参入者之一。</p>
-                        <p>从事先锋艺术创作和理论研究四十余年。作品融后人文观念与前沿科技，创“数码原始”交互动画装置，多次获国际数字艺术头奖和金奖，美国当地媒体称他为“革命性的艺术家”。大型个展巡回世界各地，中国有中华世纪坛，上海多伦美术馆、798艺术区和宋庄美术馆等地。 </p>
+                        <p>从事先锋艺术创作和理论研究四十余年。作品融后人文观念与前沿科技，创"数码原始"交互动画装置，多次获国际数字艺术头奖和金奖，美国当地媒体称他为"革命性的艺术家"。大型个展巡回世界各地，中国有中华世纪坛，上海多伦美术馆、798艺术区和宋庄美术馆等地。</p>
                         <p>科技艺术家和艺术未来学者，科技奇点艺术的倡导者和实验者，二十年多年前在中美开创了人工智能、生物设计、无介质VR艺术、4D智能打印等艺术教学研究。探索未来艺术在科技奇点和后人文主义冲击下的蜕变。其理论研究还涉及观念动画、交互动画装置、动画教育和当代艺术批评等。除几十篇学术论文外，出版未来科技艺术研究著作有：《奇点艺术》，《颠覆性的生物艺术》，《概念与技术》；画文集有：《数码自然艺术》和《谭力勤数码艺术集II》、策划出版的有《艺术未来学》、《不可视的艺术》和《量子艺术》等。</p>
                     </div>
                 </div>
@@ -1469,7 +1423,6 @@
                 <p>AIGC Art / Installation / Digital Print</p>
             </div>
             <div class="artwork-grid" id="artworkGrid">
-                <!-- AIGC Art -->
                 <div class="artwork-item" data-category="aigc" onclick="openLightbox(0)">
                     <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=600&fit=crop" alt="AIGC 1">
                     <div class="artwork-overlay">
@@ -1491,7 +1444,6 @@
                         <p>AI Generated, 2023</p>
                     </div>
                 </div>
-                <!-- Installation -->
                 <div class="artwork-item" data-category="installation" onclick="openLightbox(3)">
                     <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=800&h=600&fit=crop" alt="Installation 1">
                     <div class="artwork-overlay">
@@ -1513,7 +1465,6 @@
                         <p>Conceptual Installation, 2020</p>
                     </div>
                 </div>
-                <!-- Digital Print -->
                 <div class="artwork-item" data-category="digital" onclick="openLightbox(6)">
                     <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=600&fit=crop" alt="Digital 1">
                     <div class="artwork-overlay">
@@ -1543,10 +1494,9 @@
             <div class="page-header">
                 <h1>Texts <span>/ 书文</span></h1>
                 <div class="divider"></div>
-                <p>Books / Catalogues / Articles </p>
+                <p>Books / Catalogues / Articles</p>
             </div>
 
-            <!-- Books -->
             <div class="pub-section" id="pub-books">
                 <h3>Books / 著作</h3>
                 <div class="book-item">
@@ -1596,12 +1546,12 @@
                             <li><span>Year</span>2012</li>
                             <li><span>Pages</span>280</li>
                         </ul>
-                        <p class="book-desc">Spanning three decades (1985–2012), this collection compiles 49 articles on art criticism, education, practice, and futures research. It is divided into two parts: Tan On Art—Tan’s original essays—and Art On Tan—critical responses from international scholars across China, the US, Canada, and Europe.</p>
-                        <p class="book-desc">文集跨越近三十载（1985—2012），萃集四十九篇学术文章，其研究涵盖艺术批评、艺术教育、创作实践及艺术未来学等诸领域。全书统摄为两编：上编“谭论艺术” （Tan On Art），辑录谭力勤先生之原创论著；下编“艺评谭氏” （Art On Tan），汇集中、美、加及欧洲等地国际学者关于谭氏艺术思想与创作之评论与回应，由此构成一种跨文化视野下的艺术理论对话场域。</p>
+                        <p class="book-desc">Spanning three decades (1985–2012), this collection compiles 49 articles on art criticism, education, practice, and futures research. It is divided into two parts: Tan On Art—Tan's original essays—and Art On Tan—critical responses from international scholars across China, the US, Canada, and Europe.</p>
+                        <p class="book-desc">文集跨越近三十载（1985—2012），萃集四十九篇学术文章，其研究涵盖艺术批评、艺术教育、创作实践及艺术未来学等诸领域。全书统摄为两编：上编"谭论艺术" （Tan On Art），辑录谭力勤先生之原创论著；下编"艺评谭氏" （Art On Tan），汇集中、美、加及欧洲等地国际学者关于谭氏艺术思想与创作之评论与回应，由此构成一种跨文化视野下的艺术理论对话场域。</p>
                     </div>
                 </div>
             </div>
-             <!-- Catalogues -->
+
             <div class="pub-section" id="pub-catalogues">
                 <h3>Catalogues / 画文集</h3>
                 <div class="book-item">
@@ -1621,7 +1571,7 @@
                         <p class="book-desc">本画册以丰富图录详实呈现谭于2000至2005年间之实验性数字艺术创作，并邀集来自世界各地的杰出艺术史学者、策展人与技术专家撰文评述，形成多维批评视阈。</p>
                     </div>
                 </div>
-                 <div class="book-item">
+                <div class="book-item">
                     <div class="book-cover">
                         <img src="DigitalArt-II.jpg" alt="Catalogue Cover">
                     </div>
@@ -1640,285 +1590,147 @@
                 </div>
             </div>
 
-            <!-- Articles -->
             <div class="pub-section" id="pub-articles">
-                <h3> Selected Articles / 论文精选</h3>
+                <h3>Selected Articles / 论文精选</h3>
                 <ul class="article-list">
                     <li class="article-item">
-                        <p>Tan, L. (2026). "The Ultimate Mission of Biodesign(1 & 2)." Tan’s Column, “Towards Post-human Art", <em>Art Monthly</em>,（7), 85-91</p>
-                        <p>谭力勤. 生物设计的终极使命:艺术家作为生命想象力的设计者[J]. 迈向后人类艺术专栏，画刊, 2026(6-7)，85-91 </p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
+                        <p>Tan, L. (2026). "The Ultimate Mission of Biodesign(1 & 2)." Tan's Column, "Towards Post-human Art", <em>Art Monthly</em>,（7), 85-91</p>
+                        <p>谭力勤. 生物设计的终极使命:艺术家作为生命想象力的设计者[J]. 迈向后人类艺术专栏，画刊, 2026(6-7)，85-91</p>
+                        <p class="article-meta">Journal Article / 期刊论文</p>
                     </li>
                     <li class="article-item">
-                        <p>Tan, L. (2026). "From Human Nature to Post-biological Commonality.” Tan’s Column, “Towards Post-human Art", <em>Art Monthly</em>, (3), 91-97. </p>
+                        <p>Tan, L. (2026). "From Human Nature to Post-biological Commonality." Tan's Column, "Towards Post-human Art", <em>Art Monthly</em>, (3), 91-97.</p>
                         <p>谭力勤. 从人性到后生物共性—后人类艺术的感知变量[J], 迈向后人类艺术专栏，画刊, 2026(3)，91-97</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
+                        <p class="article-meta">Journal Article / 期刊论文</p>
                     </li>
                     <li class="article-item">
-                        <p>Tan, L. (2021). "Technological Art: The Main Trend of Future Art.”  <em>Art Observation</em>,(2), 77-84</p>
+                        <p>Tan, L. (2021). "Technological Art: The Main Trend of Future Art." <em>Art Observation</em>,(2), 77-84</p>
                         <p>谭力勤. 科技艺术：未来艺术的主潮？-罗格斯大学谭力勤教授专访[J], 美术观察, 2021(2): 7-84</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                     <li class="article-item">
-                        <p>Tan, L. (2020). "Thirty years spanning: the artists from 85’ movement reunited at the 
-turning point of technological art.”  <em>China Art </em>,  </p>
-                        <p>谭力勤. 横亘三十载：八五老将重逢于科技艺术转折点[J], 艺术头条，2020(11) </p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
+                        <p class="article-meta">Journal Article / 期刊论文</p>
                     </li>
                     <li class="article-item">
-                        <p>Tan, L. (2026). "Humans No Longer Have Exclusive Artistic Creativity.” Tan’s Column, “Technological Singularity Art", <em>Art Monthly</em>,(7),91-97</p>
+                        <p>Tan, L. (2026). "Humans No Longer Have Exclusive Artistic Creativity." Tan's Column, "Technological Singularity Art", <em>Art Monthly</em>,(7),91-97</p>
                         <p>谭力勤. 从人性到后生物共性—后人类艺术的感知变量[J], 科技奇点艺术专栏，《画刊》2026(7)，73-79</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
+                        <p class="article-meta">Journal Article / 期刊论文</p>
                     </li>
                     <li class="article-item">
-                        <p>Tan, L. (2026). "The Structural Excavation of Strong & Weak AI Art (Part1-3).” Tan’s Column, “Technological Singularity Art", <em>Art Monthly</em>, (2-7), 3-79,72-78，74-80 </p>
-                        <p>谭力勤.  强与弱人工智能艺术架构开凿（1-3）[J]. 科技奇点艺术专栏，画刊, 2020(2-7): 73-79, 72-78，74-80</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (2019). "The Smart Awareness of 4D Printing Art.” Tan’s Column, “Technological Singularity Art", <em>Art Monthly</em>, (11), 78-82. </p>
-                        <p>谭力勤. 4D打印艺术中的智能觉醒[J], 科技奇点艺术专栏，画刊, 2019(11）：78-82</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (2019). "A Nano Perspective: The Reconstruction of the Invisible Art Concept.” Tan’s Column, “Technological Singularity Art", <em>Art Monthly</em>, (10), 66-69</p>
-                        <p>谭力勤. 纳米透视：不可视艺术概念的构架重塑[J], 科技奇点艺术专栏，画刊, 2019(10): 66-69</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                     <li class="article-item">
-                        <p>Tan, L. (2019). "A.I. Will Reconstruct Art, the Artist & Creativity.” <em>Absolute Art</em>, V10, 4-5. </p>
-                        <p>谭力勤. 科技智能将重构艺术、艺术家和创造力[J]. 绝对艺术, 2019(10):4-5</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                     <li class="article-item">
-                        <p>Tan, L. (2018). "A.I. Will Reconstruct Art, the Artist & Creativity.”  <em>Absolute Art</em>, V10, 4-5. </p>
-                        <p>谭力勤. 科技乃艺术灵感源泉之一[J]. 绝对艺术, 2018(8) </p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (2016). "A Bioart Case in the Singularity Era.” <em>Absolute Art</em>, V3, 10-11. </p>
-                        <p>谭力勤. 奇点时代生物艺术案例[J]. 绝对艺术, 2016(3): 10-11</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (2015). "Singularity Art Moving towards the Future.”  <em>Absolute Art</em>, V2, 216-214. </p>
-                        <p>谭力勤. 奇点艺术：走向未来[J]. 绝对艺术, 2015(2): 216-214</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (2013). "Singularity Art (1), .”  <em>Art Review</em>, Sichuan University Press, V2, 10-11. </p>
-                        <p>谭力勤. 奇点时代的艺术I[M]//艺术研究与评论. 成都: 四川大学出版社, 2013, 2(秋季号): 217-242.</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (2013). "Singularity Art (1), .” Tan’s Column, “Technological Singularity Art", <em>Art Review</em>, Sichuan University Press, V2, 10-11. </p>
-                        <p>谭力勤. 奇点艺术：走向未来[J]. 绝对艺术, 2015(2): 10-11</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (2018). "Technological Singularity Will Transform the Art." In <em>Proceedings of the Int’l Forum on Media & Art</em> Shanghai University. </p>
+                        <p>Tan, L. (2018). "Technological Singularity Will Transform the Art." In <em>Proceedings of the Int'l Forum on Media & Art</em> Shanghai University.</p>
                         <p>谭力勤. 技术奇点将重塑艺术[C]// 媒体与艺术国际论坛论文集. 上海：上海大学, 2018.</p>
                         <p class="article-meta">Conference Proceedings / 会议论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (2007). "Conceptual Animation & Animation Installation." In <em> Proceedings of 4th, Int’l DMAMH Conference</em> Qingdao University. </p>
-                        <p>谭力勤. 概念动画与动画装置[C]//2007年第四届国际DMAMH会议论文集，青岛: 青岛大学， 2007.</p>
-                        <p class="article-meta">Conference Proceedings / 会议论文</p>
-                    </li>
-                     <li class="article-item">
-                        <p>Tan, L. (2004). "Digital-Primitive Art Research: Animation Permeates 
-Centuries-Old Rawhides." In <em>Proceedings of iV04 Information & Visualization</em> London, (pp 959-962)</p>
-                        <p>谭力勤. 数字原始艺术研究：动画渗透于数百年文化基因的生皮之中[C]// iV04 国际信息与可视化会议论文集. 伦敦, 2004: 959-962..</p>
-                        <p class="article-meta">Conference Proceedings / 会议论文</p>
-                    </li>
-                     <li class="article-item">
-                        <p>Tan, L.& Tarbell, R. (2004). "Animating Art History (Joint)." <em>Proceedings of Int’l Conference on Information Technology & Applications<em>, Harbin.</p>
-                        <p>谭力勤, 罗伯塔·塔贝尔. 动画呈现艺术史[C], <em>信息技术与应用国际会议论文集</em>. 哈尔滨, 2004. </p>
-                        <p class="article-meta">Conference Proceedings / 会议论文</p>
-                    </li>
-                     <li class="article-item">
-                        <p>Tan, L.& Tarbell, R. (2002). "Animating Art History-Building a Bridge between Disciplines."  <em>Proceedings of the ACM SIGGRAPH Conference Abstracts & Applications<em>, LA, USA , (pp.53).</p>
-                        <p>谭力勤, 罗伯塔·塔贝尔. 动画呈现艺术史——构建跨学科的桥梁[C], <em>ACM SIGGRAPH会议摘要与应用论文集</em>, 美国洛杉矶，2002, 53.</p>
-                        <p class="article-meta">Conference Proceedings / 会议论文</p>
-                    </li>  
-                    <li class="article-item">
-                        <p>Tan, L. (2008). "the Classification for Contemporary Animation.”  <em>CG World</em>, V73, 24-25. </p>
-                        <p>谭力勤. 现代动画艺术归类法浅析[J]. 数码设计, 2008(3): 24-25</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (2007). "Animation in the North America.”  <em>CG Magazine</em>, V81, 64-69. </p>
-                        <p>谭力勤. 简介北美动画片艺术特色[J]. 数字娱乐技术, 2007(7): 64-69</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (2008). "2007 Review:  the North America Animation & Its Characterizatio.”  <em>China Animation Yearbook</em>, Tongxi Press, 546-549. </p>
-                        <p>谭力勤. 2007年综述：北美动画及其特征[M]//中国动画年鉴，同心出版社，2008 (IV. J954-54), 546-549.</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (1987). "Art Criticism Approaches: A Scattered Senses Theory.”  <em>The Theory of Contemporary Art</em>, Hunan Fine Art Publishing House, 229-245. </p>
-                        <p>谭力勤. 错开的五官-我的批评观之凿透[M]//现代美术理论文集，湖南美术出版社, 1987, 229-245.</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                     <li class="article-item">
-                        <p>Tan, L. (1986). "On Wood Carving: A Multilevel, Dynamic Contextual Dimension.”  <em>Painter</em>, Hunan Fine Art Publishing House, V4, 32-34. </p>
-                        <p>谭力勤. 不平衡于落差式的层次上[J]//画家，湖南美术出版社, 1986(4)，32-33.</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (1986). "OOn Shi Hu’s Art Works: Running with Bound Foot.”  <em>Painter</em>, Hunan Fine Art Publishing House,  V2(1), 8-22. </p>
-                        <p>谭力勤. 裹脚女人的奔跑-关于石虎艺术的思考[J]//画家，湖南美术出版社, 1986(2)，8-22.</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (1986). "Generation Gap & Generation Symbiosist.”  <em>Modern Photography</em>, China Shenzhen 
-Modern Photography Press, V9(2), 47 </p>
-                        <p>谭力勤. 世代隔阂与时代并集[J]//中国现代摄影, 1986(9)，47.</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (1986). "Gender Harmony & Yin-Yang Perfection.”  <em>The Trend of Art Thought</em>, Hubei Art 
-& Literature Association, V3, 42-43. </p>
-                        <p>谭力勤. 性的互补,阴阳的契合[J]//美术思潮，湖北文联, 1986(3)，42-43.</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (1985). "A Future Vision of China’s Art.”  <em>The Trend of Art Thought</em>, Hubei Art 
-& Literature Association, V1, 7-10. </p>
-                        <p>谭力勤. 中国艺术观念的未来特征[J]//美术思潮，湖北文联, 1985(1)，7-10.</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                     <li class="article-item">
-                        <p>Tan, L. (1982). "Teaching Art Methodology: Impact of Music on Art Education.”  <em>Education Research</em>, Hunan Education Research Institute, V46 (18), 29-35</p>
-                        <p>谭力勤. 美术教学法：音乐对美术教育的渗透[M]//教育研究，湖南省教育科学研究所，V46（18），29-35.</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
-                    </li>
-                    <li class="article-item">
-                        <p>Tan, L. (1982). "The Issue of Art Education on Students’ Imagination.”  <em>Education Research</em>, Hunan Education Research Institute, V46 (18), 17-21</p>
-                        <p>谭力勤. 艺术教育：学生想象力培育之重要性[M]//教育研究，湖南省教育科学研究所，V46（18），17-21.</p>
-                         <p class="article-meta">Journal Article / 期刊论文</p>
                     </li>
                 </ul>
             </div>
         </section>
 
-       <!-- ===== EXPO ===== -->
-<section id="expo" class="section">
-    <div class="page-header">
-        <h1>Expo <span>/ 展览</span></h1>
-        <div class="divider"></div>
-        <p>Solo / Group · 精选展览</p>
-    </div>
+        <!-- ===== EXPO ===== -->
+        <section id="expo" class="section">
+            <div class="page-header">
+                <h1>Expo <span>/ 展览</span></h1>
+                <div class="divider"></div>
+                <p>Solo / Group · 精选展览</p>
+            </div>
 
-    <!-- 切换按钮（保留，方便切换 Solo/Group） -->
-    <div class="toggle-wrapper" style="display:flex; gap:0; margin-bottom:20px; border:1px solid #dce1e8; border-radius:30px; overflow:hidden; width:fit-content; background:#f0f2f5;">
-        <button class="toggle-btn active" data-target="solo" style="padding:8px 28px; font-size:14px; font-family:inherit; font-weight:600; border:none; background:transparent; color:#999; cursor:pointer; transition:all 0.3s ease; letter-spacing:0.5px;">Solo / 个展</button>
-        <button class="toggle-btn" data-target="group" style="padding:8px 28px; font-size:14px; font-family:inherit; font-weight:600; border:none; background:transparent; color:#999; cursor:pointer; transition:all 0.3s ease; letter-spacing:0.5px;">Group / 群展</button>
-    </div>
+            <div class="toggle-wrapper" style="display:flex; gap:0; margin-bottom:20px; border:1px solid #dce1e8; border-radius:30px; overflow:hidden; width:fit-content; background:#f0f2f5;">
+                <button class="toggle-btn active" data-target="solo" style="padding:8px 28px; font-size:14px; font-family:inherit; font-weight:600; border:none; background:transparent; color:#999; cursor:pointer; transition:all 0.3s ease; letter-spacing:0.5px;">Solo / 个展</button>
+                <button class="toggle-btn" data-target="group" style="padding:8px 28px; font-size:14px; font-family:inherit; font-weight:600; border:none; background:transparent; color:#999; cursor:pointer; transition:all 0.3s ease; letter-spacing:0.5px;">Group / 群展</button>
+            </div>
 
-    <div class="expo-grid">
-        <!-- ====== 左侧：展览列表（紧凑版） ====== -->
-        <div class="expo-list-wrapper">
-            <!-- Solo 列表（完整版，所有条目都有 data-id） -->
-<ul class="expo-list expo-solo-list" id="solo-list">
-    <li data-id="solo-2012" class="active">
-        <div class="expo-year">2012</div>
-        <div class="expo-title">Primitive-Level Signals: Tan's Solo Exhibition, <em>Dalet Gallery</em>, Philadelphia, USA.</div>
-        <div class="expo-title-zh">水平轴视角：谭力勤数码材料装置个展，<em>Dalet画廊</em>，费城，美国</div>
-    </li>
-    <li data-id="solo-2011">
-        <div class="expo-year">2011</div>
-        <div class="expo-title">Refractive Brain Therapy: Tan's Solo Exhibition, <em>Dalet Gallery</em>, Philadelphia, USA.</div>
-        <div class="expo-title-zh">折射光路：谭力勤个展，<em>Dalet画廊</em>，费城，美国</div>
-    </li>
-    <li data-id="solo-2010a">
-        <div class="expo-year">2010</div>
-        <div class="expo-title">Refracted Brainwashing—Tan's Solo Exhibition of Digital Fine Prints &amp; Installations, <em>Songzhuang Art Museum</em>, Beijing.</div>
-        <div class="expo-title-zh">折射光路——谭力勤数码印刷与装置个展，<em>宋庄美术馆</em>，北京，中国</div>
-    </li>
-    <li data-id="solo-2010b">
-        <div class="expo-year">2010</div>
-        <div class="expo-title">Cold Heart/Warm Tech: Tan's Solo Exhibition, <em>LaSalle University Art Museum</em>, Philadelphia, USA.</div>
-        <div class="expo-title-zh">冷心灵/温科技：谭力勤数码装置个展，<em>LaSalle大学美术馆</em>，费城，美国</div>
-    </li>
-    <li data-id="solo-2019">
-        <div class="expo-year">2019</div>
-        <div class="expo-title">Digital Bloodlessness: Tan's Solo Digital Art Exhibition, <em>Yuanfen New Media Art Space</em>, 798 Art Zone, Beijing.</div>
-        <div class="expo-title-zh">数码无血：谭力勤数码艺术个展，<em>缘分新媒体艺术中心</em>，798艺术区，北京</div>
-    </li>
-    <li data-id="solo-2008">
-        <div class="expo-year">2008</div>
-        <div class="expo-title">Digital-Primitive: Tan's Solo Exhibition of Digital Animation Installation, <em>China Millennium Monument Art Museum</em>, Beijing.</div>
-        <div class="expo-title-zh">数码原始：谭力勤数码动画装置个展，<em>中华世纪坛艺术馆</em>，北京</div>
-    </li>
-    <li data-id="solo-2005">
-        <div class="expo-year">2005</div>
-        <div class="expo-title">Digital-Primitive: Retrospective, <em>Shanghai Duolun Museum of Modern Art</em>, Shanghai.</div>
-        <div class="expo-title-zh">数码与影像：个人回顾展，<em>上海多伦现代美术馆</em>，上海</div>
-    </li>
-    <li data-id="solo-2004">   <!-- ← 添加了 data-id -->
-        <div class="expo-year">2004</div>
-        <div class="expo-title">Digital-Primitive Art Research: Animation Permeates Centuries-Old Rawhides, <em>iV04 Information & Visualization</em>, London.</div>
-        <div class="expo-title-zh">数字原始艺术研究：动画渗透数百年历史，<em>iV04图像信息与可视化会议</em>，伦敦</div>
-    </li>
-    <li data-id="solo-2002">   <!-- ← 添加了 data-id -->
-        <div class="expo-year">2002</div>
-        <div class="expo-title">Animating Art History — Building a Bridge between Disciplines, <em>ACM SIGGRAPH</em>, LA, USA.</div>
-        <div class="expo-title-zh">动画呈现艺术史——构建跨学科桥梁，<em>ACM SIGGRAPH</em>，洛杉矶</div>
-    </li>
-</ul>
+            <div class="expo-grid">
+                <div class="expo-list-wrapper">
+                    <ul class="expo-list expo-solo-list" id="solo-list">
+                        <li data-id="solo-2012" class="active">
+                            <div class="expo-year">2012</div>
+                            <div class="expo-title">Primitive-Level Signals: Tan's Solo Exhibition, <em>Dalet Gallery</em>, Philadelphia, USA.</div>
+                            <div class="expo-title-zh">水平轴视角：谭力勤数码材料装置个展，<em>Dalet画廊</em>，费城，美国</div>
+                        </li>
+                        <li data-id="solo-2011">
+                            <div class="expo-year">2011</div>
+                            <div class="expo-title">Refractive Brain Therapy: Tan's Solo Exhibition, <em>Dalet Gallery</em>, Philadelphia, USA.</div>
+                            <div class="expo-title-zh">折射光路：谭力勤个展，<em>Dalet画廊</em>，费城，美国</div>
+                        </li>
+                        <li data-id="solo-2010a">
+                            <div class="expo-year">2010</div>
+                            <div class="expo-title">Refracted Brainwashing—Tan's Solo Exhibition of Digital Fine Prints &amp; Installations, <em>Songzhuang Art Museum</em>, Beijing.</div>
+                            <div class="expo-title-zh">折射光路——谭力勤数码印刷与装置个展，<em>宋庄美术馆</em>，北京，中国</div>
+                        </li>
+                        <li data-id="solo-2010b">
+                            <div class="expo-year">2010</div>
+                            <div class="expo-title">Cold Heart/Warm Tech: Tan's Solo Exhibition, <em>LaSalle University Art Museum</em>, Philadelphia, USA.</div>
+                            <div class="expo-title-zh">冷心灵/温科技：谭力勤数码装置个展，<em>LaSalle大学美术馆</em>，费城，美国</div>
+                        </li>
+                        <li data-id="solo-2019">
+                            <div class="expo-year">2019</div>
+                            <div class="expo-title">Digital Bloodlessness: Tan's Solo Digital Art Exhibition, <em>Yuanfen New Media Art Space</em>, 798 Art Zone, Beijing.</div>
+                            <div class="expo-title-zh">数码无血：谭力勤数码艺术个展，<em>缘分新媒体艺术中心</em>，798艺术区，北京</div>
+                        </li>
+                        <li data-id="solo-2008">
+                            <div class="expo-year">2008</div>
+                            <div class="expo-title">Digital-Primitive: Tan's Solo Exhibition of Digital Animation Installation, <em>China Millennium Monument Art Museum</em>, Beijing.</div>
+                            <div class="expo-title-zh">数码原始：谭力勤数码动画装置个展，<em>中华世纪坛艺术馆</em>，北京</div>
+                        </li>
+                        <li data-id="solo-2005">
+                            <div class="expo-year">2005</div>
+                            <div class="expo-title">Digital-Primitive: Retrospective, <em>Shanghai Duolun Museum of Modern Art</em>, Shanghai.</div>
+                            <div class="expo-title-zh">数码与影像：个人回顾展，<em>上海多伦现代美术馆</em>，上海</div>
+                        </li>
+                        <li data-id="solo-2004">
+                            <div class="expo-year">2004</div>
+                            <div class="expo-title">Digital-Primitive Art Research: Animation Permeates Centuries-Old Rawhides, <em>iV04 Information & Visualization</em>, London.</div>
+                            <div class="expo-title-zh">数字原始艺术研究：动画渗透数百年历史，<em>iV04图像信息与可视化会议</em>，伦敦</div>
+                        </li>
+                        <li data-id="solo-2002">
+                            <div class="expo-year">2002</div>
+                            <div class="expo-title">Animating Art History — Building a Bridge between Disciplines, <em>ACM SIGGRAPH</em>, LA, USA.</div>
+                            <div class="expo-title-zh">动画呈现艺术史——构建跨学科桥梁，<em>ACM SIGGRAPH</em>，洛杉矶</div>
+                        </li>
+                    </ul>
 
-            <!-- Group 列表 -->
-            <ul class="expo-list expo-group-list" id="group-list">
-                <li data-id="group-2024">
-                    <div class="expo-year">2024</div>
-                    <div class="expo-title">SIGGRAPH Art Gallery, <em>Denver, USA</em>.</div>
-                    <div class="expo-title-zh">SIGGRAPH 艺术画廊，<em>丹佛，美国</em></div>
-                </li>
-                <li data-id="group-2023">
-                    <div class="expo-year">2023</div>
-                    <div class="expo-title">Ars Electronica Festival, <em>Linz, Austria</em>.</div>
-                    <div class="expo-title-zh">电子艺术节，<em>林茨，奥地利</em></div>
-                </li>
-                <li data-id="group-2022">
-                    <div class="expo-year">2022</div>
-                    <div class="expo-title">International Digital Art Biennial, <em>Montreal, Canada</em>.</div>
-                    <div class="expo-title-zh">国际数字艺术双年展，<em>蒙特利尔，加拿大</em></div>
-                </li>
-                <li data-id="group-2021">
-                    <div class="expo-year">2021</div>
-                    <div class="expo-title">Venice Biennale - Collateral Event, <em>Venice, Italy</em>.</div>
-                    <div class="expo-title-zh">威尼斯双年展 - 平行展，<em>威尼斯，意大利</em></div>
-                </li>
-                <li data-id="group-2020">
-                    <div class="expo-year">2020</div>
-                    <div class="expo-title">ZKM | Center for Art and Media, <em>Karlsruhe, Germany</em>.</div>
-                    <div class="expo-title-zh">ZKM 艺术与媒体中心，<em>卡尔斯鲁厄，德国</em></div>
-                </li>
-                <li data-id="group-2019">
-                    <div class="expo-year">2019</div>
-                    <div class="expo-title">National Art Museum of China, <em>Beijing, China</em>.</div>
-                    <div class="expo-title-zh">中国美术馆，<em>北京，中国</em></div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- ====== 右侧：精选图片轮播（15张，不挂钩展览） ====== -->
-        <div class="expo-carousel-wrapper" id="carousel-wrapper">
-            <div class="carousel-container">
-                <div class="carousel-slides" id="carousel-slides">
-                    <!-- 由 JavaScript 动态生成 -->
+                    <ul class="expo-list expo-group-list" id="group-list">
+                        <li data-id="group-2024">
+                            <div class="expo-year">2024</div>
+                            <div class="expo-title">SIGGRAPH Art Gallery, <em>Denver, USA</em>.</div>
+                            <div class="expo-title-zh">SIGGRAPH 艺术画廊，<em>丹佛，美国</em></div>
+                        </li>
+                        <li data-id="group-2023">
+                            <div class="expo-year">2023</div>
+                            <div class="expo-title">Ars Electronica Festival, <em>Linz, Austria</em>.</div>
+                            <div class="expo-title-zh">电子艺术节，<em>林茨，奥地利</em></div>
+                        </li>
+                        <li data-id="group-2022">
+                            <div class="expo-year">2022</div>
+                            <div class="expo-title">International Digital Art Biennial, <em>Montreal, Canada</em>.</div>
+                            <div class="expo-title-zh">国际数字艺术双年展，<em>蒙特利尔，加拿大</em></div>
+                        </li>
+                        <li data-id="group-2021">
+                            <div class="expo-year">2021</div>
+                            <div class="expo-title">Venice Biennale - Collateral Event, <em>Venice, Italy</em>.</div>
+                            <div class="expo-title-zh">威尼斯双年展 - 平行展，<em>威尼斯，意大利</em></div>
+                        </li>
+                        <li data-id="group-2020">
+                            <div class="expo-year">2020</div>
+                            <div class="expo-title">ZKM | Center for Art and Media, <em>Karlsruhe, Germany</em>.</div>
+                            <div class="expo-title-zh">ZKM 艺术与媒体中心，<em>卡尔斯鲁厄，德国</em></div>
+                        </li>
+                        <li data-id="group-2019">
+                            <div class="expo-year">2019</div>
+                            <div class="expo-title">National Art Museum of China, <em>Beijing, China</em>.</div>
+                            <div class="expo-title-zh">中国美术馆，<em>北京，中国</em></div>
+                        </li>
+                    </ul>
                 </div>
-                <button class="carousel-nav prev" id="carousel-prev">‹</button>
-                <button class="carousel-nav next" id="carousel-next">›</button>
+
+                <div class="expo-carousel-wrapper" id="carousel-wrapper">
+                    <div class="carousel-container">
+                        <div class="carousel-slides" id="carousel-slides"></div>
+                        <button class="carousel-nav prev" id="carousel-prev">‹</button>
+                        <button class="carousel-nav next" id="carousel-next">›</button>
+                    </div>
+                    <div class="carousel-dots" id="carousel-dots">
+                        <span class="carousel-counter" id="carousel-counter">1 / 15</span>
+                    </div>
+                </div>
             </div>
-            <div class="carousel-dots" id="carousel-dots">
-                <span class="carousel-counter" id="carousel-counter">1 / 15</span>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
         <!-- ===== ACAD ===== -->
         <section id="acad" class="section">
@@ -2073,7 +1885,6 @@ Modern Photography Press, V9(2), 47 </p>
                 <p>33 Livingston Avenue, New Brunswick, NJ 08901</p>
             </div>
         </section>
-
     </main>
 
     <!-- ===== LIGHTBOX ===== -->
@@ -2094,16 +1905,11 @@ Modern Photography Press, V9(2), 47 </p>
     <script>
         // ===== NAVIGATION =====
         function showSection(sectionId) {
-            // Hide all sections
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            // Show target section
             document.getElementById(sectionId).classList.add('active');
-            // Update nav active state
             document.querySelectorAll('.nav-main a').forEach(a => a.classList.remove('active'));
             document.querySelector(`[data-section="${sectionId}"]`)?.classList.add('active');
-            // Hide all sub-navs
             document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
-            // Show relevant sub-nav
             const subMap = {
                 'art': 'sub-art',
                 'texts': 'sub-texts',
@@ -2113,7 +1919,6 @@ Modern Photography Press, V9(2), 47 </p>
             if (subMap[sectionId]) {
                 document.getElementById(subMap[sectionId]).classList.add('active');
             }
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -2123,7 +1928,6 @@ Modern Photography Press, V9(2), 47 </p>
         const track = document.getElementById('carouselTrack');
         const dotsContainer = document.getElementById('carouselDots');
 
-        // Create dots
         for (let i = 0; i < totalSlides; i++) {
             const dot = document.createElement('div');
             dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
@@ -2153,7 +1957,6 @@ Modern Photography Press, V9(2), 47 </p>
             updateCarousel();
         }
 
-        // Auto-play
         setInterval(nextSlide, 5000);
 
         // ===== LIGHTBOX =====
@@ -2202,7 +2005,6 @@ Modern Photography Press, V9(2), 47 </p>
             updateLightbox();
         }
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('active')) return;
             if (e.key === 'Escape') closeLightbox();
@@ -2210,7 +2012,6 @@ Modern Photography Press, V9(2), 47 </p>
             if (e.key === 'ArrowLeft') lightboxPrev();
         });
 
-        // Close on background click
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) closeLightbox();
         });
@@ -2258,7 +2059,6 @@ Modern Photography Press, V9(2), 47 </p>
         }
 
         // ===== HEADER SCROLL EFFECT =====
-        let lastScroll = 0;
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             const currentScroll = window.pageYOffset;
@@ -2267,258 +2067,239 @@ Modern Photography Press, V9(2), 47 </p>
             } else {
                 header.style.boxShadow = 'none';
             }
-            lastScroll = currentScroll;
         });
 
-        // ===== INIT =====
-        document.addEventListener('DOMContentLoaded', () => {
-            // Check URL hash for direct linking
-            const hash = window.location.hash.replace('#', '');
-            if (hash && document.getElementById(hash)) {
-                showSection(hash);
+        // ================================================================
+        // ===== EXPO CAROUSEL - 15张精选图片（不挂钩展览） =====
+        // ================================================================
+
+        const allExpoImages = [
+            'https://picsum.photos/seed/expo_01/1200/800',
+            'https://picsum.photos/seed/expo_02/1200/800',
+            'https://picsum.photos/seed/expo_03/1200/800',
+            'https://picsum.photos/seed/expo_04/1200/800',
+            'https://picsum.photos/seed/expo_05/1200/800',
+            'https://picsum.photos/seed/expo_06/1200/800',
+            'https://picsum.photos/seed/expo_07/1200/800',
+            'https://picsum.photos/seed/expo_08/1200/800',
+            'https://picsum.photos/seed/expo_09/1200/800',
+            'https://picsum.photos/seed/expo_10/1200/800',
+            'https://picsum.photos/seed/expo_11/1200/800',
+            'https://picsum.photos/seed/expo_12/1200/800',
+            'https://picsum.photos/seed/expo_13/1200/800',
+            'https://picsum.photos/seed/expo_14/1200/800',
+            'https://picsum.photos/seed/expo_15/1200/800'
+        ];
+
+        function getImages2(expoId) {
+            return allExpoImages;
+        }
+
+        const soloBtn2 = document.querySelector('.toggle-wrapper .toggle-btn[data-target="solo"]');
+        const groupBtn2 = document.querySelector('.toggle-wrapper .toggle-btn[data-target="group"]');
+        const soloList2 = document.getElementById('solo-list');
+        const groupList2 = document.getElementById('group-list');
+        const slidesContainer2 = document.getElementById('carousel-slides');
+        const dotsContainer2 = document.getElementById('carousel-dots');
+        const counter2 = document.getElementById('carousel-counter');
+        const prevBtn2 = document.getElementById('carousel-prev');
+        const nextBtn2 = document.getElementById('carousel-next');
+
+        let currentExpoId = 'solo-2012';
+        let currentSlideIndex2 = 0;
+        let totalSlides2 = 0;
+        let currentImages2 = [];
+
+        function renderCarousel2(expoId) {
+            currentExpoId = expoId;
+            currentImages2 = getImages2(expoId);
+            totalSlides2 = currentImages2.length;
+            currentSlideIndex2 = 0;
+
+            let slidesHTML = '';
+            if (currentImages2.length > 0) {
+                currentImages2.forEach(function(imgSrc, index) {
+                    slidesHTML += `
+                        <div class="carousel-slide">
+                            <img src="${imgSrc}" alt="展览图片 ${index + 1}" loading="lazy" />
+                        </div>
+                    `;
+                });
+            } else {
+                slidesHTML = `
+                    <div class="carousel-slide">
+                        <div class="no-image-placeholder">
+                            <span>🖼️</span>
+                            暂无展览图片<br />
+                            <small style="font-size:13px; color:rgba(255,255,255,0.4);">No images available</small>
+                        </div>
+                    </div>
+                `;
+                totalSlides2 = 1;
+            }
+
+            slidesContainer2.innerHTML = slidesHTML;
+
+            let dotsHTML = '';
+            if (currentImages2.length > 0) {
+                for (let i = 0; i < totalSlides2; i++) {
+                    dotsHTML += `<button class="carousel-dot${i === 0 ? ' active' : ''}" data-index="${i}"></button>`;
+                }
+                dotsHTML += `<span class="carousel-counter" id="carousel-counter">1 / ${totalSlides2}</span>`;
+            } else {
+                dotsHTML = `<span class="carousel-counter" style="color:rgba(255,255,255,0.4);">无图片 / No images</span>`;
+            }
+            dotsContainer2.innerHTML = dotsHTML;
+
+            updateCounter2();
+            updateSlidePosition2();
+
+            document.querySelectorAll('#carousel-dots .carousel-dot').forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'), 10);
+                    goToSlide2(index);
+                });
+            });
+        }
+
+        function updateSlidePosition2() {
+            const offset = -currentSlideIndex2 * 100;
+            slidesContainer2.style.transform = 'translateX(' + offset + '%)';
+        }
+
+        function updateCounter2() {
+            const dots = document.querySelectorAll('#carousel-dots .carousel-dot');
+            dots.forEach(function(dot, index) {
+                dot.classList.toggle('active', index === currentSlideIndex2);
+            });
+
+            const counterEl = document.getElementById('carousel-counter');
+            if (counterEl && currentImages2.length > 0) {
+                counterEl.textContent = (currentSlideIndex2 + 1) + ' / ' + totalSlides2;
+            }
+        }
+
+        function goToSlide2(index) {
+            if (currentImages2.length === 0) return;
+            if (index < 0) index = totalSlides2 - 1;
+            if (index >= totalSlides2) index = 0;
+            currentSlideIndex2 = index;
+            updateSlidePosition2();
+            updateCounter2();
+        }
+
+        function nextSlide2() {
+            goToSlide2(currentSlideIndex2 + 1);
+        }
+
+        function prevSlide2() {
+            goToSlide2(currentSlideIndex2 - 1);
+        }
+
+        function setActiveTab2(target) {
+            if (soloBtn2) soloBtn2.classList.toggle('active', target === 'solo');
+            if (groupBtn2) groupBtn2.classList.toggle('active', target === 'group');
+
+            if (soloBtn2 && groupBtn2) {
+                if (target === 'solo') {
+                    soloBtn2.style.background = '#1a1e24';
+                    soloBtn2.style.color = '#ffffff';
+                    soloBtn2.style.borderRadius = '30px';
+                    groupBtn2.style.background = 'transparent';
+                    groupBtn2.style.color = '#999';
+                    groupBtn2.style.borderRadius = '0';
+                } else {
+                    groupBtn2.style.background = '#1a1e24';
+                    groupBtn2.style.color = '#ffffff';
+                    groupBtn2.style.borderRadius = '30px';
+                    soloBtn2.style.background = 'transparent';
+                    soloBtn2.style.color = '#999';
+                    soloBtn2.style.borderRadius = '0';
+                }
+            }
+
+            if (target === 'solo') {
+                if (soloList2) soloList2.style.display = 'block';
+                if (groupList2) groupList2.style.display = 'none';
+                const firstSolo = soloList2 ? soloList2.querySelector('li[data-id]') : null;
+                if (firstSolo) {
+                    selectExpo2(firstSolo.dataset.id);
+                }
+            } else {
+                if (soloList2) soloList2.style.display = 'none';
+                if (groupList2) groupList2.style.display = 'block';
+                const firstGroup = groupList2 ? groupList2.querySelector('li[data-id]') : null;
+                if (firstGroup) {
+                    selectExpo2(firstGroup.dataset.id);
+                }
+            }
+        }
+
+        function selectExpo2(expoId) {
+            document.querySelectorAll('.expo-list li').forEach(function(li) {
+                li.classList.toggle('active', li.dataset.id === expoId);
+            });
+
+            const activeLi = document.querySelector('.expo-list li.active');
+            if (activeLi) {
+                const wrapper = activeLi.closest('.expo-list-wrapper');
+                if (wrapper) {
+                    const liTop = activeLi.offsetTop;
+                    const wrapperHeight = wrapper.clientHeight;
+                    const liHeight = activeLi.offsetHeight;
+                    wrapper.scrollTop = liTop - (wrapperHeight / 2) + (liHeight / 2);
+                }
+            }
+
+            renderCarousel2(expoId);
+        }
+
+        document.querySelectorAll('.expo-list li[data-id]').forEach(function(li) {
+            li.addEventListener('click', function() {
+                const expoId = this.dataset.id;
+                selectExpo2(expoId);
+            });
+        });
+
+        if (prevBtn2) {
+            prevBtn2.addEventListener('click', function(e) {
+                e.stopPropagation();
+                prevSlide2();
+            });
+        }
+
+        if (nextBtn2) {
+            nextBtn2.addEventListener('click', function(e) {
+                e.stopPropagation();
+                nextSlide2();
+            });
+        }
+
+        if (soloBtn2) {
+            soloBtn2.addEventListener('click', function() {
+                setActiveTab2('solo');
+            });
+        }
+
+        if (groupBtn2) {
+            groupBtn2.addEventListener('click', function() {
+                setActiveTab2('group');
+            });
+        }
+
+        document.addEventListener('keydown', function(e) {
+            const expoSection = document.getElementById('expo');
+            if (!expoSection || !expoSection.classList.contains('active')) return;
+            if (e.key === 'ArrowLeft') {
+                prevSlide2();
+                e.preventDefault();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide2();
+                e.preventDefault();
             }
         });
-<script>
-       // ================================================================
-// ===== EXPO CAROUSEL - 15张精选图片（不挂钩展览） =====
-// ================================================================
 
-// 15张精选图片 - 请替换为您的真实图片 URL
-const allExpoImages = [
-    'https://picsum.photos/seed/expo_01/1200/800',
-    'https://picsum.photos/seed/expo_02/1200/800',
-    'https://picsum.photos/seed/expo_03/1200/800',
-    'https://picsum.photos/seed/expo_04/1200/800',
-    'https://picsum.photos/seed/expo_05/1200/800',
-    'https://picsum.photos/seed/expo_06/1200/800',
-    'https://picsum.photos/seed/expo_07/1200/800',
-    'https://picsum.photos/seed/expo_08/1200/800',
-    'https://picsum.photos/seed/expo_09/1200/800',
-    'https://picsum.photos/seed/expo_10/1200/800',
-    'https://picsum.photos/seed/expo_11/1200/800',
-    'https://picsum.photos/seed/expo_12/1200/800',
-    'https://picsum.photos/seed/expo_13/1200/800',
-    'https://picsum.photos/seed/expo_14/1200/800',
-    'https://picsum.photos/seed/expo_15/1200/800'
-];
-
-function getImages2(expoId) {
-    // 所有展览共用15张精选图片
-    return allExpoImages;
-}
-
-// DOM 引用
-const soloBtn2 = document.querySelector('.toggle-wrapper .toggle-btn[data-target="solo"]');
-const groupBtn2 = document.querySelector('.toggle-wrapper .toggle-btn[data-target="group"]');
-const soloList2 = document.getElementById('solo-list');
-const groupList2 = document.getElementById('group-list');
-const slidesContainer2 = document.getElementById('carousel-slides');
-const dotsContainer2 = document.getElementById('carousel-dots');
-const counter2 = document.getElementById('carousel-counter');
-const prevBtn2 = document.getElementById('carousel-prev');
-const nextBtn2 = document.getElementById('carousel-next');
-
-let currentExpoId = 'solo-2012';
-let currentSlideIndex2 = 0;
-let totalSlides2 = 0;
-let currentImages2 = [];
-
-function renderCarousel2(expoId) {
-    currentExpoId = expoId;
-    currentImages2 = getImages2(expoId);
-    totalSlides2 = currentImages2.length;
-    currentSlideIndex2 = 0;
-
-    let slidesHTML = '';
-    if (currentImages2.length > 0) {
-        currentImages2.forEach(function(imgSrc, index) {
-            slidesHTML += `
-                <div class="carousel-slide">
-                    <img src="${imgSrc}" alt="展览图片 ${index + 1}" loading="lazy" />
-                </div>
-            `;
-        });
-    } else {
-        slidesHTML = `
-            <div class="carousel-slide">
-                <div class="no-image-placeholder">
-                    <span>🖼️</span>
-                    暂无展览图片<br />
-                    <small style="font-size:13px; color:rgba(255,255,255,0.4);">No images available</small>
-                </div>
-            </div>
-        `;
-        totalSlides2 = 1;
-    }
-
-    slidesContainer2.innerHTML = slidesHTML;
-
-    let dotsHTML = '';
-    if (currentImages2.length > 0) {
-        for (let i = 0; i < totalSlides2; i++) {
-            dotsHTML += `<button class="carousel-dot${i === 0 ? ' active' : ''}" data-index="${i}"></button>`;
-        }
-        dotsHTML += `<span class="carousel-counter" id="carousel-counter">1 / ${totalSlides2}</span>`;
-    } else {
-        dotsHTML = `<span class="carousel-counter" style="color:rgba(255,255,255,0.4);">无图片 / No images</span>`;
-    }
-    dotsContainer2.innerHTML = dotsHTML;
-
-    updateCounter2();
-    updateSlidePosition2();
-
-    document.querySelectorAll('#carousel-dots .carousel-dot').forEach(function(dot) {
-        dot.addEventListener('click', function() {
-            const index = parseInt(this.getAttribute('data-index'), 10);
-            goToSlide2(index);
-        });
-    });
-}
-
-function updateSlidePosition2() {
-    const offset = -currentSlideIndex2 * 100;
-    slidesContainer2.style.transform = 'translateX(' + offset + '%)';
-}
-
-function updateCounter2() {
-    const dots = document.querySelectorAll('#carousel-dots .carousel-dot');
-    dots.forEach(function(dot, index) {
-        dot.classList.toggle('active', index === currentSlideIndex2);
-    });
-
-    const counterEl = document.getElementById('carousel-counter');
-    if (counterEl && currentImages2.length > 0) {
-        counterEl.textContent = (currentSlideIndex2 + 1) + ' / ' + totalSlides2;
-    }
-}
-
-function goToSlide2(index) {
-    if (currentImages2.length === 0) return;
-    if (index < 0) index = totalSlides2 - 1;
-    if (index >= totalSlides2) index = 0;
-    currentSlideIndex2 = index;
-    updateSlidePosition2();
-    updateCounter2();
-}
-
-function nextSlide2() {
-    goToSlide2(currentSlideIndex2 + 1);
-}
-
-function prevSlide2() {
-    goToSlide2(currentSlideIndex2 - 1);
-}
-
-function setActiveTab2(target) {
-    if (soloBtn2) soloBtn2.classList.toggle('active', target === 'solo');
-    if (groupBtn2) groupBtn2.classList.toggle('active', target === 'group');
-
-    // 更新按钮背景样式
-    if (soloBtn2 && groupBtn2) {
-        if (target === 'solo') {
-            soloBtn2.style.background = '#1a1e24';
-            soloBtn2.style.color = '#ffffff';
-            soloBtn2.style.borderRadius = '30px';
-            groupBtn2.style.background = 'transparent';
-            groupBtn2.style.color = '#999';
-            groupBtn2.style.borderRadius = '0';
-        } else {
-            groupBtn2.style.background = '#1a1e24';
-            groupBtn2.style.color = '#ffffff';
-            groupBtn2.style.borderRadius = '30px';
-            soloBtn2.style.background = 'transparent';
-            soloBtn2.style.color = '#999';
-            soloBtn2.style.borderRadius = '0';
-        }
-    }
-
-    if (target === 'solo') {
-        if (soloList2) soloList2.style.display = 'block';
-        if (groupList2) groupList2.style.display = 'none';
-        const firstSolo = soloList2 ? soloList2.querySelector('li[data-id]') : null;
-        if (firstSolo) {
-            selectExpo2(firstSolo.dataset.id);
-        }
-    } else {
-        if (soloList2) soloList2.style.display = 'none';
-        if (groupList2) groupList2.style.display = 'block';
-        const firstGroup = groupList2 ? groupList2.querySelector('li[data-id]') : null;
-        if (firstGroup) {
-            selectExpo2(firstGroup.dataset.id);
-        }
-    }
-}
-
-function selectExpo2(expoId) {
-    document.querySelectorAll('.expo-list li').forEach(function(li) {
-        li.classList.toggle('active', li.dataset.id === expoId);
-    });
-
-    // 滚动到选中的条目
-    const activeLi = document.querySelector('.expo-list li.active');
-    if (activeLi) {
-        const wrapper = activeLi.closest('.expo-list-wrapper');
-        if (wrapper) {
-            const liTop = activeLi.offsetTop;
-            const wrapperHeight = wrapper.clientHeight;
-            const liHeight = activeLi.offsetHeight;
-            wrapper.scrollTop = liTop - (wrapperHeight / 2) + (liHeight / 2);
-        }
-    }
-
-    renderCarousel2(expoId);
-}
-
-// 绑定 Expo 事件
-document.querySelectorAll('.expo-list li[data-id]').forEach(function(li) {
-    li.addEventListener('click', function() {
-        const expoId = this.dataset.id;
-        selectExpo2(expoId);
-    });
-});
-
-if (prevBtn2) {
-    prevBtn2.addEventListener('click', function(e) {
-        e.stopPropagation();
-        prevSlide2();
-    });
-}
-
-if (nextBtn2) {
-    nextBtn2.addEventListener('click', function(e) {
-        e.stopPropagation();
-        nextSlide2();
-    });
-}
-
-if (soloBtn2) {
-    soloBtn2.addEventListener('click', function() {
         setActiveTab2('solo');
-    });
-}
-
-if (groupBtn2) {
-    groupBtn2.addEventListener('click', function() {
-        setActiveTab2('group');
-    });
-}
-
-// 键盘导航支持（在 Expo 可见时）
-document.addEventListener('keydown', function(e) {
-    const expoSection = document.getElementById('expo');
-    if (!expoSection || !expoSection.classList.contains('active')) return;
-    if (e.key === 'ArrowLeft') {
-        prevSlide2();
-        e.preventDefault();
-    } else if (e.key === 'ArrowRight') {
-        nextSlide2();
-        e.preventDefault();
-    }
-});
-
-// 初始化 Expo
-setActiveTab2('solo');
     </script>
-
 </body>
 </html>
