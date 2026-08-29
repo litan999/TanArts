@@ -2249,31 +2249,245 @@ Modern Photography Press, V9(2), 47 </p>
                 showSection(hash);
             }
         });
-        // ================================================================
+       // ================================================================
 // ===== EXPO CAROUSEL - 15张精选图片（不挂钩展览） =====
 // ================================================================
 
+// 15张精选图片 - 请替换为您的真实图片 URL
+const allExpoImages = [
+    'https://picsum.photos/seed/expo_01/1200/800',
+    'https://picsum.photos/seed/expo_02/1200/800',
+    'https://picsum.photos/seed/expo_03/1200/800',
+    'https://picsum.photos/seed/expo_04/1200/800',
+    'https://picsum.photos/seed/expo_05/1200/800',
+    'https://picsum.photos/seed/expo_06/1200/800',
+    'https://picsum.photos/seed/expo_07/1200/800',
+    'https://picsum.photos/seed/expo_08/1200/800',
+    'https://picsum.photos/seed/expo_09/1200/800',
+    'https://picsum.photos/seed/expo_10/1200/800',
+    'https://picsum.photos/seed/expo_11/1200/800',
+    'https://picsum.photos/seed/expo_12/1200/800',
+    'https://picsum.photos/seed/expo_13/1200/800',
+    'https://picsum.photos/seed/expo_14/1200/800',
+    'https://picsum.photos/seed/expo_15/1200/800'
+];
+
 function getImages2(expoId) {
-    // 所有展览共用这15张精选图片
-    const allImages = [
-        'https://picsum.photos/seed/expo_01/1200/800',
-        'https://picsum.photos/seed/expo_02/1200/800',
-        'https://picsum.photos/seed/expo_03/1200/800',
-        'https://picsum.photos/seed/expo_04/1200/800',
-        'https://picsum.photos/seed/expo_05/1200/800',
-        'https://picsum.photos/seed/expo_06/1200/800',
-        'https://picsum.photos/seed/expo_07/1200/800',
-        'https://picsum.photos/seed/expo_08/1200/800',
-        'https://picsum.photos/seed/expo_09/1200/800',
-        'https://picsum.photos/seed/expo_10/1200/800',
-        'https://picsum.photos/seed/expo_11/1200/800',
-        'https://picsum.photos/seed/expo_12/1200/800',
-        'https://picsum.photos/seed/expo_13/1200/800',
-        'https://picsum.photos/seed/expo_14/1200/800',
-        'https://picsum.photos/seed/expo_15/1200/800'
-    ];
-    return allImages;
+    // 所有展览共用15张精选图片
+    return allExpoImages;
 }
+
+// DOM 引用
+const soloBtn2 = document.querySelector('.toggle-wrapper .toggle-btn[data-target="solo"]');
+const groupBtn2 = document.querySelector('.toggle-wrapper .toggle-btn[data-target="group"]');
+const soloList2 = document.getElementById('solo-list');
+const groupList2 = document.getElementById('group-list');
+const slidesContainer2 = document.getElementById('carousel-slides');
+const dotsContainer2 = document.getElementById('carousel-dots');
+const counter2 = document.getElementById('carousel-counter');
+const prevBtn2 = document.getElementById('carousel-prev');
+const nextBtn2 = document.getElementById('carousel-next');
+
+let currentExpoId = 'solo-2012';
+let currentSlideIndex2 = 0;
+let totalSlides2 = 0;
+let currentImages2 = [];
+
+function renderCarousel2(expoId) {
+    currentExpoId = expoId;
+    currentImages2 = getImages2(expoId);
+    totalSlides2 = currentImages2.length;
+    currentSlideIndex2 = 0;
+
+    let slidesHTML = '';
+    if (currentImages2.length > 0) {
+        currentImages2.forEach(function(imgSrc, index) {
+            slidesHTML += `
+                <div class="carousel-slide">
+                    <img src="${imgSrc}" alt="展览图片 ${index + 1}" loading="lazy" />
+                </div>
+            `;
+        });
+    } else {
+        slidesHTML = `
+            <div class="carousel-slide">
+                <div class="no-image-placeholder">
+                    <span>🖼️</span>
+                    暂无展览图片<br />
+                    <small style="font-size:13px; color:rgba(255,255,255,0.4);">No images available</small>
+                </div>
+            </div>
+        `;
+        totalSlides2 = 1;
+    }
+
+    slidesContainer2.innerHTML = slidesHTML;
+
+    let dotsHTML = '';
+    if (currentImages2.length > 0) {
+        for (let i = 0; i < totalSlides2; i++) {
+            dotsHTML += `<button class="carousel-dot${i === 0 ? ' active' : ''}" data-index="${i}"></button>`;
+        }
+        dotsHTML += `<span class="carousel-counter" id="carousel-counter">1 / ${totalSlides2}</span>`;
+    } else {
+        dotsHTML = `<span class="carousel-counter" style="color:rgba(255,255,255,0.4);">无图片 / No images</span>`;
+    }
+    dotsContainer2.innerHTML = dotsHTML;
+
+    updateCounter2();
+    updateSlidePosition2();
+
+    document.querySelectorAll('#carousel-dots .carousel-dot').forEach(function(dot) {
+        dot.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'), 10);
+            goToSlide2(index);
+        });
+    });
+}
+
+function updateSlidePosition2() {
+    const offset = -currentSlideIndex2 * 100;
+    slidesContainer2.style.transform = 'translateX(' + offset + '%)';
+}
+
+function updateCounter2() {
+    const dots = document.querySelectorAll('#carousel-dots .carousel-dot');
+    dots.forEach(function(dot, index) {
+        dot.classList.toggle('active', index === currentSlideIndex2);
+    });
+
+    const counterEl = document.getElementById('carousel-counter');
+    if (counterEl && currentImages2.length > 0) {
+        counterEl.textContent = (currentSlideIndex2 + 1) + ' / ' + totalSlides2;
+    }
+}
+
+function goToSlide2(index) {
+    if (currentImages2.length === 0) return;
+    if (index < 0) index = totalSlides2 - 1;
+    if (index >= totalSlides2) index = 0;
+    currentSlideIndex2 = index;
+    updateSlidePosition2();
+    updateCounter2();
+}
+
+function nextSlide2() {
+    goToSlide2(currentSlideIndex2 + 1);
+}
+
+function prevSlide2() {
+    goToSlide2(currentSlideIndex2 - 1);
+}
+
+function setActiveTab2(target) {
+    if (soloBtn2) soloBtn2.classList.toggle('active', target === 'solo');
+    if (groupBtn2) groupBtn2.classList.toggle('active', target === 'group');
+
+    // 更新按钮背景样式
+    if (soloBtn2 && groupBtn2) {
+        if (target === 'solo') {
+            soloBtn2.style.background = '#1a1e24';
+            soloBtn2.style.color = '#ffffff';
+            soloBtn2.style.borderRadius = '30px';
+            groupBtn2.style.background = 'transparent';
+            groupBtn2.style.color = '#999';
+            groupBtn2.style.borderRadius = '0';
+        } else {
+            groupBtn2.style.background = '#1a1e24';
+            groupBtn2.style.color = '#ffffff';
+            groupBtn2.style.borderRadius = '30px';
+            soloBtn2.style.background = 'transparent';
+            soloBtn2.style.color = '#999';
+            soloBtn2.style.borderRadius = '0';
+        }
+    }
+
+    if (target === 'solo') {
+        if (soloList2) soloList2.style.display = 'block';
+        if (groupList2) groupList2.style.display = 'none';
+        const firstSolo = soloList2 ? soloList2.querySelector('li[data-id]') : null;
+        if (firstSolo) {
+            selectExpo2(firstSolo.dataset.id);
+        }
+    } else {
+        if (soloList2) soloList2.style.display = 'none';
+        if (groupList2) groupList2.style.display = 'block';
+        const firstGroup = groupList2 ? groupList2.querySelector('li[data-id]') : null;
+        if (firstGroup) {
+            selectExpo2(firstGroup.dataset.id);
+        }
+    }
+}
+
+function selectExpo2(expoId) {
+    document.querySelectorAll('.expo-list li').forEach(function(li) {
+        li.classList.toggle('active', li.dataset.id === expoId);
+    });
+
+    // 滚动到选中的条目
+    const activeLi = document.querySelector('.expo-list li.active');
+    if (activeLi) {
+        const wrapper = activeLi.closest('.expo-list-wrapper');
+        if (wrapper) {
+            const liTop = activeLi.offsetTop;
+            const wrapperHeight = wrapper.clientHeight;
+            const liHeight = activeLi.offsetHeight;
+            wrapper.scrollTop = liTop - (wrapperHeight / 2) + (liHeight / 2);
+        }
+    }
+
+    renderCarousel2(expoId);
+}
+
+// 绑定 Expo 事件
+document.querySelectorAll('.expo-list li[data-id]').forEach(function(li) {
+    li.addEventListener('click', function() {
+        const expoId = this.dataset.id;
+        selectExpo2(expoId);
+    });
+});
+
+if (prevBtn2) {
+    prevBtn2.addEventListener('click', function(e) {
+        e.stopPropagation();
+        prevSlide2();
+    });
+}
+
+if (nextBtn2) {
+    nextBtn2.addEventListener('click', function(e) {
+        e.stopPropagation();
+        nextSlide2();
+    });
+}
+
+if (soloBtn2) {
+    soloBtn2.addEventListener('click', function() {
+        setActiveTab2('solo');
+    });
+}
+
+if (groupBtn2) {
+    groupBtn2.addEventListener('click', function() {
+        setActiveTab2('group');
+    });
+}
+
+// 键盘导航支持（在 Expo 可见时）
+document.addEventListener('keydown', function(e) {
+    const expoSection = document.getElementById('expo');
+    if (!expoSection || !expoSection.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft') {
+        prevSlide2();
+        e.preventDefault();
+    } else if (e.key === 'ArrowRight') {
+        nextSlide2();
+        e.preventDefault();
+    }
+});
+
+// 初始化 Expo
+setActiveTab2('solo');
     </script>
 
 </body>
