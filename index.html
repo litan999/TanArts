@@ -2078,7 +2078,18 @@
         // ===== EXPO CAROUSEL - 29张精选图片（不挂钩展览） =====
         // ================================================================
 
-        const allExpoImages = [
+        const allExpoImages = [];
+for (let i = 1; i <= 29; i++) {
+    // 1-20: 两个空格
+for (let i = 1; i <= 20; i++) {
+    allExpoImages.push('ExpoPic  (' + i + ').jpg');
+}
+
+// 21-30: 一个空格
+for (let i = 21; i <= 29; i++) {
+    allExpoImages.push('ExpoPic (' + i + ').jpg');
+}
+}
             'ExpoPic  (4).jpg',
             'ExpoPic  (9).jpg',
             'ExpoPic  (19).jpg',
@@ -2108,7 +2119,7 @@
             'ExpoPic (28).jpg',
             'ExpoPic (29).jpg',
             'ExpoPic (30).jpg',
-            
+                
             'https://picsum.photos/seed/expo_29/1200/800'
         ];
 
