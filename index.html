@@ -1048,44 +1048,47 @@
     display: none;
 }
 
-/* ===== 响应式 ===== */
-@media (max-width: 900px) {
-   .expo-grid {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 40px !important;
-    align-items: start !important;
-    position: relative !important;
-}
-.expo-list-wrapper {
-    flex: 1 !important;
-    max-height: 650px;
-    overflow-y: auto;
-    padding-right: 8px;
-}
+  /* ===== 响应式 ===== */
+        @media (max-width: 1024px) {
+            .artwork-grid { grid-template-columns: repeat(2, 1fr); }
+            .bio-content { grid-template-columns: 1fr; }
+            .bio-portrait { position: static; }
+            .video-grid { grid-template-columns: 1fr; }
+            .book-item { grid-template-columns: 150px 1fr; gap: 24px; }
+        }
 
-.expo-carousel-wrapper {
-    flex: 1 !important;
-    position: sticky;
-    top: 120px;
-    aspect-ratio: 21 / 9;
-    min-height: 450px;
-    max-height: 900px;
-}
-.expo-list li {
-        min-height: 50px;
-        padding: 8px 10px;
+        @media (max-width: 768px) {
+            .header-inner { padding: 0 20px; }
+            .nav-main { flex-wrap: wrap; justify-content: center; }
+            .nav-main a { padding: 8px 14px; font-size: 11px; }
+            .sub-nav { flex-wrap: wrap; }
+            main { margin-top: 180px; }
+            .section { padding: 20px; }
+            .carousel { height: 50vh; min-height: 300px; }
+            .artwork-grid { grid-template-columns: 1fr; }
+            /* .expo-grid 不在这里定义，保持双栏 */
+            .links-grid { grid-template-columns: 1fr; }
+            .book-item { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+    /* ===== 强制 Expo 在手机上也是双栏 ===== */
+    .expo-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 16px !important;
     }
-
-    .expo-title {
-        font-size: 13px;
+    
+    .expo-list-wrapper {
+        max-height: 400px !important;
     }
-    .expo-title-zh {
-        font-size: 12px;
+    
+    .expo-carousel-wrapper {
+        position: relative !important;  /* 手机上取消粘性定位 */
+        top: 0 !important;
+        min-height: 150px;
+        max-height: 220px;
     }
-}
-
-@media (max-width: 480px) {
+            
     .expo-title {
         font-size: 12px;
     }
@@ -1098,10 +1101,6 @@
     .expo-list li {
         min-height: 44px;
         padding: 6px 8px;
-    }
-    .expo-carousel-wrapper {
-        min-height: 150px;
-        max-height: 220px;
     }
     .carousel-nav {
         width: 26px;
@@ -1118,6 +1117,31 @@
         font-size: 12px !important;
     }
 }
+
+        /* ===== 强制 Expo 双栏布局（覆盖所有媒体查询） ===== */
+        .expo-grid {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 40px !important;
+            align-items: start !important;
+        }
+
+        .expo-list-wrapper {
+            max-height: 650px !important;
+            overflow-y: auto !important;
+            padding-right: 8px !important;
+        }
+
+        .expo-carousel-wrapper {
+            position: sticky !important;
+            top: 120px !important;
+            aspect-ratio: 21 / 9 !important;
+            min-height: 450px !important;
+            max-height: 800px !important;
+            width: 100% !important;
+        }
+    </style>
+</head>
         /* ===== ACADEMIC ===== */
         .acad-category {
             margin-bottom: 50px;
