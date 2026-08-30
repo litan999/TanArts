@@ -1352,6 +1352,51 @@
             background: var(--text);
             color: var(--white);
         }
+        /* ===== 压缩各大板块标题区域（防止占用太多垂直空间） ===== */
+/* 1. 缩小所有页面的主标题 (ART, EXPO, ACAD, TEXTS, BIO 等) */
+.section .page-header h1,
+.section .expo-header h1, 
+.section .acad-header h1,
+.section .texts-header h1,
+.section .bio-header h1,
+#art .page-header h1 { 
+    font-size: 26px !important; /* 原先是32px，现在缩小一点 */
+    margin-bottom: 10px !important;
+}
+
+/* 2. 缩小标题下那条横线 */
+#art .divider,
+.section .page-header .divider,
+.section .expo-header .divider,
+.section .acad-header .divider,
+.section .texts-header .divider,
+.section .bio-header .divider { 
+    width: 30px !important;
+    margin: 10px auto !important;
+}
+
+/* 3. 缩小标题下面的副标题小字（如 Four... 或 Solo/Group...） */
+#art .page-header p,
+.section .page-header p,
+.section .expo-header p,
+.section .acad-header p,
+.section .texts-header p,
+.section .bio-header p { 
+    font-size: 13px !important; 
+    margin-top: 0 !important;
+    color: #888;
+}
+
+/* 4. 最关键的一步：大幅度减小整个标题所在容器的上下内边距 */
+#art .page-header,
+.section .page-header,
+.section .expo-header,
+.section .acad-header,
+.section .texts-header,
+.section .bio-header { 
+    padding: 15px 20px !important; /* 原先可能高达60px，现在大大缩减 */
+    margin-bottom: 10px !important; /* 距离下方内容不要太远 */
+}
     </style>
 </head>
 <body>
