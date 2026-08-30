@@ -2992,7 +2992,16 @@ function switchCategory(categoryId) {
         activeBtn.classList.add('active');
     }
 }
+ // ===== LIGHTBOX 弹窗逻辑 =====
+    function openLightbox(index) {
+        // 这里简单处理，暂时只弹出提示，等您后续完善
+        alert('您点击了图片或文字，索引为：' + index);
+        // 后续接上真正的 Lightbox 图片显示代码
+    }
 
+    function openVideo(index) {
+        alert('您点击了视频，索引为：' + index);
+    }
         // ===== CAROUSEL =====
         let currentSlide = 0;
         const totalSlides = 10;
