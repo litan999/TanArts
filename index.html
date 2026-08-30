@@ -2970,6 +2970,28 @@
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+        // ===== 选项卡切换功能 =====
+function switchCategory(categoryId) {
+    // 1. 隐藏所有分类内容
+    const contents = document.querySelectorAll('.category-content');
+    contents.forEach(content => content.classList.remove('active'));
+
+    // 2. 移除所有按钮的 active 状态
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    // 3. 显示选中的分类（防止找不到元素报错）
+    const targetContent = document.getElementById('category-' + categoryId);
+    if (targetContent) {
+        targetContent.classList.add('active');
+    }
+    
+    // 4. 通过ID精准找到按钮，防止报错
+    const activeBtn = document.getElementById('tab-' + categoryId);
+    if (activeBtn) {
+        activeBtn.classList.add('active');
+    }
+}
 
         // ===== CAROUSEL =====
         let currentSlide = 0;
@@ -3545,29 +3567,6 @@ setAcadTab('acad-keynotes');
 #art .page-header h1 { font-size: 32px; font-weight: 300; margin: 0; }
 #art .page-header h1 span { font-weight: 600; }
 #art .divider { width: 40px; height: 2px; background: #333; margin: 20px auto; }
-
-// ===== 选项卡切换功能 =====
-function switchCategory(categoryId) {
-    // 1. 隐藏所有分类内容
-    const contents = document.querySelectorAll('.category-content');
-    contents.forEach(content => content.classList.remove('active'));
-
-    // 2. 移除所有按钮的 active 状态
-    const buttons = document.querySelectorAll('.tab-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
-
-    // 3. 显示选中的分类（防止找不到元素报错）
-    const targetContent = document.getElementById('category-' + categoryId);
-    if (targetContent) {
-        targetContent.classList.add('active');
-    }
-    
-    // 4. 通过ID精准找到按钮，防止报错
-    const activeBtn = document.getElementById('tab-' + categoryId);
-    if (activeBtn) {
-        activeBtn.classList.add('active');
-    }
-}
 
 // ===== Lightbox 弹窗逻辑 =====
 const artworkData = [
