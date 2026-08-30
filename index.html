@@ -2153,22 +2153,31 @@
    <script>
     // ===== NAVIGATION =====
     function showSection(sectionId) {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.getElementById(sectionId).classList.add('active');
-        document.querySelectorAll('.nav-main a').forEach(a => a.classList.remove('active'));
-        document.querySelector(`[data-section="${sectionId}"]`)?.classList.add('active');
-        document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
-        const subMap = {
-            'art': 'sub-art',
-            'texts': 'sub-texts',
-            'expo': 'sub-expo',
-            'acad': 'sub-acad'
-        };
-        if (subMap[sectionId]) {
-            document.getElementById(subMap[sectionId]).classList.add('active');
-        }
-        window.scrollTo(0, 0); 
+    // 1. 隐藏所有原本激活的页面
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    
+    // 2. 显示目标页面
+    const target = document.getElementById(sectionId);
+    if (target) {
+        target.classList.add('active');
+    } else {
+        // 如果找不到目标（比如HOME没有id），默认显示Home
+        document.getElementById('home').classList.add('active');
     }
+    
+    // 3. 隐藏所有子导航
+    document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
+    
+    // 4. 如果对应ID有子导航，显示它
+    const subMap = { 'art': 'sub-art', 'texts': 'sub-texts', 'expo': 'sub-expo', 'acad': 'sub-acad' };
+    if (subMap[sectionId]) {
+        const sub = document.getElementById(subMap[sectionId]);
+        if (sub) sub.classList.add('active');
+    }
+    
+    // 5. 强制瞬间回到顶部，不让他乱滚
+    window.scrollTo(0, 0); 
+}
 
     // ===== 选项卡切换功能 (Art 页面) =====
     function switchCategory(categoryId) {
