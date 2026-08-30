@@ -565,28 +565,62 @@ main {
     padding-bottom: 0 !important;
 }
 
-/* 2. 强制让 Home 展现，且消除一切内部边距 */
-#home.section.active.hero-section {
-    display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    max-width: 100% !important;
-    min-height: 60vh !important;
+/* ========== 终极解决页面挤压和Home显示 ========== */
+
+/* 1. 恢复正常的文档流，没有绝对定位，没有乱七八糟的高度限制 */
+header {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: #f5f5f5 !important;
+    z-index: 100 !important;
 }
 
-/* 3. 让轮播图填满整个 Home 屏 */
-#heroCarousel {
+* ========== 终极安全版（完美解决上移和遮挡） ========== */
+
+/* 1. Header 正常跟随滚动，不遮挡其他内容 */
+header {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
     width: 100% !important;
-    height: 70vh !important;
+    background: #f5f5f5 !important;
+    z-index: 100 !important;
+}
+
+/* 2. 页面显示与隐藏基础逻辑 */
+main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.section {
+    display: none !important;
+}
+
+.section.active {
+    display: block !important;
+    margin-top: 0 !important;
+    padding-top: 20px !important;
+    position: static !important;
+    transform: none !important;
+}
+
+/* 3. 让 Home 轮播图正常高度，不强制占满全屏，不遮挡任何东西 */
+#heroCarousel,
+.carousel {
+    height: auto !important;
     min-height: 400px !important;
+    max-height: 800px !important;
     display: block !important;
     position: relative !important;
     overflow: hidden !important;
+    background: #808000 !important;
 }
 
-/* 4. 绝对不要在 Home 出现任何页面标题的背景或遮挡 */
-#home .page-header, #home .divider {
-    display: none !important;
+/* 4. 【最终版】隐藏 Home 页多余标题，正常贴顶显示 */
+#home .page-header, #home .divider { display: none !important; 
 }
 </style>
 </head>
