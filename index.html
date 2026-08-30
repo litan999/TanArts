@@ -1394,9 +1394,7 @@
 #acad .category-content, 
 #acad .category-title {
     display: none !important;
-}
-       
-        
+}          
     padding-right: 20px;
 }
 
@@ -1409,75 +1407,40 @@
 #art .sub-nav, .sub-nav {
     display: none !important;
 }    
-        /* ===== 最终修复：防止所有页面上移挤压 Header ===== */
+      /* ========== 最终安全排版 ========== */
 
-/* 1. 强制给每个页面顶部留出至少 100px 的空隙，防止被 Header 遮住 */
-.section.active {
-    display: block !important;
-    margin-top: 100px !important; 
-    position: relative !important;
-    top: 0 !important;
-    transform: none !important; /* 清除原先可能导致上移的 transform */
-}
-
-/* 2. 确保 Header 本身固定在最上方，不会被内容顶上去 */
+/* 1. 让 Header 回归正常文档流，彻底解决遮挡问题 */
 header {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    z-index: 999 !important;
-    background: #f9f9f9 !important; /* 确保有背景色挡住后面的内容 */
+    position: static !important; /* 直接贴在最顶部 */
+    top: auto !important;
+    height: auto !important; /* 高度自动适应内容 */
+    background: #fff !important;
+    z-index: 1 !important;
 }
 
-/* 3. 强制隐藏所有非激活的页面（防止它们占位挤压） */
-.section {
-    display: none !important;
-}
-
-/* 4. 由于 Header 变成了固定（fixed），需要在页面顶部留白（防止内容跑到 Header 下面去） */
+/* 2. 绝对禁止 body 自己带偏移 */
 body {
-    padding-top: 120px !important; /* 这个数值可以根据您的 Header 实际高度微调 */
-}
-        /* ========== 终极排版（100% 不遮挡、不乱跳） ========== */
-
-/* 1. 强制 Header 稳定在顶部，并设定它的实际高度 */
-header {
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    z-index: 10 !important;
-    height: 140px !important; /* 预估您 Header 的高度，如果觉得太小可微调 */
-    box-sizing: border-box !important;
+    padding-top: 0 !important;
 }
 
-/* 2. 所有未激活的页面彻底隐藏 */
+/* 3. 页面隐藏逻辑 */
 .section {
     display: none !important;
 }
 
-/* 3. 所有激活页面全部往 Header 下方推，保证绝对不遮挡 */
+/* 4. 页面显示时：直接往下排，顶部不强制加任何 margin 或 padding，让页面标题自然露出来 */
 .section.active {
     display: block !important;
-    margin-top: 0 !important; /* 清除所有以前的 margin */
-    padding-top: 50px !important; /* 使用 padding 拉开距离，这样不容易出错 */
-    position: relative !important;
-    top: 0 !important;
-    transform: none !important;
-    box-sizing: border-box !important;
-}
-
-/* 4. 【关键】Home 页面单独处理：不用拉太长距离，直接贴着头图 */
-#home.section.active {
-    padding-top: 0 !important; 
     margin-top: 0 !important;
+    padding-top: 20px !important; /* 只留一点点呼吸空间，够看到标题 */
+    position: static !important; /* 完全回归文档流 */
+    transform: none !important;
 }
 
-/* 5. 清理 Art 页面多余的上方间距 */
-#art .page-header {
-    text-align: center;
-    padding: 0 20px 10px !important;
+/* 5. Home 特殊处理：Home 有自己的全屏大图，不需要任何上边距，直接贴顶显示 */
+#home.section.active {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
 }
     </style>
 </head>
