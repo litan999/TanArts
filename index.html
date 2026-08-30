@@ -1395,6 +1395,34 @@
 #acad .category-title {
     display: none !important;
 }
+        /* ===== 强制修正页面容器切换和挤压问题 ===== */
+.section {
+    display: none !important; /* 默认全隐藏 */
+    min-height: calc(100vh - 150px); /* 确保页面占满屏幕，且不会被 Header 遮挡 */
+    padding-top: 20px; /* 给 Header 下面留出足够的呼吸空间 */
+}
+
+.section.active {
+    display: block !important; /* 只有选中的页面才显示 */
+    position: relative; /* 防止被其他元素绝对定位遮挡 */
+    z-index: 1; /* 保持在 Header 下方 */
+}
+        /* ===== Art 页面内容居中 + 宽度限制 ===== */
+#art {
+    max-width: 1400px; /* 限制最大宽度，适合宽屏 */
+    margin: 0 auto;    /* 居中显示 */
+    width: 100%;       /* 占满可用空间 */
+    box-sizing: border-box; /* 防止 padding 撑破宽度 */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* 让 Art 页面里的标题也居中 */
+#art .page-header {
+    text-align: center; 
+    padding: 40px 20px 20px; /* 稍微减小顶部间距，避免太挤 */
+}
+        
     </style>
 </head>
 <body>
