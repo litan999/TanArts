@@ -438,14 +438,14 @@
             display: block;
         }
 
-     /* ===== 页面基础 ===== */
-.page-header { text-align: center; padding: 60px 20px 40px; }
-.page-header h1 { font-size: 32px; font-weight: 300; margin: 0; }
-.page-header h1 span { font-weight: 600; }
-.divider { width: 40px; height: 2px; background: #333; margin: 20px auto; }
+ /* ===== 页面基础 ===== */
+#art .page-header { text-align: center; padding: 60px 20px 40px; }
+#art .page-header h1 { font-size: 32px; font-weight: 300; margin: 0; }
+#art .page-header h1 span { font-weight: 600; }
+#art .divider { width: 40px; height: 2px; background: #333; margin: 20px auto; }
 
 /* ===== 选项卡 (Tab) 样式 ===== */
-.tab-nav {
+#art .tab-nav {
     display: flex;
     justify-content: center;
     gap: 15px;
@@ -453,7 +453,7 @@
     flex-wrap: wrap;
 }
 
-.tab-btn {
+#art .tab-btn {
     background-color: #f5f5f5;
     border: 1px solid #ddd;
     padding: 12px 24px;
@@ -461,30 +461,30 @@
     font-weight: 600;
     color: #666;
     cursor: pointer;
-    border-radius: 30px; /* 胶囊形状 */
+    border-radius: 30px;
     transition: all 0.3s ease;
     font-family: inherit;
 }
 
-.tab-btn:hover {
+#art .tab-btn:hover {
     background-color: #e0e0e0;
 }
 
-.tab-btn.active {
-    background-color: #1a1a1a; /* 选中时为深黑色 */
+#art .tab-btn.active {
+    background-color: #1a1a1a;
     color: #fff;
     border-color: #1a1a1a;
 }
 
 /* ===== 分类内容切换 ===== */
-.category-content {
+#art .category-content {
     display: none; /* 默认隐藏所有分类 */
 }
-.category-content.active {
+#art .category-content.active {
     display: block; /* 选中时显示 */
 }
 
-.category-title {
+#art .category-title {
     text-align: center;
     font-size: 24px;
     font-weight: 600;
@@ -497,7 +497,7 @@
 }
 
 /* ===== 横向滑动容器 ===== */
-.horizontal-scroll-container {
+#art .horizontal-scroll-container {
     width: 100%;
     overflow-x: auto;
     scroll-behavior: smooth;
@@ -506,7 +506,7 @@
     border-bottom: 1px solid #ccc;
 }
 
-.slides-track {
+#art .slides-track {
     display: flex;
     gap: 15px;
     padding: 0 20px;
@@ -514,7 +514,7 @@
 }
 
 /* ===== 单个幻灯片 ===== */
-.slide {
+#art .slide {
     width: 350px;
     height: 260px;
     flex-shrink: 0;
@@ -526,8 +526,7 @@
     cursor: pointer;
 }
 
-/* 深灰色文字卡片 */
-.slide-info {
+#art .slide-info {
     background-color: #2b2b2b;
     color: #fff;
     padding: 30px;
@@ -536,50 +535,47 @@
     justify-content: center;
     align-items: flex-start;
 }
-.slide-info h4 { margin: 0 0 10px; font-size: 18px; text-transform: uppercase; }
-.slide-info p { font-size: 13px; line-height: 1.6; color: #ccc; margin: 0; }
+#art .slide-info h4 { margin: 0 0 10px; font-size: 18px; text-transform: uppercase; }
+#art .slide-info p { font-size: 13px; line-height: 1.6; color: #ccc; margin: 0; }
 
-/* 图片卡片 */
-.slide-img img, .slide-img .placeholder-img {
+#art .slide-img img, #art .slide-img .placeholder-img {
     width: 100%; height: 100%; object-fit: cover;
     transition: transform 0.5s ease;
 }
-.slide-img:hover img, .slide-img:hover .placeholder-img { transform: scale(1.05); }
+#art .slide-img:hover img, #art .slide-img:hover .placeholder-img { transform: scale(1.05); }
 
-/* 视频卡片 */
-.slide-video {
+#art .slide-video {
     background: #000; display: flex; align-items: center; justify-content: center; color: #fff;
 }
-.slide-video .play-icon {
+#art .slide-video .play-icon {
     font-size: 40px; border: 2px solid #fff; border-radius: 50%;
     width: 70px; height: 70px; display: flex; align-items: center; justify-content: center;
 }
 
-/* 占位图 */
-.placeholder-img {
+#art .placeholder-img {
     background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
     width: 100%; height: 100%;
 }
 
 /* 滚动条美化 */
-::-webkit-scrollbar { height: 8px; }
-::-webkit-scrollbar-track { background: #e0e0e0; }
-::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+#art ::-webkit-scrollbar { height: 8px; }
+#art ::-webkit-scrollbar-track { background: #e0e0e0; }
+#art ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
 
 /* ===== Lightbox 弹窗 ===== */
-.lightbox {
+#art .lightbox {
     display: none; position: fixed; inset: 0; z-index: 2000;
     background: rgba(0,0,0,0.95); align-items: center; justify-content: center; flex-direction: column;
 }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90%; max-height: 80vh; object-fit: contain; border-radius: 5px; }
-.lightbox-content { max-width: 600px; text-align: center; color: #fff; margin-top: 20px; padding: 0 20px; }
-.lightbox-content h4 { font-size: 18px; margin-bottom: 10px; }
-.lightbox-content p { font-size: 14px; opacity: 0.8; }
-.lightbox-close { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 32px; cursor: pointer; background: none; border: none; font-family: inherit; z-index: 2001; }
-.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 40px; cursor: pointer; background: none; border: none; padding: 20px; font-family: inherit; z-index: 2001; }
-.lightbox-prev { left: 20px; }
-.lightbox-next { right: 20px; }
+#art .lightbox.active { display: flex; }
+#art .lightbox img { max-width: 90%; max-height: 80vh; object-fit: contain; border-radius: 5px; }
+#art .lightbox-content { max-width: 600px; text-align: center; color: #fff; margin-top: 20px; padding: 0 20px; }
+#art .lightbox-content h4 { font-size: 18px; margin-bottom: 10px; }
+#art .lightbox-content p { font-size: 14px; opacity: 0.8; }
+#art .lightbox-close { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 32px; cursor: pointer; background: none; border: none; font-family: inherit; z-index: 2001; }
+#art .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 40px; cursor: pointer; background: none; border: none; padding: 20px; font-family: inherit; z-index: 2001; }
+#art .lightbox-prev { left: 20px; }
+#art .lightbox-next { right: 20px; }
 
         /* ===== PUBLICATIONS ===== */
         .pub-section {
@@ -1547,46 +1543,50 @@
     <!-- 分类 1: AIGC Art -->
     <div id="category-aigc" class="category-content active">
         <h2 class="category-title">AIGC Art / AI生成艺术</h2>
+        
         <!-- 系列 1 -->
         <div class="horizontal-scroll-container">
             <div class="slides-track">
-                <div class="slide slide-info" onclick="openLightbox(1)"><h4>AIGC Portrait</h4><p>AI生成肖像艺术。</p></div>
-                <div class="slide slide-img" onclick="openLightbox(2)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(3)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(4)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(5)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(6)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(7)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-info" onclick="openLightbox(0)"><h4>AIGC Portrait</h4><p>AI生成肖像艺术。</p></div>
+                <div class="slide slide-img" onclick="openLightbox(1)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(2)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(3)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(4)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(5)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(6)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
             </div>
         </div>
+
         <!-- 系列 2 -->
         <div class="horizontal-scroll-container">
             <div class="slides-track">
-                <div class="slide slide-info" onclick="openLightbox(1)"><h4>AIGC Human Body</h4><p>AI生成人体艺术。</p></div>
-                <div class="slide slide-img" onclick="openLightbox(2)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(3)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(4)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(5)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(6)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(7)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-info" onclick="openLightbox(7)"><h4>AIGC Human Body</h4><p>AI生成人体艺术。</p></div>
+                <div class="slide slide-img" onclick="openLightbox(8)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(9)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(10)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(11)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(12)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(13)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
             </div>
         </div>
+
         <!-- 系列 3 -->
         <div class="horizontal-scroll-container">
             <div class="slides-track">
-                <div class="slide slide-info" onclick="openLightbox(1)"><h4>AIGC Abstract</h4><p>AI生成抽象艺术。</p></div>
-                <div class="slide slide-img" onclick="openLightbox(2)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(3)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(4)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(5)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(6)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(7)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-info" onclick="openLightbox(14)"><h4>AIGC Abstract</h4><p>AI生成抽象艺术。</p></div>
+                <div class="slide slide-img" onclick="openLightbox(15)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(16)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(17)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(18)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(19)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(20)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
             </div>
         </div>
-         <!-- 系列 4 (含6个视频) -->
+
+        <!-- 系列 4 (含6个视频) -->
         <div class="horizontal-scroll-container">
             <div class="slides-track">
-                <div class="slide slide-info" onclick="openLightbox(0)"><h4>AIGC Animation Clips</h4><p>AI生成动画片段。</p></div>
+                <div class="slide slide-info" onclick="openLightbox(21)"><h4>AIGC Animation Clips</h4><p>AI生成动画片段。</p></div>
                 <div class="slide slide-video" onclick="openVideo(0)"><div class="play-icon">▶</div></div>
                 <div class="slide slide-video" onclick="openVideo(1)"><div class="play-icon">▶</div></div>
                 <div class="slide slide-video" onclick="openVideo(2)"><div class="play-icon">▶</div></div>
@@ -1600,29 +1600,24 @@
     <!-- 分类 2: Installation -->
     <div id="category-installation" class="category-content">
         <h2 class="category-title">Installation / 装置艺术</h2>
-        <!-- 填入对应的横向滑动组 -->
+        <!-- 您可以在这里按照上面的格式，复制4个系列（每个系列7张幻灯片）填满这里！ -->
         <div class="horizontal-scroll-container">
             <div class="slides-track">
-                <div class="slide slide-info" onclick="openLightbox(8)"><h4>BIOART EVOLUTION</h4><p>生物混合媒介装置。</p></div>
-                <div class="slide slide-img" onclick="openLightbox(9)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(10)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(11)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
-                <!-- ... 补齐剩余的6张 ... -->
+                <!-- 占位 -->
             </div>
         </div>
-        <!-- ... 更多系列 ... -->
     </div>
 
     <!-- 分类 3: Digital Prints -->
     <div id="category-digital" class="category-content">
         <h2 class="category-title">Digital Prints / 数码打印</h2>
-        <!-- 填入对应的横向滑动组 -->
+        <!-- 您可以在这里按照上面的格式，复制4个系列（每个系列7张幻灯片）填满这里！ -->
     </div>
 
     <!-- 分类 4: Studio Art -->
     <div id="category-studio" class="category-content">
         <h2 class="category-title">Studio Art / 传统艺术</h2>
-        <!-- 填入对应的横向滑动组 -->
+        <!-- 您可以在这里按照上面的格式，复制4个系列（每个系列7张幻灯片）填满这里！ -->
     </div>
 
     <!-- Lightbox 弹窗结构 (放在最后) -->
@@ -3560,7 +3555,7 @@ setAcadTab('acad-keynotes');
 #art .page-header h1 span { font-weight: 600; }
 #art .divider { width: 40px; height: 2px; background: #333; margin: 20px auto; }
 
-// ===== 1. 选项卡切换功能 =====
+// ===== 选项卡切换功能 =====
 function switchCategory(categoryId) {
     // 1. 隐藏所有分类内容
     const contents = document.querySelectorAll('.category-content');
@@ -3570,7 +3565,7 @@ function switchCategory(categoryId) {
     const buttons = document.querySelectorAll('.tab-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
 
-    // 3. 显示选中的分类
+    // 3. 显示选中的分类（防止找不到元素报错）
     const targetContent = document.getElementById('category-' + categoryId);
     if (targetContent) {
         targetContent.classList.add('active');
@@ -3583,21 +3578,28 @@ function switchCategory(categoryId) {
     }
 }
 
-// ===== 2. Lightbox 弹窗逻辑 =====
+// ===== Lightbox 弹窗逻辑 =====
 const artworkData = [
-    // 这里填入您的作品数据（图文对应）
-    // 格式：{ img: '图片地址', title: '标题', desc: '简介' }
-    // 示例：
-    { img: undefined, title: 'SINGULARITY SERIES I', desc: 'AI生成系列，探索人工智能对创作边界的突破。' },
-    { img: undefined, title: '视频占位', desc: '视频播放占位内容' },
-    { img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200', title: 'AIGC Portrait', desc: 'AI生成肖像艺术。' },
-    { img: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=1200', title: 'AIGC Human Body', desc: 'AI生成人体艺术。' },
-    // ... 您需要根据 slide 上的 onclick="openLightbox(索引号)" 填满对应的数据 ...
+    // 注意：这里的索引必须和 HTML 里 onclick="openLightbox(数字)" 对应。
+    // 这里有 4 个 AIGC 系列，每个系列 7 张，共 28 张。 这里只写前几个作为示例。
+    // 如果点击了第 5 张图，您就需在此数组里添加第 5 个对象。
+
+    { img: undefined, title: 'AIGC Portrait', desc: 'AI生成肖像艺术。' },
+    { img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200', title: '图片 2', desc: '作品简介' },
+    { img: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=1200', title: '图片 3', desc: '作品简介' },
+    { img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200', title: '图片 4', desc: '作品简介' },
+    // ... 继续添加 ...
 ];
 
 let currentIndex = 0;
 
 function openLightbox(index) {
+    // 防止如果索引超出数组长度报错
+    if (index >= artworkData.length) {
+        alert('您点击的图片信息还未添加到JS的 artworkData 数组中！');
+        return;
+    }
+    
     currentIndex = index;
     updateLightbox();
     document.getElementById('lightbox').classList.add('active');
@@ -3635,14 +3637,13 @@ function updateLightbox() {
 
 // 视频占位点击处理
 function openVideo(index) {
-    // 在这里替换成真实的视频播放器嵌入代码
     alert('正在播放视频 ' + (index + 1));
 }
 
-// ===== 3. 保护代码（防止 Home 页报错导致整个网站瘫痪） =====
+// ===== 保护代码（防止 Home 页报错导致整个网站瘫痪） =====
 document.addEventListener('DOMContentLoaded', function() {
     const lightbox = document.getElementById('lightbox');
-    if (!lightbox) return; // 如果找不到弹窗元素（例如在Home页），直接退出，不执行后面的代码
+    if (!lightbox) return; // 如果找不到弹窗元素（例如在Home页），直接退出
 
     // 键盘控制（ESC关闭，左右切换）
     document.addEventListener('keydown', function(e) {
