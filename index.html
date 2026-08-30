@@ -3555,13 +3555,13 @@ if (acadNextBtn) {
 renderAcadCarousel();
 setAcadTab('acad-keynotes');
         /* ===== 页面基础 ===== */
-.page-header { text-align: center; padding: 60px 20px 40px; }
-.page-header h1 { font-size: 32px; font-weight: 300; margin: 0; }
-.page-header h1 span { font-weight: 600; }
-.divider { width: 40px; height: 2px; background: #333; margin: 20px auto; }
+#art .page-header { text-align: center; padding: 60px 20px 40px; }
+#art .page-header h1 { font-size: 32px; font-weight: 300; margin: 0; }
+#art .page-header h1 span { font-weight: 600; }
+#art .divider { width: 40px; height: 2px; background: #333; margin: 20px auto; }
 
 /* ===== 选项卡 (Tab) 样式 ===== */
-.tab-nav {
+#art .tab-nav {
     display: flex;
     justify-content: center;
     gap: 15px;
@@ -3569,7 +3569,7 @@ setAcadTab('acad-keynotes');
     flex-wrap: wrap;
 }
 
-.tab-btn {
+#art .tab-btn {
     background-color: #f5f5f5;
     border: 1px solid #ddd;
     padding: 12px 24px;
@@ -3582,11 +3582,11 @@ setAcadTab('acad-keynotes');
     font-family: inherit;
 }
 
-.tab-btn:hover {
+#art .tab-btn:hover {
     background-color: #e0e0e0;
 }
 
-.tab-btn.active {
+#art .tab-btn.active {
     background-color: #1a1a1a; /* 选中时为深黑色 */
     color: #fff;
     border-color: #1a1a1a;
@@ -3600,7 +3600,7 @@ setAcadTab('acad-keynotes');
     display: block; /* 选中时显示 */
 }
 
-.category-title {
+#art .category-title {
     text-align: center;
     font-size: 24px;
     font-weight: 600;
@@ -3630,7 +3630,7 @@ setAcadTab('acad-keynotes');
 }
 
 /* ===== 单个幻灯片 ===== */
-.slide {
+#art .slide {
     width: 350px;
     height: 260px;
     flex-shrink: 0;
