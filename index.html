@@ -2951,707 +2951,326 @@
     </footer>
 
     <!-- ===== JAVASCRIPT ===== -->
-    <script>
-        // ===== NAVIGATION =====
-        function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-            document.querySelectorAll('.nav-main a').forEach(a => a.classList.remove('active'));
-            document.querySelector(`[data-section="${sectionId}"]`)?.classList.add('active');
-            document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
-            const subMap = {
-                'art': 'sub-art',
-                'texts': 'sub-texts',
-                'expo': 'sub-expo',
-                'acad': 'sub-acad'
-            };
-            if (subMap[sectionId]) {
-                document.getElementById(subMap[sectionId]).classList.add('active');
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+   <script>
+    // ===== NAVIGATION =====
+    function showSection(sectionId) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+        document.querySelectorAll('.nav-main a').forEach(a => a.classList.remove('active'));
+        document.querySelector(`[data-section="${sectionId}"]`)?.classList.add('active');
+        document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
+        const subMap = {
+            'art': 'sub-art',
+            'texts': 'sub-texts',
+            'expo': 'sub-expo',
+            'acad': 'sub-acad'
+        };
+        if (subMap[sectionId]) {
+            document.getElementById(subMap[sectionId]).classList.add('active');
         }
-        // ===== 选项卡切换功能 =====
-function switchCategory(categoryId) {
-    // 1. 隐藏所有分类内容
-    const contents = document.querySelectorAll('.category-content');
-    contents.forEach(content => content.classList.remove('active'));
-
-    // 2. 移除所有按钮的 active 状态
-    const buttons = document.querySelectorAll('.tab-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
-
-    // 3. 显示选中的分类（防止找不到元素报错）
-    const targetContent = document.getElementById('category-' + categoryId);
-    if (targetContent) {
-        targetContent.classList.add('active');
-    }
-    
-    // 4. 通过ID精准找到按钮，防止报错
-    const activeBtn = document.getElementById('tab-' + categoryId);
-    if (activeBtn) {
-        activeBtn.classList.add('active');
-    }
-}
- // ===== LIGHTBOX 弹窗逻辑 =====
-    function openLightbox(index) {
-        // 这里简单处理，暂时只弹出提示，等您后续完善
-        alert('您点击了图片或文字，索引为：' + index);
-        // 后续接上真正的 Lightbox 图片显示代码
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function openVideo(index) {
-        alert('您点击了视频，索引为：' + index);
-    }
-        // ===== CAROUSEL =====
-        let currentSlide = 0;
-        const totalSlides = 10;
-        const track = document.getElementById('carouselTrack');
-        const dotsContainer = document.getElementById('carouselDots');
+    // ===== 选项卡切换功能 (Art 页面) =====
+    function switchCategory(categoryId) {
+        const contents = document.querySelectorAll('.category-content');
+        contents.forEach(content => content.classList.remove('active'));
 
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        const targetContent = document.getElementById('category-' + categoryId);
+        if (targetContent) {
+            targetContent.classList.add('active');
+        }
+        
+        const activeBtn = document.getElementById('tab-' + categoryId);
+        if (activeBtn) {
+            activeBtn.classList.add('active');
+        }
+    }
+
+    // ===== CAROUSEL (首页轮播) =====
+    let currentSlide = 0;
+    const totalSlides = 10;
+    const track = document.getElementById('carouselTrack');
+    const dotsContainer = document.getElementById('carouselDots');
+
+    if (dotsContainer) { // 防止首页没有这个元素报错
         for (let i = 0; i < totalSlides; i++) {
             const dot = document.createElement('div');
             dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
             dot.onclick = () => goToSlide(i);
             dotsContainer.appendChild(dot);
         }
+    }
 
-        function updateCarousel() {
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            document.querySelectorAll('.carousel-dot').forEach((d, i) => {
-                d.classList.toggle('active', i === currentSlide);
-            });
+    function updateCarousel() {
+        if(!track) return;
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === currentSlide);
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+    }
+
+    function goToSlide(index) {
+        currentSlide = index;
+        updateCarousel();
+    }
+
+    setInterval(nextSlide, 5000);
+
+    // ===== LIGHTBOX 弹窗逻辑 (全新的，没有冲突) =====
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxDesc = document.getElementById('lightboxDesc');
+    
+    const artworkData = [
+        { img: undefined, title: 'AIGC Portrait', desc: 'AI生成肖像艺术。' },
+        { img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200', title: '图片 2', desc: '作品简介' },
+        { img: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=1200', title: '图片 3', desc: '作品简介' },
+        { img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200', title: '图片 4', desc: '作品简介' }
+    ];
+
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+        if (index >= artworkData.length) {
+            alert('该作品的数据还未添加到 artworkData 数组中！');
+            return;
         }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-        }
-
-        setInterval(nextSlide, 5000);
-
-        // ===== LIGHTBOX =====
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const lightboxCaption = document.getElementById('lightboxCaption');
-        let currentLightboxIndex = 0;
-
-        const artworkData = [
-            { src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&h=1200&fit=crop', title: 'SINGULARITY SERIES I', desc: 'AI Generated, 2024' },
-            { src: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=1600&h=1200&fit=crop', title: 'NEURAL DREAMSCAPE III', desc: 'AI Generated, 2023' },
-            { src: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1600&h=1200&fit=crop', title: 'STRONG AI VISION', desc: 'AI Generated, 2023' },
-            { src: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=1600&h=1200&fit=crop', title: 'DIGITAL PRIMITIVE I', desc: 'Interactive Installation, 2022' },
-            { src: 'https://images.unsplash.com/photo-1549490349-8643362247b5?w=1600&h=1200&fit=crop', title: 'BIOART EVOLUTION', desc: 'Mixed Media Installation, 2021' },
-            { src: 'https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=1600&h=1200&fit=crop', title: 'INVISIBLE ART MANIFESTO', desc: 'Conceptual Installation, 2020' },
-            { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&h=1200&fit=crop', title: 'QUANTUM VISUALIZATION', desc: 'Digital Print, 2022' },
-            { src: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=1600&h=1200&fit=crop', title: '4D PRINTING ART', desc: 'Digital Print, 2021' },
-            { src: 'https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=1600&h=1200&fit=crop', title: 'NANO ARCHITECTURE', desc: 'Digital Print, 2020' }
-        ];
-
-        function openLightbox(index) {
-            currentLightboxIndex = index;
-            updateLightbox();
+        currentIndex = index;
+        updateLightbox();
+        if (lightbox) {
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
+    }
 
-        function closeLightbox() {
+    function closeLightbox() {
+        if (lightbox) {
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
         }
+    }
 
-        function updateLightbox() {
-            const data = artworkData[currentLightboxIndex];
-            lightboxImg.src = data.src;
-            lightboxCaption.innerHTML = `<strong>${data.title}</strong><br>${data.desc}`;
+    function changeSlide(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) currentIndex = artworkData.length - 1;
+        if (currentIndex >= artworkData.length) currentIndex = 0;
+        updateLightbox();
+    }
+
+    function updateLightbox() {
+        const data = artworkData[currentIndex];
+        if (data) {
+            if (data.img) {
+                lightboxImg.src = data.img;
+                lightboxImg.style.display = 'block';
+            } else {
+                lightboxImg.style.display = 'none';
+            }
+            lightboxTitle.textContent = data.title || '';
+            lightboxDesc.textContent = data.desc || '';
         }
+    }
 
-        function lightboxNext() {
-            currentLightboxIndex = (currentLightboxIndex + 1) % artworkData.length;
-            updateLightbox();
-        }
-
-        function lightboxPrev() {
-            currentLightboxIndex = (currentLightboxIndex - 1 + artworkData.length) % artworkData.length;
-            updateLightbox();
-        }
-
-        document.addEventListener('keydown', (e) => {
+    // ===== 保护代码 =====
+    document.addEventListener('DOMContentLoaded', function() {
+        if (!lightbox) return; 
+        document.addEventListener('keydown', function(e) {
             if (!lightbox.classList.contains('active')) return;
             if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowRight') lightboxNext();
-            if (e.key === 'ArrowLeft') lightboxPrev();
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
         });
+    });
 
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
+    // 视频占位点击处理
+    function openVideo(index) {
+        alert('正在播放视频 ' + (index + 1));
+    }
 
-        // ===== BIO LANGUAGE TOGGLE =====
-        function toggleLang(lang) {
-            document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-            document.querySelectorAll('.bio-lang').forEach(l => l.classList.remove('active'));
-            document.getElementById(`bio-${lang}`).classList.add('active');
-        }
+    // ===== BIO LANGUAGE TOGGLE =====
+    function toggleLang(lang) {
+        document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+        document.querySelectorAll('.bio-lang').forEach(l => l.classList.remove('active'));
+        document.getElementById(`bio-${lang}`).classList.add('active');
+    }
 
-        // ===== ART FILTER =====
-        function filterArt(category) {
-            const items = document.querySelectorAll('.artwork-item');
-            items.forEach(item => {
-                if (category === 'all' || item.dataset.category === category) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-
-        // ===== SCROLL HELPERS =====
-        function scrollToPub(id) {
-            showSection('texts');
-            setTimeout(() => {
-                document.getElementById(`pub-${id}`).scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        }
-
-        function scrollToExpo(id) {
-            showSection('expo');
-            setTimeout(() => {
-                document.getElementById(`expo-${id}`).scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        }
-
-        function scrollToAcad(id) {
-            showSection('acad');
-            setTimeout(() => {
-                document.getElementById(`acad-${id}`).scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        }
-
-        // ===== HEADER SCROLL EFFECT =====
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            const currentScroll = window.pageYOffset;
-            if (currentScroll > 100) {
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+    // ===== ART FILTER =====
+    function filterArt(category) {
+        const items = document.querySelectorAll('.artwork-item');
+        items.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+                item.style.display = 'block';
             } else {
-                header.style.boxShadow = 'none';
+                item.style.display = 'none';
             }
         });
-
-        // ================================================================
-        // ===== EXPO CAROUSEL - 29张精选图片（不挂钩展览） =====
-        // ================================================================
-
-        const allExpoImages = [
-            'ExpoPic  (4).jpg',
-            'ExpoPic  (9).jpg',
-            'ExpoPic  (19).jpg',
-            'ExpoPic  (18).jpg',
-            'ExpoPic  (1).jpg',
-            'ExpoPic  (7).jpg',
-            'ExpoPic  (8).jpg',
-            'ExpoPic  (2).jpg',
-            'ExpoPic  (3).jpg',
-            'ExpoPic  (5).jpg',
-            'ExpoPic  (6).jpg',
-            'ExpoPic  (13).jpg',
-            'ExpoPic  (12).jpg',
-            'ExpoPic  (11).jpg',
-            'ExpoPic  (10).jpg',
-            'ExpoPic  (14).jpg',
-            'ExpoPic  (15).jpg',
-            'ExpoPic  (16).jpg',
-            'ExpoPic  (17).jpg',
-            'ExpoPic  (20).jpg',
-            'ExpoPic (21).jpg',
-            'ExpoPic (22).jpg',
-            'ExpoPic (23).jpg',
-            'ExpoPic (24).jpg',
-            'ExpoPic (25).jpg',
-            'ExpoPic (26).jpg',
-            'ExpoPic (27).jpg',
-            'ExpoPic (28).jpg',
-            'ExpoPic (29).jpg',
-            'ExpoPic (30).jpg',
-        ];
-
-        function getImages2(expoId) {
-            return allExpoImages;
-        }
-
-        const soloBtn2 = document.querySelector('.toggle-wrapper .toggle-btn[data-target="solo"]');
-        const groupBtn2 = document.querySelector('.toggle-wrapper .toggle-btn[data-target="group"]');
-        const soloList2 = document.getElementById('solo-list');
-        const groupList2 = document.getElementById('group-list');
-        const slidesContainer2 = document.getElementById('carousel-slides');
-        const dotsContainer2 = document.getElementById('carousel-dots');
-        const counter2 = document.getElementById('carousel-counter');
-        const prevBtn2 = document.getElementById('carousel-prev');
-        const nextBtn2 = document.getElementById('carousel-next');
-
-        let currentExpoId = 'solo-2012';
-        let currentSlideIndex2 = 0;
-        let totalSlides2 = 0;
-        let currentImages2 = [];
-
-        function renderCarousel2(expoId) {
-            currentExpoId = expoId;
-            currentImages2 = getImages2(expoId);
-            totalSlides2 = currentImages2.length;
-            currentSlideIndex2 = 0;
-
-            let slidesHTML = '';
-            if (currentImages2.length > 0) {
-                currentImages2.forEach(function(imgSrc, index) {
-                    slidesHTML += `
-                        <div class="carousel-slide">
-                            <img src="${imgSrc}" alt="展览图片 ${index + 1}" loading="lazy" />
-                        </div>
-                    `;
-                });
-            } else {
-                slidesHTML = `
-                    <div class="carousel-slide">
-                        <div class="no-image-placeholder">
-                            <span>🖼️</span>
-                            暂无展览图片<br />
-                            <small style="font-size:13px; color:rgba(255,255,255,0.4);">No images available</small>
-                        </div>
-                    </div>
-                `;
-                totalSlides2 = 1;
-            }
-
-            slidesContainer2.innerHTML = slidesHTML;
-
-            let dotsHTML = '';
-            if (currentImages2.length > 0) {
-                for (let i = 0; i < totalSlides2; i++) {
-                    dotsHTML += `<button class="carousel-dot${i === 0 ? ' active' : ''}" data-index="${i}"></button>`;
-                }
-                dotsHTML += `<span class="carousel-counter" id="carousel-counter">1 / ${totalSlides2}</span>`;
-            } else {
-                dotsHTML = `<span class="carousel-counter" style="color:rgba(255,255,255,0.4);">无图片 / No images</span>`;
-            }
-            dotsContainer2.innerHTML = dotsHTML;
-
-            updateCounter2();
-            updateSlidePosition2();
-
-            document.querySelectorAll('#carousel-dots .carousel-dot').forEach(function(dot) {
-                dot.addEventListener('click', function() {
-                    const index = parseInt(this.getAttribute('data-index'), 10);
-                    goToSlide2(index);
-                });
-            });
-        }
-
-        function updateSlidePosition2() {
-            const offset = -currentSlideIndex2 * 100;
-            slidesContainer2.style.transform = 'translateX(' + offset + '%)';
-        }
-
-        function updateCounter2() {
-            const dots = document.querySelectorAll('#carousel-dots .carousel-dot');
-            dots.forEach(function(dot, index) {
-                dot.classList.toggle('active', index === currentSlideIndex2);
-            });
-
-            const counterEl = document.getElementById('carousel-counter');
-            if (counterEl && currentImages2.length > 0) {
-                counterEl.textContent = (currentSlideIndex2 + 1) + ' / ' + totalSlides2;
-            }
-        }
-
-        function goToSlide2(index) {
-            if (currentImages2.length === 0) return;
-            if (index < 0) index = totalSlides2 - 1;
-            if (index >= totalSlides2) index = 0;
-            currentSlideIndex2 = index;
-            updateSlidePosition2();
-            updateCounter2();
-        }
-
-        function nextSlide2() {
-            goToSlide2(currentSlideIndex2 + 1);
-        }
-
-        function prevSlide2() {
-            goToSlide2(currentSlideIndex2 - 1);
-        }
-
-        function setActiveTab2(target) {
-            if (soloBtn2) soloBtn2.classList.toggle('active', target === 'solo');
-            if (groupBtn2) groupBtn2.classList.toggle('active', target === 'group');
-
-            if (soloBtn2 && groupBtn2) {
-                if (target === 'solo') {
-                    soloBtn2.style.background = '#1a1e24';
-                    soloBtn2.style.color = '#ffffff';
-                    soloBtn2.style.borderRadius = '30px';
-                    groupBtn2.style.background = 'transparent';
-                    groupBtn2.style.color = '#999';
-                    groupBtn2.style.borderRadius = '0';
-                } else {
-                    groupBtn2.style.background = '#1a1e24';
-                    groupBtn2.style.color = '#ffffff';
-                    groupBtn2.style.borderRadius = '30px';
-                    soloBtn2.style.background = 'transparent';
-                    soloBtn2.style.color = '#999';
-                    soloBtn2.style.borderRadius = '0';
-                }
-            }
-
-            if (target === 'solo') {
-                if (soloList2) soloList2.style.display = 'block';
-                if (groupList2) groupList2.style.display = 'none';
-                const firstSolo = soloList2 ? soloList2.querySelector('li[data-id]') : null;
-                if (firstSolo) {
-                    selectExpo2(firstSolo.dataset.id);
-                }
-            } else {
-                if (soloList2) soloList2.style.display = 'none';
-                if (groupList2) groupList2.style.display = 'block';
-                const firstGroup = groupList2 ? groupList2.querySelector('li[data-id]') : null;
-                if (firstGroup) {
-                    selectExpo2(firstGroup.dataset.id);
-                }
-            }
-        }
-
-        function selectExpo2(expoId) {
-            document.querySelectorAll('.expo-list li').forEach(function(li) {
-                li.classList.toggle('active', li.dataset.id === expoId);
-            });
-
-            const activeLi = document.querySelector('.expo-list li.active');
-            if (activeLi) {
-                const wrapper = activeLi.closest('.expo-list-wrapper');
-                if (wrapper) {
-                    const liTop = activeLi.offsetTop;
-                    const wrapperHeight = wrapper.clientHeight;
-                    const liHeight = activeLi.offsetHeight;
-                    wrapper.scrollTop = liTop - (wrapperHeight / 2) + (liHeight / 2);
-                }
-            }
-
-            renderCarousel2(expoId);
-        }
-
-        document.querySelectorAll('.expo-list li[data-id]').forEach(function(li) {
-            li.addEventListener('click', function() {
-                const expoId = this.dataset.id;
-                selectExpo2(expoId);
-            });
-        });
-
-        if (prevBtn2) {
-            prevBtn2.addEventListener('click', function(e) {
-                e.stopPropagation();
-                prevSlide2();
-            });
-        }
-
-        if (nextBtn2) {
-            nextBtn2.addEventListener('click', function(e) {
-                e.stopPropagation();
-                nextSlide2();
-            });
-        }
-
-        if (soloBtn2) {
-            soloBtn2.addEventListener('click', function() {
-                setActiveTab2('solo');
-            });
-        }
-
-        if (groupBtn2) {
-            groupBtn2.addEventListener('click', function() {
-                setActiveTab2('group');
-            });
-        }
-
-        document.addEventListener('keydown', function(e) {
-            const expoSection = document.getElementById('expo');
-            if (!expoSection || !expoSection.classList.contains('active')) return;
-            if (e.key === 'ArrowLeft') {
-                prevSlide2();
-                e.preventDefault();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide2();
-                e.preventDefault();
-            }
-        });
-
-        setActiveTab2('solo');
-       // ================================================================
-// ===== ACAD CAROUSEL - 左图右文 =====
-// ================================================================
-        // ACAD 图片数据（请替换为您的图片）
-const acadImages = [
-    'https://picsum.photos/seed/acad_01/1200/800',
-    'https://picsum.photos/seed/acad_02/1200/800',
-    'https://picsum.photos/seed/acad_03/1200/800',
-    'https://picsum.photos/seed/acad_04/1200/800',
-    'https://picsum.photos/seed/acad_05/1200/800',
-    'https://picsum.photos/seed/acad_06/1200/800',
-    'https://picsum.photos/seed/acad_07/1200/800',
-    'https://picsum.photos/seed/acad_08/1200/800',
-    'https://picsum.photos/seed/acad_09/1200/800',
-    'https://picsum.photos/seed/acad_10/1200/800',
-    'https://picsum.photos/seed/acad_11/1200/800',
-    'https://picsum.photos/seed/acad_12/1200/800',
-    'https://picsum.photos/seed/acad_13/1200/800',
-    'https://picsum.photos/seed/acad_14/1200/800',
-    'https://picsum.photos/seed/acad_15/1200/800'
-];
-
-function getAcadImages() {
-    return acadImages;
-}
-
-// DOM 引用 - ACAD
-const acadSlidesContainer = document.getElementById('acad-carousel-slides');
-const acadDotsContainer = document.getElementById('acad-carousel-dots');
-const acadCounter = document.getElementById('acad-carousel-counter');
-const acadPrevBtn = document.getElementById('acad-carousel-prev');
-const acadNextBtn = document.getElementById('acad-carousel-next');
-
-// ACAD 切换按钮（使用 .acad-toggle-btn）
-const acadToggleBtns = document.querySelectorAll('.acad-toggle-btn');
-const acadKeynotesList = document.getElementById('acad-keynotes-list');
-const acadInvitedList = document.getElementById('acad-invited-list');
-const acadWorkshopsList = document.getElementById('acad-workshops-list');
-
-let acadCurrentSlide = 0;
-let acadTotalSlides = 0;
-let acadImagesData = [];
-
-function renderAcadCarousel() {
-    acadImagesData = getAcadImages();
-    acadTotalSlides = acadImagesData.length;
-    acadCurrentSlide = 0;
-
-    let slidesHTML = '';
-    if (acadImagesData.length > 0) {
-        acadImagesData.forEach(function(imgSrc, index) {
-            slidesHTML += `
-                <div class="carousel-slide">
-                    <img src="${imgSrc}" alt="ACAD 图片 ${index + 1}" loading="lazy" />
-                </div>
-            `;
-        });
-    } else {
-        slidesHTML = `
-            <div class="carousel-slide">
-                <div class="no-image-placeholder">
-                    <span>🖼️</span>
-                    暂无图片<br />
-                    <small style="font-size:13px; color:rgba(255,255,255,0.4);">No images available</small>
-                </div>
-            </div>
-        `;
-        acadTotalSlides = 1;
     }
 
-    acadSlidesContainer.innerHTML = slidesHTML;
+    // ===== SCROLL HELPERS =====
+    function scrollToPub(id) { showSection('texts'); setTimeout(() => { document.getElementById(`pub-${id}`).scrollIntoView({ behavior: 'smooth' }); }, 100); }
+    function scrollToExpo(id) { showSection('expo'); setTimeout(() => { document.getElementById(`expo-${id}`).scrollIntoView({ behavior: 'smooth' }); }, 100); }
+    function scrollToAcad(id) { showSection('acad'); setTimeout(() => { document.getElementById(`acad-${id}`).scrollIntoView({ behavior: 'smooth' }); }, 100); }
 
-    let dotsHTML = '';
-    if (acadImagesData.length > 0) {
-        for (let i = 0; i < acadTotalSlides; i++) {
-            dotsHTML += `<button class="carousel-dot${i === 0 ? ' active' : ''}" data-index="${i}"></button>`;
-        }
-        dotsHTML += `<span class="carousel-counter" id="acad-carousel-counter">1 / ${acadTotalSlides}</span>`;
-    } else {
-        dotsHTML = `<span class="carousel-counter" style="color:rgba(255,255,255,0.4);">无图片 / No images</span>`;
-    }
-    acadDotsContainer.innerHTML = dotsHTML;
-
-    updateAcadCounter();
-    updateAcadSlidePosition();
-
-    document.querySelectorAll('#acad-carousel-dots .carousel-dot').forEach(function(dot) {
-        dot.addEventListener('click', function() {
-            const index = parseInt(this.getAttribute('data-index'), 10);
-            goToAcadSlide(index);
-        });
-    });
-}
-
-function updateAcadSlidePosition() {
-    const offset = -acadCurrentSlide * 100;
-    acadSlidesContainer.style.transform = 'translateX(' + offset + '%)';
-}
-
-function updateAcadCounter() {
-    const dots = document.querySelectorAll('#acad-carousel-dots .carousel-dot');
-    dots.forEach(function(dot, index) {
-        dot.classList.toggle('active', index === acadCurrentSlide);
-    });
-    const counterEl = document.getElementById('acad-carousel-counter');
-    if (counterEl && acadImagesData.length > 0) {
-        counterEl.textContent = (acadCurrentSlide + 1) + ' / ' + acadTotalSlides;
-    }
-}
-
-function goToAcadSlide(index) {
-    if (acadImagesData.length === 0) return;
-    if (index < 0) index = acadTotalSlides - 1;
-    if (index >= acadTotalSlides) index = 0;
-    acadCurrentSlide = index;
-    updateAcadSlidePosition();
-    updateAcadCounter();
-}
-
-function nextAcadSlide() {
-    goToAcadSlide(acadCurrentSlide + 1);
-}
-
-function prevAcadSlide() {
-    goToAcadSlide(acadCurrentSlide - 1);
-}
-
-// ACAD 切换功能
-function setAcadTab(target) {
-    // 更新所有按钮样式
-    acadToggleBtns.forEach(btn => {
-        btn.classList.remove('active');
-        btn.style.background = 'transparent';
-        btn.style.color = '#999';
-        btn.style.borderRadius = '0';
-    });
-    
-    const activeBtn = document.querySelector(`.acad-toggle-btn[data-target="${target}"]`);
-    if (activeBtn) {
-        activeBtn.classList.add('active');
-        activeBtn.style.background = '#1a1e24';
-        activeBtn.style.color = '#ffffff';
-        activeBtn.style.borderRadius = '30px';
-    }
-
-    // 切换列表
-    if (acadKeynotesList) acadKeynotesList.style.display = target === 'acad-keynotes' ? 'block' : 'none';
-    if (acadInvitedList) acadInvitedList.style.display = target === 'acad-invited' ? 'block' : 'none';
-    if (acadWorkshopsList) acadWorkshopsList.style.display = target === 'acad-workshops' ? 'block' : 'none';
-}
-
-// 绑定 ACAD 切换事件
-acadToggleBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-        const target = this.getAttribute('data-target');
-        setAcadTab(target);
-    });
-});
-
-// 绑定 ACAD 导航事件
-if (acadPrevBtn) {
-    acadPrevBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        prevAcadSlide();
-    });
-}
-if (acadNextBtn) {
-    acadNextBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        nextAcadSlide();
-    });
-}
-
-// 初始化 ACAD
-renderAcadCarousel();
-setAcadTab('acad-keynotes');
-        /* ===== 页面基础 ===== */
-#art .page-header { text-align: center; padding: 60px 20px 40px; }
-#art .page-header h1 { font-size: 32px; font-weight: 300; margin: 0; }
-#art .page-header h1 span { font-weight: 600; }
-#art .divider { width: 40px; height: 2px; background: #333; margin: 20px auto; }
-
-// ===== Lightbox 弹窗逻辑 =====
-const artworkData = [
-    // 注意：这里的索引必须和 HTML 里 onclick="openLightbox(数字)" 对应。
-    // 这里有 4 个 AIGC 系列，每个系列 7 张，共 28 张。 这里只写前几个作为示例。
-    // 如果点击了第 5 张图，您就需在此数组里添加第 5 个对象。
-
-    { img: undefined, title: 'AIGC Portrait', desc: 'AI生成肖像艺术。' },
-    { img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200', title: '图片 2', desc: '作品简介' },
-    { img: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=1200', title: '图片 3', desc: '作品简介' },
-    { img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200', title: '图片 4', desc: '作品简介' },
-    // ... 继续添加 ...
-];
-
-let currentIndex = 0;
-
-function openLightbox(index) {
-    // 防止如果索引超出数组长度报错
-    if (index >= artworkData.length) {
-        alert('您点击的图片信息还未添加到JS的 artworkData 数组中！');
-        return;
-    }
-    
-    currentIndex = index;
-    updateLightbox();
-    document.getElementById('lightbox').classList.add('active');
-}
-
-function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
-}
-
-function changeSlide(direction) {
-    currentIndex += direction;
-    if (currentIndex < 0) currentIndex = artworkData.length - 1;
-    if (currentIndex >= artworkData.length) currentIndex = 0;
-    updateLightbox();
-}
-
-function updateLightbox() {
-    const data = artworkData[currentIndex];
-    if (data) {
-        const lightboxImg = document.getElementById('lightboxImg');
-        const lightboxTitle = document.getElementById('lightboxTitle');
-        const lightboxDesc = document.getElementById('lightboxDesc');
-
-        if (data.img) {
-            lightboxImg.src = data.img;
-            lightboxImg.style.display = 'block';
+    // ===== HEADER SCROLL EFFECT =====
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 100) {
+            header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
         } else {
-            lightboxImg.style.display = 'none';
+            header.style.boxShadow = 'none';
         }
-
-        lightboxTitle.textContent = data.title || '';
-        lightboxDesc.textContent = data.desc || '';
-    }
-}
-
-// 视频占位点击处理
-function openVideo(index) {
-    alert('正在播放视频 ' + (index + 1));
-}
-
-// ===== 保护代码（防止 Home 页报错导致整个网站瘫痪） =====
-document.addEventListener('DOMContentLoaded', function() {
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox) return; // 如果找不到弹窗元素（例如在Home页），直接退出
-
-    // 键盘控制（ESC关闭，左右切换）
-    document.addEventListener('keydown', function(e) {
-        if (!lightbox.classList.contains('active')) return;
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') changeSlide(-1);
-        if (e.key === 'ArrowRight') changeSlide(1);
     });
-});
-    </script>
+
+    // ===== EXPO CAROUSEL =====
+    const allExpoImages = ['ExpoPic  (4).jpg', 'ExpoPic  (9).jpg', 'ExpoPic  (19).jpg', 'ExpoPic  (18).jpg', 'ExpoPic  (1).jpg', 'ExpoPic  (7).jpg', 'ExpoPic  (8).jpg', 'ExpoPic  (2).jpg', 'ExpoPic  (3).jpg', 'ExpoPic  (5).jpg', 'ExpoPic  (6).jpg', 'ExpoPic  (13).jpg', 'ExpoPic  (12).jpg', 'ExpoPic  (11).jpg', 'ExpoPic  (10).jpg', 'ExpoPic  (14).jpg', 'ExpoPic  (15).jpg', 'ExpoPic  (16).jpg', 'ExpoPic  (17).jpg', 'ExpoPic  (20).jpg', 'ExpoPic (21).jpg', 'ExpoPic (22).jpg', 'ExpoPic (23).jpg', 'ExpoPic (24).jpg', 'ExpoPic (25).jpg', 'ExpoPic (26).jpg', 'ExpoPic (27).jpg', 'ExpoPic (28).jpg', 'ExpoPic (29).jpg', 'ExpoPic (30).jpg'];
+
+    function getImages2(expoId) { return allExpoImages; }
+
+    const soloBtn2 = document.querySelector('.toggle-wrapper .toggle-btn[data-target="solo"]');
+    const groupBtn2 = document.querySelector('.toggle-wrapper .toggle-btn[data-target="group"]');
+    const soloList2 = document.getElementById('solo-list');
+    const groupList2 = document.getElementById('group-list');
+    const slidesContainer2 = document.getElementById('carousel-slides');
+    const dotsContainer2 = document.getElementById('carousel-dots');
+    const counter2 = document.getElementById('carousel-counter');
+    const prevBtn2 = document.getElementById('carousel-prev');
+    const nextBtn2 = document.getElementById('carousel-next');
+
+    let currentExpoId = 'solo-2012';
+    let currentSlideIndex2 = 0;
+    let totalSlides2 = 0;
+    let currentImages2 = [];
+
+    function renderCarousel2(expoId) {
+        currentExpoId = expoId;
+        currentImages2 = getImages2(expoId);
+        totalSlides2 = currentImages2.length;
+        currentSlideIndex2 = 0;
+        let slidesHTML = '';
+        if (currentImages2.length > 0) {
+            currentImages2.forEach(function(imgSrc, index) {
+                slidesHTML += `<div class="carousel-slide"><img src="${imgSrc}" alt="展览图片 ${index + 1}" loading="lazy" /></div>`;
+            });
+        } else {
+            slidesHTML = `<div class="carousel-slide"><div class="no-image-placeholder"><span>🖼️</span>暂无展览图片<br /><small style="font-size:13px; color:rgba(255,255,255,0.4);">No images available</small></div></div>`;
+            totalSlides2 = 1;
+        }
+        slidesContainer2.innerHTML = slidesHTML;
+        let dotsHTML = '';
+        if (currentImages2.length > 0) {
+            for (let i = 0; i < totalSlides2; i++) {
+                dotsHTML += `<button class="carousel-dot${i === 0 ? ' active' : ''}" data-index="${i}"></button>`;
+            }
+            dotsHTML += `<span class="carousel-counter" id="carousel-counter">1 / ${totalSlides2}</span>`;
+        } else {
+            dotsHTML = `<span class="carousel-counter" style="color:rgba(255,255,255,0.4);">无图片 / No images</span>`;
+        }
+        dotsContainer2.innerHTML = dotsHTML;
+        updateCounter2();
+        updateSlidePosition2();
+        document.querySelectorAll('#carousel-dots .carousel-dot').forEach(function(dot) {
+            dot.addEventListener('click', function() { goToSlide2(parseInt(this.getAttribute('data-index'), 10)); });
+        });
+    }
+
+    function updateSlidePosition2() { slidesContainer2.style.transform = 'translateX(' + (-currentSlideIndex2 * 100) + '%)'; }
+    function updateCounter2() { document.querySelectorAll('#carousel-dots .carousel-dot').forEach(function(dot, index) { dot.classList.toggle('active', index === currentSlideIndex2); }); const counterEl = document.getElementById('carousel-counter'); if (counterEl && currentImages2.length > 0) counterEl.textContent = (currentSlideIndex2 + 1) + ' / ' + totalSlides2; }
+    function goToSlide2(index) { if (currentImages2.length === 0) return; if (index < 0) index = totalSlides2 - 1; if (index >= totalSlides2) index = 0; currentSlideIndex2 = index; updateSlidePosition2(); updateCounter2(); }
+    function nextSlide2() { goToSlide2(currentSlideIndex2 + 1); }
+    function prevSlide2() { goToSlide2(currentSlideIndex2 - 1); }
+
+    function setActiveTab2(target) {
+        if (soloBtn2) soloBtn2.classList.toggle('active', target === 'solo');
+        if (groupBtn2) groupBtn2.classList.toggle('active', target === 'group');
+        if (soloBtn2 && groupBtn2) {
+            if (target === 'solo') { soloBtn2.style.background = '#1a1e24'; soloBtn2.style.color = '#ffffff'; soloBtn2.style.borderRadius = '30px'; groupBtn2.style.background = 'transparent'; groupBtn2.style.color = '#999'; groupBtn2.style.borderRadius = '0'; }
+            else { groupBtn2.style.background = '#1a1e24'; groupBtn2.style.color = '#ffffff'; groupBtn2.style.borderRadius = '30px'; soloBtn2.style.background = 'transparent'; soloBtn2.style.color = '#999'; soloBtn2.style.borderRadius = '0'; }
+        }
+        if (target === 'solo') { if (soloList2) soloList2.style.display = 'block'; if (groupList2) groupList2.style.display = 'none'; const firstSolo = soloList2 ? soloList2.querySelector('li[data-id]') : null; if (firstSolo) selectExpo2(firstSolo.dataset.id); }
+        else { if (soloList2) soloList2.style.display = 'none'; if (groupList2) groupList2.style.display = 'block'; const firstGroup = groupList2 ? groupList2.querySelector('li[data-id]') : null; if (firstGroup) selectExpo2(firstGroup.dataset.id); }
+    }
+
+    function selectExpo2(expoId) {
+        document.querySelectorAll('.expo-list li').forEach(function(li) { li.classList.toggle('active', li.dataset.id === expoId); });
+        const activeLi = document.querySelector('.expo-list li.active');
+        if (activeLi) { const wrapper = activeLi.closest('.expo-list-wrapper'); if (wrapper) { wrapper.scrollTop = activeLi.offsetTop - (wrapper.clientHeight / 2) + (activeLi.offsetHeight / 2); } }
+        renderCarousel2(expoId);
+    }
+
+    document.querySelectorAll('.expo-list li[data-id]').forEach(function(li) { li.addEventListener('click', function() { selectExpo2(this.dataset.id); }); });
+    if (prevBtn2) prevBtn2.addEventListener('click', function(e) { e.stopPropagation(); prevSlide2(); });
+    if (nextBtn2) nextBtn2.addEventListener('click', function(e) { e.stopPropagation(); nextSlide2(); });
+    if (soloBtn2) soloBtn2.addEventListener('click', function() { setActiveTab2('solo'); });
+    if (groupBtn2) groupBtn2.addEventListener('click', function() { setActiveTab2('group'); });
+    document.addEventListener('keydown', function(e) { const expoSection = document.getElementById('expo'); if (!expoSection || !expoSection.classList.contains('active')) return; if (e.key === 'ArrowLeft') { prevSlide2(); e.preventDefault(); } else if (e.key === 'ArrowRight') { nextSlide2(); e.preventDefault(); } });
+    setActiveTab2('solo');
+
+    // ===== ACAD CAROUSEL =====
+    const acadImages = ['https://picsum.photos/seed/acad_01/1200/800', 'https://picsum.photos/seed/acad_02/1200/800', 'https://picsum.photos/seed/acad_03/1200/800', 'https://picsum.photos/seed/acad_04/1200/800', 'https://picsum.photos/seed/acad_05/1200/800'];
+    function getAcadImages() { return acadImages; }
+    const acadSlidesContainer = document.getElementById('acad-carousel-slides');
+    const acadDotsContainer = document.getElementById('acad-carousel-dots');
+    const acadPrevBtn = document.getElementById('acad-carousel-prev');
+    const acadNextBtn = document.getElementById('acad-carousel-next');
+    const acadToggleBtns = document.querySelectorAll('.acad-toggle-btn');
+    const acadKeynotesList = document.getElementById('acad-keynotes-list');
+    const acadInvitedList = document.getElementById('acad-invited-list');
+    const acadWorkshopsList = document.getElementById('acad-workshops-list');
+    
+    let acadCurrentSlide = 0;
+    let acadTotalSlides = 0;
+    let acadImagesData = [];
+
+    function renderAcadCarousel() {
+        acadImagesData = getAcadImages(); acadTotalSlides = acadImagesData.length; acadCurrentSlide = 0;
+        let slidesHTML = '';
+        if (acadImagesData.length > 0) { acadImagesData.forEach(function(imgSrc, index) { slidesHTML += `<div class="carousel-slide"><img src="${imgSrc}" alt="ACAD 图片 ${index + 1}" loading="lazy" /></div>`; }); }
+        else { slidesHTML = `<div class="carousel-slide"><div class="no-image-placeholder"><span>🖼️</span>暂无图片<br /><small style="font-size:13px; color:rgba(255,255,255,0.4);">No images available</small></div></div>`; acadTotalSlides = 1; }
+        acadSlidesContainer.innerHTML = slidesHTML;
+        let dotsHTML = '';
+        if (acadImagesData.length > 0) { for (let i = 0; i < acadTotalSlides; i++) { dotsHTML += `<button class="carousel-dot${i === 0 ? ' active' : ''}" data-index="${i}"></button>`; } dotsHTML += `<span class="carousel-counter" id="acad-carousel-counter">1 / ${acadTotalSlides}</span>`; }
+        else { dotsHTML = `<span class="carousel-counter" style="color:rgba(255,255,255,0.4);">无图片 / No images</span>`; }
+        acadDotsContainer.innerHTML = dotsHTML;
+        updateAcadCounter(); updateAcadSlidePosition();
+        document.querySelectorAll('#acad-carousel-dots .carousel-dot').forEach(function(dot) { dot.addEventListener('click', function() { goToAcadSlide(parseInt(this.getAttribute('data-index'), 10)); }); });
+    }
+    
+    function updateAcadSlidePosition() { acadSlidesContainer.style.transform = 'translateX(' + (-acadCurrentSlide * 100) + '%)'; }
+    function updateAcadCounter() { document.querySelectorAll('#acad-carousel-dots .carousel-dot').forEach(function(dot, index) { dot.classList.toggle('active', index === acadCurrentSlide); }); const counterEl = document.getElementById('acad-carousel-counter'); if (counterEl && acadImagesData.length > 0) counterEl.textContent = (acadCurrentSlide + 1) + ' / ' + acadTotalSlides; }
+    function goToAcadSlide(index) { if (acadImagesData.length === 0) return; if (index < 0) index = acadTotalSlides - 1; if (index >= acadTotalSlides) index = 0; acadCurrentSlide = index; updateAcadSlidePosition(); updateAcadCounter(); }
+    function nextAcadSlide() { goToAcadSlide(acadCurrentSlide + 1); }
+    function prevAcadSlide() { goToAcadSlide(acadCurrentSlide - 1); }
+    
+    function setAcadTab(target) {
+        acadToggleBtns.forEach(btn => { btn.classList.remove('active'); btn.style.background = 'transparent'; btn.style.color = '#999'; btn.style.borderRadius = '0'; });
+        const activeBtn = document.querySelector(`.acad-toggle-btn[data-target="${target}"]`);
+        if (activeBtn) { activeBtn.classList.add('active'); activeBtn.style.background = '#1a1e24'; activeBtn.style.color = '#ffffff'; activeBtn.style.borderRadius = '30px'; }
+        if (acadKeynotesList) acadKeynotesList.style.display = target === 'acad-keynotes' ? 'block' : 'none';
+        if (acadInvitedList) acadInvitedList.style.display = target === 'acad-invited' ? 'block' : 'none';
+        if (acadWorkshopsList) acadWorkshopsList.style.display = target === 'acad-workshops' ? 'block' : 'none';
+    }
+    
+    acadToggleBtns.forEach(btn => { btn.addEventListener('click', function() { setAcadTab(this.getAttribute('data-target')); }); });
+    if (acadPrevBtn) acadPrevBtn.addEventListener('click', function(e) { e.stopPropagation(); prevAcadSlide(); });
+    if (acadNextBtn) acadNextBtn.addEventListener('click', function(e) { e.stopPropagation(); nextAcadSlide(); });
+    renderAcadCarousel(); setAcadTab('acad-keynotes');
+</script>
 </body>
 </html>
