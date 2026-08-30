@@ -438,122 +438,301 @@
             display: block;
         }
 
-        /* ===== ARTWORK GRID ===== */
-        .artwork-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+       /* ===== ART PAGE / 横向滑动画廊 ===== */
+
+/* 页面大标题 */
+.page-header {
+    text-align: center;
+    padding: 60px 20px 40px;
+}
+.page-header h1 {
+    font-size: 32px;
+    font-weight: 300;
+    margin: 0;
+}
+.page-header h1 span {
+    font-weight: 600;
+}
+.divider {
+    width: 40px;
+    height: 2px;
+    background: #333;
+    margin: 20px auto;
+}
+
+/* 四大分类标题 */
+.category-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 60px 0 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* 横向滑动容器 */
+.horizontal-scroll-container {
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    margin-bottom: 60px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* 滑动轨道 */
+.slides-track {
+    display: flex;
+    gap: 15px;
+    padding: 0 20px;
+    width: max-content;
+}
+
+/* 单个卡片 Slide */
+.slide {
+    width: 350px;
+    height: 260px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background: #fff;
+    cursor: pointer; /* 添加鼠标手型提示可点击 */
+}
+
+/* 深灰色文字说明卡片 */
+.slide-info {
+    background-color: #2b2b2b;
+    color: #fff;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.slide-info h4 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+.slide-info p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #ccc;
+    margin: 0;
+}
+
+/* 图片卡片 */
+.slide-img img, .slide-img .placeholder-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.slide-img:hover img, .slide-img:hover .placeholder-img {
+    transform: scale(1.05);
+}
+.slide-img .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    font-size: 12px;
+    padding: 8px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.slide-img:hover .caption {
+    opacity: 1;
+}
+
+/* 视频卡片（占位符） */
+.slide-video {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+}
+.slide-video .play-icon {
+    font-size: 40px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 图片占位符（替换为真实图片后可删除） */
+.placeholder-img {
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    width: 100%;
+    height: 100%;
+}
+
+/* 美化横向滚动条 */
+::-webkit-scrollbar {
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #e0e0e0;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+/* ===== LIGHTBOX (弹窗) ===== */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0,0,0,0.95);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+/* 弹窗内的文字描述 */
+.lightbox-content {
+    max-width: 600px;
+    text-align: center;
+    color: #fff;
+    margin-top: 20px;
+    padding: 0 20px;
+}
+
+.lightbox-content h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.lightbox-content p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* 关闭按钮 */
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #fff;
+    font-size: 32px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+    z-index: 2001;
+}
+
+/* 左右切换按钮 */
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 20px;
+    font-family: inherit;
+    z-index: 2001;
+}
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+2. JavaScript (放入 script.js)
+JS 需要处理Lightbox的打开、关闭、上一张/下一张切换。请用下面这段完整的JS替换掉之前只弹alert的那段代码。
+
+javascript
+// ===== LIGHTBOX 逻辑 =====
+
+// 存储所有幻灯片的图片和文字信息
+const artworkData = [
+    // 注意：这里的数组顺序必须和HTML中 slide 的 onclick 索引顺序保持一致！
+    // 示例：您需要在HTML中第一个 slide 添加 onclick="openLightbox(0)"
+    // 第二个 slide 添加 onclick="openLightbox(1)" 以此类推...
+    
+    // 这里我为您生成前4个示例，其余请在HTML里手动添加对应数量
+    { img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200', title: 'SINGULARITY SERIES I', desc: 'AI生成系列...' },
+    { img: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=1200', title: '视频占位', desc: '视频点击后调用视频播放器' },
+    { img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200', title: 'NEURAL DREAMSCAPE III', desc: 'AI生成的梦境视觉化...' },
+    // ... 您需要在这里填满 112 个对象
+];
+
+let currentIndex = 0;
+
+// 打开弹窗
+function openLightbox(index) {
+    currentIndex = index;
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('active');
+}
+
+// 关闭弹窗
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+}
+
+// 上一张 / 下一张
+function changeSlide(direction) {
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = artworkData.length - 1;
+    if (currentIndex >= artworkData.length) currentIndex = 0;
+    updateLightbox();
+}
+
+// 更新弹窗内容
+function updateLightbox() {
+    const data = artworkData[currentIndex];
+    if (data) {
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxDesc = document.getElementById('lightboxDesc');
+
+        if (data.img) {
+            lightboxImg.src = data.img;
+            lightboxImg.style.display = 'block';
+        } else {
+            lightboxImg.style.display = 'none';
         }
 
-        .artwork-item {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            background: var(--bg-warm);
-            aspect-ratio: 4/3;
-        }
+        lightboxTitle.textContent = data.title || '';
+        lightboxDesc.textContent = data.desc || '';
+    }
+}
 
-        .artwork-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .artwork-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .artwork-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: var(--transition);
-            color: var(--white);
-            text-align: center;
-            padding: 20px;
-        }
-
-        .artwork-item:hover .artwork-overlay {
-            opacity: 1;
-        }
-
-        .artwork-overlay h4 {
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-        }
-
-        .artwork-overlay p {
-            font-size: 12px;
-            opacity: 0.8;
-        }
-
-        /* ===== LIGHTBOX ===== */
-        .lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
-            background: rgba(0,0,0,0.95);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90vh;
-            object-fit: contain;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 30px;
-            right: 40px;
-            color: var(--white);
-            font-size: 32px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-family: inherit;
-        }
-
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--white);
-            font-size: 40px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 20px;
-            font-family: inherit;
-        }
-
-        .lightbox-prev { left: 20px; }
-        .lightbox-next { right: 20px; }
-
-        .lightbox-caption {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--white);
-            text-align: center;
-            font-size: 14px;
-        }
+// 键盘控制（ESC关闭，左右键切换）
+document.addEventListener('keydown', function(e) {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') changeSlide(-1);
+    if (e.key === 'ArrowRight') changeSlide(1);
+});
 
         /* ===== VIDEO EMBEDS ===== */
         .video-grid {
@@ -1556,79 +1735,290 @@
             </div>
         </section>
 
-        <!-- ===== ART ===== -->
-        <section id="art" class="section">
-            <div class="page-header">
-                <h1>Art <span>/ 艺术</span></h1>
-                <div class="divider"></div>
-                <p>AIGC Art / Installation / Digital Print</p>
+      <!-- ===== ART ===== -->
+<section id="art">
+    <div class="page-header">
+        <h1>Art <span>/ 艺术</span></h1>
+        <div class="divider"></div>
+        <p>四题目重叠：AIGC Art / AI生成艺术，Installation / 装置艺术，Digital Prints / 数码打印，Studio Art / 传统艺术</p>
+    </div>
+
+    <!-- 1. AIGC Art / AI生成艺术 -->
+    <div class="category-container">
+        <h2 class="category-title">AIGC Art / AI生成艺术</h2>
+        
+        <!-- 系列 1 (含6个视频占位) -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>SINGULARITY SERIES I</h4>
+                    <p>AI生成系列，探索人工智能对创作边界的突破。2024年创作，包含6个实验性视频作品。</p>
+                </div>
+                <div class="slide slide-video" onclick="openVideo(0)"><div class="play-icon">▶</div></div>
+                <div class="slide slide-video" onclick="openVideo(1)"><div class="play-icon">▶</div></div>
+                <div class="slide slide-video" onclick="openVideo(2)"><div class="play-icon">▶</div></div>
+                <div class="slide slide-video" onclick="openVideo(3)"><div class="play-icon">▶</div></div>
+                <div class="slide slide-video" onclick="openVideo(4)"><div class="play-icon">▶</div></div>
+                <div class="slide slide-video" onclick="openVideo(5)"><div class="play-icon">▶</div></div>
             </div>
-            <div class="artwork-grid" id="artworkGrid">
-                <div class="artwork-item" data-category="aigc" onclick="openLightbox(0)">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=600&fit=crop" alt="AIGC 1">
-                    <div class="artwork-overlay">
-                        <h4>SINGULARITY SERIES I</h4>
-                        <p>AI Generated, 2024</p>
-                    </div>
+        </div>
+
+        <!-- 系列 2 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>NEURAL DREAMSCAPE III</h4>
+                    <p>AI生成的梦境视觉化，挑战人类潜意识的感知。2023年。</p>
                 </div>
-                <div class="artwork-item" data-category="aigc" onclick="openLightbox(1)">
-                    <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=800&h=600&fit=crop" alt="AIGC 2">
-                    <div class="artwork-overlay">
-                        <h4>NEURAL DREAMSCAPE III</h4>
-                        <p>AI Generated, 2023</p>
-                    </div>
-                </div>
-                <div class="artwork-item" data-category="aigc" onclick="openLightbox(2)">
-                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&h=600&fit=crop" alt="AIGC 3">
-                    <div class="artwork-overlay">
-                        <h4>STRONG AI VISION</h4>
-                        <p>AI Generated, 2023</p>
-                    </div>
-                </div>
-                <div class="artwork-item" data-category="installation" onclick="openLightbox(3)">
-                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=800&h=600&fit=crop" alt="Installation 1">
-                    <div class="artwork-overlay">
-                        <h4>DIGITAL PRIMITIVE I</h4>
-                        <p>Interactive Installation, 2022</p>
-                    </div>
-                </div>
-                <div class="artwork-item" data-category="installation" onclick="openLightbox(4)">
-                    <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=800&h=600&fit=crop" alt="Installation 2">
-                    <div class="artwork-overlay">
-                        <h4>BIOART EVOLUTION</h4>
-                        <p>Mixed Media Installation, 2021</p>
-                    </div>
-                </div>
-                <div class="artwork-item" data-category="installation" onclick="openLightbox(5)">
-                    <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=800&h=600&fit=crop" alt="Installation 3">
-                    <div class="artwork-overlay">
-                        <h4>INVISIBLE ART MANIFESTO</h4>
-                        <p>Conceptual Installation, 2020</p>
-                    </div>
-                </div>
-                <div class="artwork-item" data-category="digital" onclick="openLightbox(6)">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=600&fit=crop" alt="Digital 1">
-                    <div class="artwork-overlay">
-                        <h4>QUANTUM VISUALIZATION</h4>
-                        <p>Digital Print, 2022</p>
-                    </div>
-                </div>
-                <div class="artwork-item" data-category="digital" onclick="openLightbox(7)">
-                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=800&h=600&fit=crop" alt="Digital 2">
-                    <div class="artwork-overlay">
-                        <h4>4D PRINTING ART</h4>
-                        <p>Digital Print, 2021</p>
-                    </div>
-                </div>
-                <div class="artwork-item" data-category="digital" onclick="openLightbox(8)">
-                    <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=800&h=600&fit=crop" alt="Digital 3">
-                    <div class="artwork-overlay">
-                        <h4>NANO ARCHITECTURE</h4>
-                        <p>Digital Print, 2020</p>
-                    </div>
-                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop') center/cover;"></div><div class="caption">神经梦境 1</div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div><div class="caption">神经梦境 2</div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div><div class="caption">神经梦境 3</div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div><div class="caption">神经梦境 4</div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div><div class="caption">神经梦境 5</div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div><div class="caption">神经梦境 6</div></div>
             </div>
-        </section>
+        </div>
+
+        <!-- 系列 3 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>STRONG AI VISION</h4>
+                    <p>超强AI视觉模型下的现实重构。2023年。</p>
+                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop') center/cover;"></div></div>
+            </div>
+        </div>
+
+        <!-- 系列 4 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>DIGITAL PRIMITIVE I</h4>
+                    <p>数字原始主义，AI回归到算法的本源。2022年。</p>
+                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Installation / 装置艺术 -->
+    <div class="category-container">
+        <h2 class="category-title">Installation / 装置艺术</h2>
+        
+        <!-- 系列 1 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>BIOART EVOLUTION</h4>
+                    <p>生物混合媒介装置，探讨生命与机械的交融。2021年。</p>
+                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
+            </div>
+        </div>
+
+        <!-- 系列 2 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>INVISIBLE ART MANIFESTO</h4>
+                    <p>概念装置，探讨“无形”艺术的边界。2020年。</p>
+                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
+            </div>
+        </div>
+
+        <!-- 系列 3 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>QUANTUM VISUALIZATION</h4>
+                    <p>量子视觉化装置，呈现不可见的量子态。2022年。</p>
+                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
+            </div>
+        </div>
+
+        <!-- 系列 4 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>4D PRINTING ART</h4>
+                    <p>4D打印动态装置，随时间变形的结构。2021年。</p>
+                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop') center/cover;"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Digital Prints / 数码打印 -->
+    <div class="category-container">
+        <h2 class="category-title">Digital Prints / 数码打印</h2>
+        
+        <!-- 系列 1 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>NANO ARCHITECTURE</h4>
+                    <p>纳米级建筑的数码版画。2020年。</p>
+                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
+            </div>
+        </div>
+
+        <!-- 系列 2 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>SINGULARITY PRINTS</h4>
+                    <p>奇点系列的平面打印版。2024年。</p>
+                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
+            </div>
+        </div>
+
+        <!-- 系列 3 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>QUANTUM VISUALIZATION PRINTS</h4>
+                    <p>量子可视化的版画系列。2022年。</p>
+                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop') center/cover;"></div></div>
+            </div>
+        </div>
+
+        <!-- 系列 4 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>BIOART PRINTS</h4>
+                    <p>生物艺术版画。2021年。</p>
+                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Studio Art / 传统艺术 -->
+    <div class="category-container">
+        <h2 class="category-title">Studio Art / 传统艺术</h2>
+        
+        <!-- 系列 1 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>INVISIBLE ART MANIFESTO</h4>
+                    <p>传统绘画媒介的当代表达。2020年。</p>
+                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
+            </div>
+        </div>
+
+        <!-- 系列 2 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>NANO ARCHITECTURE</h4>
+                    <p>传统材料与纳米隐喻的融合。2020年。</p>
+                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
+            </div>
+        </div>
+
+        <!-- 系列 3 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>QUANTUM VISUALIZATION</h4>
+                    <p>传统手绘与量子图示的对话。2022年。</p>
+                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop') center/cover;"></div></div>
+            </div>
+        </div>
+
+        <!-- 系列 4 -->
+        <div class="horizontal-scroll-container">
+            <div class="slides-track">
+                <div class="slide slide-info">
+                    <h4>4D PRINTING ART</h4>
+                    <p>绘画与4D技术的结合。2021年。</p>
+                </div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop') center/cover;"></div></div>
+                <div class="slide slide-img"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop') center/cover;"></div></div>
+            </div>
+        </div>
+    </div>
+</section>
 
         <!-- ===== TEXTS ===== -->
         <section id="texts" class="section">
