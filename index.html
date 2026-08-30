@@ -3560,142 +3560,98 @@ setAcadTab('acad-keynotes');
 #art .page-header h1 span { font-weight: 600; }
 #art .divider { width: 40px; height: 2px; background: #333; margin: 20px auto; }
 
-/* ===== 选项卡 (Tab) 样式 ===== */
-#art .tab-nav {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 50px;
-    flex-wrap: wrap;
+// ===== 1. 选项卡切换功能 =====
+function switchCategory(categoryId) {
+    // 1. 隐藏所有分类内容
+    const contents = document.querySelectorAll('.category-content');
+    contents.forEach(content => content.classList.remove('active'));
+
+    // 2. 移除所有按钮的 active 状态
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    // 3. 显示选中的分类
+    const targetContent = document.getElementById('category-' + categoryId);
+    if (targetContent) {
+        targetContent.classList.add('active');
+    }
+    
+    // 4. 通过ID精准找到按钮，防止报错
+    const activeBtn = document.getElementById('tab-' + categoryId);
+    if (activeBtn) {
+        activeBtn.classList.add('active');
+    }
 }
 
-#art .tab-btn {
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #666;
-    cursor: pointer;
-    border-radius: 30px; /* 胶囊形状 */
-    transition: all 0.3s ease;
-    font-family: inherit;
+// ===== 2. Lightbox 弹窗逻辑 =====
+const artworkData = [
+    // 这里填入您的作品数据（图文对应）
+    // 格式：{ img: '图片地址', title: '标题', desc: '简介' }
+    // 示例：
+    { img: undefined, title: 'SINGULARITY SERIES I', desc: 'AI生成系列，探索人工智能对创作边界的突破。' },
+    { img: undefined, title: '视频占位', desc: '视频播放占位内容' },
+    { img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200', title: 'AIGC Portrait', desc: 'AI生成肖像艺术。' },
+    { img: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=1200', title: 'AIGC Human Body', desc: 'AI生成人体艺术。' },
+    // ... 您需要根据 slide 上的 onclick="openLightbox(索引号)" 填满对应的数据 ...
+];
+
+let currentIndex = 0;
+
+function openLightbox(index) {
+    currentIndex = index;
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('active');
 }
 
-#art .tab-btn:hover {
-    background-color: #e0e0e0;
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
 }
 
-#art .tab-btn.active {
-    background-color: #1a1a1a; /* 选中时为深黑色 */
-    color: #fff;
-    border-color: #1a1a1a;
+function changeSlide(direction) {
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = artworkData.length - 1;
+    if (currentIndex >= artworkData.length) currentIndex = 0;
+    updateLightbox();
 }
 
-/* ===== 分类内容切换 ===== */
-.category-content {
-    display: none; /* 默认隐藏所有分类 */
-}
-.category-content.active {
-    display: block; /* 选中时显示 */
+function updateLightbox() {
+    const data = artworkData[currentIndex];
+    if (data) {
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxDesc = document.getElementById('lightboxDesc');
+
+        if (data.img) {
+            lightboxImg.src = data.img;
+            lightboxImg.style.display = 'block';
+        } else {
+            lightboxImg.style.display = 'none';
+        }
+
+        lightboxTitle.textContent = data.title || '';
+        lightboxDesc.textContent = data.desc || '';
+    }
 }
 
-#art .category-title {
-    text-align: center;
-    font-size: 24px;
-    font-weight: 600;
-    margin: 0 0 30px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-    display: inline-block;
+// 视频占位点击处理
+function openVideo(index) {
+    // 在这里替换成真实的视频播放器嵌入代码
+    alert('正在播放视频 ' + (index + 1));
 }
 
-/* ===== 横向滑动容器 ===== */
-.horizontal-scroll-container {
-    width: 100%;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    margin-bottom: 60px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ccc;
-}
+// ===== 3. 保护代码（防止 Home 页报错导致整个网站瘫痪） =====
+document.addEventListener('DOMContentLoaded', function() {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox) return; // 如果找不到弹窗元素（例如在Home页），直接退出，不执行后面的代码
 
-.slides-track {
-    display: flex;
-    gap: 15px;
-    padding: 0 20px;
-    width: max-content;
-}
-
-/* ===== 单个幻灯片 ===== */
-#art .slide {
-    width: 350px;
-    height: 260px;
-    flex-shrink: 0;
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    background: #fff;
-    cursor: pointer;
-}
-
-/* 深灰色文字卡片 */
-.slide-info {
-    background-color: #2b2b2b;
-    color: #fff;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-.slide-info h4 { margin: 0 0 10px; font-size: 18px; text-transform: uppercase; }
-.slide-info p { font-size: 13px; line-height: 1.6; color: #ccc; margin: 0; }
-
-/* 图片卡片 */
-.slide-img img, .slide-img .placeholder-img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.5s ease;
-}
-.slide-img:hover img, .slide-img:hover .placeholder-img { transform: scale(1.05); }
-
-/* 视频卡片 */
-.slide-video {
-    background: #000; display: flex; align-items: center; justify-content: center; color: #fff;
-}
-.slide-video .play-icon {
-    font-size: 40px; border: 2px solid #fff; border-radius: 50%;
-    width: 70px; height: 70px; display: flex; align-items: center; justify-content: center;
-}
-
-/* 占位图 */
-.placeholder-img {
-    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-    width: 100%; height: 100%;
-}
-
-/* 滚动条美化 */
-::-webkit-scrollbar { height: 8px; }
-::-webkit-scrollbar-track { background: #e0e0e0; }
-::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
-
-/* ===== Lightbox 弹窗 ===== */
-.lightbox {
-    display: none; position: fixed; inset: 0; z-index: 2000;
-    background: rgba(0,0,0,0.95); align-items: center; justify-content: center; flex-direction: column;
-}
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90%; max-height: 80vh; object-fit: contain; border-radius: 5px; }
-.lightbox-content { max-width: 600px; text-align: center; color: #fff; margin-top: 20px; padding: 0 20px; }
-.lightbox-content h4 { font-size: 18px; margin-bottom: 10px; }
-.lightbox-content p { font-size: 14px; opacity: 0.8; }
-.lightbox-close { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 32px; cursor: pointer; background: none; border: none; font-family: inherit; z-index: 2001; }
-.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 40px; cursor: pointer; background: none; border: none; padding: 20px; font-family: inherit; z-index: 2001; }
-.lightbox-prev { left: 20px; }
-.lightbox-next { right: 20px; }
+    // 键盘控制（ESC关闭，左右切换）
+    document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') changeSlide(-1);
+        if (e.key === 'ArrowRight') changeSlide(1);
+    });
+});
     </script>
 </body>
 </html>
