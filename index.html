@@ -556,6 +556,38 @@
             .expo-list-wrapper { max-height: 400px !important; }
             .expo-carousel-wrapper { position: relative !important; top: 0 !important; min-height: 150px; max-height: 220px; }
         }
+     /* ========== 终极 Home 页面显形保护 ========== */
+
+/* 1. 强制让 main 的边距为 0，让 Home 完美贴紧 Header */
+main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* 2. 强制让 Home 展现，且消除一切内部边距 */
+#home.section.active.hero-section {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    min-height: 60vh !important;
+}
+
+/* 3. 让轮播图填满整个 Home 屏 */
+#heroCarousel {
+    width: 100% !important;
+    height: 70vh !important;
+    min-height: 400px !important;
+    display: block !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* 4. 绝对不要在 Home 出现任何页面标题的背景或遮挡 */
+#home .page-header, #home .divider {
+    display: none !important;
+}
 </style>
 </head>
 <body>
