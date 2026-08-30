@@ -1439,37 +1439,42 @@ header {
 body {
     padding-top: 120px !important; /* 这个数值可以根据您的 Header 实际高度微调 */
 }
-        /* ========== 终极完美排版（覆盖所有旧冲突） ========== */
+        /* ========== 终极排版（100% 不遮挡、不乱跳） ========== */
 
-/* 1. 解除 Header 的 fixed 固定状态，防止遮挡内容 */
+/* 1. 强制 Header 稳定在顶部，并设定它的实际高度 */
 header {
     position: relative !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
     z-index: 10 !important;
+    height: 140px !important; /* 预估您 Header 的高度，如果觉得太小可微调 */
+    box-sizing: border-box !important;
 }
 
-/* 2. 清理 Body 多余的顶部空隙 */
-body {
-    padding-top: 0 !important;
-}
-
-/* 3. 所有未激活的页面彻底隐藏 */
+/* 2. 所有未激活的页面彻底隐藏 */
 .section {
     display: none !important;
 }
 
-/* 4. 所有激活页面统一在 Header 下方留出 60px 空隙 */
+/* 3. 所有激活页面全部往 Header 下方推，保证绝对不遮挡 */
 .section.active {
     display: block !important;
-    margin-top: 60px !important; 
+    margin-top: 0 !important; /* 清除所有以前的 margin */
+    padding-top: 50px !important; /* 使用 padding 拉开距离，这样不容易出错 */
     position: relative !important;
     top: 0 !important;
     transform: none !important;
+    box-sizing: border-box !important;
 }
 
-/* 5. 清理 Art 页面多余的上方间距，防止太靠下 */
+/* 4. 【关键】Home 页面单独处理：不用拉太长距离，直接贴着头图 */
+#home.section.active {
+    padding-top: 0 !important; 
+    margin-top: 0 !important;
+}
+
+/* 5. 清理 Art 页面多余的上方间距 */
 #art .page-header {
     text-align: center;
     padding: 0 20px 10px !important;
