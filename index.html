@@ -634,6 +634,32 @@ nav .sub-nav {
 nav .sub-nav.active {
     display: flex !important;
 }
+     /* ========== 终极导航防错位 ========== */
+
+/* 1. 修复子菜单掉进页面主体的问题 */
+nav {
+    position: relative !important;
+}
+
+nav .sub-nav {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: #f5f5f5 !important;
+    z-index: 999 !important;
+    display: none !important;
+}
+
+nav .sub-nav.active {
+    display: flex !important;
+}
+
+/* 2. 确保 Links 页面正常显示，不偏移 */
+#links.section.active {
+    padding-top: 40px !important;
+    margin-top: 0 !important;
+}
 </style>
 </head>
 <body>
@@ -2233,58 +2259,50 @@ nav .sub-nav.active {
 function showSection(sectionId, event) {
     if (event) event.preventDefault();
 
-    // 1. 隐藏所有页面
+    // 隐藏所有页面
     var sections = document.querySelectorAll('.section');
     for (var i = 0; i < sections.length; i++) {
         sections[i].classList.remove('active');
     }
     
-    // 2. 隐藏所有子菜单
+    // 隐藏所有子导航
     var subs = document.querySelectorAll('.sub-nav');
     for (var i = 0; i < subs.length; i++) {
         subs[i].classList.remove('active');
     }
 
-    // 3. 取消导航高亮
+    // 取消所有导航栏的高亮
     var navs = document.querySelectorAll('.nav-main a');
     for (var i = 0; i < navs.length; i++) {
         navs[i].classList.remove('active');
     }
 
-    // 4. 防止 Links 跳去 Art：检查 Links 有没有内容
-    if (sectionId === 'links') {
-        var linksSection = document.getElementById('links');
-        // 如果Links没有内容，或者没有子项，则强制回 Home
-        if (!linksSection || linksSection.children.length === 0) {
-            sectionId = 'home';
-        }
-    }
-
-    // 5. 显示目标页面
+    // 直接显示目标页面（没有任何额外的判断！）
     var target = document.getElementById(sectionId);
     if (target) {
         target.classList.add('active');
     } else {
+        // 如果找不到，就回到Home（防止空页面）
         document.getElementById('home').classList.add('active');
     }
 
-    // 6. 高亮当前导航按钮
+    // 高亮当前导航
     var navLink = document.querySelector('[data-section="' + sectionId + '"]');
     if (navLink) {
         navLink.classList.add('active');
     }
 
-    // 7. 【关键】让 Texts、Expo、ACAD 的子菜单在导航栏下方显示（点开子菜单）
-    if (sectionId === 'texts') {
-        document.getElementById('sub-texts').classList.add('active');
-    } else if (sectionId === 'expo') {
-        document.getElementById('sub-expo').classList.add('active');
-    } else if (sectionId === 'acad') {
-        document.getElementById('sub-acad').classList.add('active');
+    // 展开对应的子菜单（Texts, Expo, ACAD）并显示在导航下方
+    var subMap = { 'texts': 'sub-texts', 'expo': 'sub-expo', 'acad': 'sub-acad' };
+    if (subMap[sectionId]) {
+        var sub = document.getElementById(subMap[sectionId]);
+        if (sub) {
+            sub.classList.add('active');
+        }
     }
 
-    // 8. 强制瞬间滚到顶部
-    window.scrollTo(0, 0);
+    // 强制回到顶部
+    window.scrollTo(0, 0); 
 }
     // ===== 选项卡切换功能 (Art 页面) =====
     function switchCategory(categoryId) {
