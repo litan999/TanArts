@@ -2212,16 +2212,17 @@ main {
     <!-- ===== JAVASCRIPT ===== -->
    <script>
     // ===== NAVIGATION =====
-   function showSection(sectionId) {
+  function showSection(sectionId, event) {
+    if (event) event.preventDefault();
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    
     var target = document.getElementById(sectionId);
     if (target) {
         target.classList.add('active');
     } else {
         document.getElementById('home').classList.add('active');
     }
-    
+    window.scrollTo(0, 0);
+}
     // 强制瞬间回到顶部，防止 Fixed Header 乱滚
     window.scrollTo(0, 0); 
 }
