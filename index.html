@@ -556,18 +556,15 @@
             .expo-list-wrapper { max-height: 400px !important; }
             .expo-carousel-wrapper { position: relative !important; top: 0 !important; min-height: 150px; max-height: 220px; }
         }
-     /* ========== 终极 Home 页面显形保护 ========== */
+/* ========== 最终极度纯净版（无冲突） ========== */
 
-/* 1. 强制让 main 的边距为 0，让 Home 完美贴紧 Header */
+/* 1. 强制让 main 归位 */
 main {
     margin-top: 0 !important;
     padding-top: 0 !important;
-    padding-bottom: 0 !important;
 }
 
-/* ========== 终极解决页面挤压和Home显示 ========== */
-
-/* 1. 恢复正常的文档流，没有绝对定位，没有乱七八糟的高度限制 */
+/* 2. Header 正常排列 */
 header {
     position: relative !important;
     top: 0 !important;
@@ -577,17 +574,28 @@ header {
     z-index: 100 !important;
 }
 
-/* ========== 最终修复：图片高度限制 + 标题显形 ========== */
+/* 3. 页面开关逻辑（统一留出标题空间） */
+.section {
+    display: none !important;
+}
 
-/* 1. 给所有页面留出标题空间，防止被 Header 和内容挤没 */
 .section.active {
+    display: block !important;
     margin-top: 0 !important;
-    padding-top: 40px !important; 
+    padding-top: 40px !important;
     position: static !important;
     transform: none !important;
 }
 
-/* 2. Home 图片做高度限制，太长的图自动裁剪，不会往上挤 */
+/* 4. Home 页面完美贴顶，取消多余边距 */
+#home.section.active,
+#home.section.active.hero-section {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+}
+
+/* 5. 图片高度限制 + 裁剪（防止长图挤出标题） */
 #heroCarousel,
 .carousel {
     height: 70vh !important;
@@ -599,7 +607,6 @@ header {
     background: #808000 !important;
 }
 
-/* 3. 核心利器：强制图片充满容器并居中裁剪，绝不撑破页面 */
 #heroCarousel img,
 .carousel img {
     width: 100% !important;
@@ -608,110 +615,10 @@ header {
     object-position: center !important;
 }
 
-/* 4. 修整 Art 页面：让标题和按钮好看地显示 */
+/* 6. Art 页面标题微调 */
 #art .page-header {
     text-align: center;
     padding: 10px 0 20px !important;
-}
-
-#art .tab-nav {
-    margin-bottom: 30px !important;
-}
-     /* ========== 终极收官：完美覆盖所有冲突 ========== */
-
-/* 1. 解决 Home 完美贴顶，不挤压 */
-#home.section.active {
-    margin: 0 !important;
-    padding: 0 !important;
-    max-width: 100% !important;
-}
-
-/* 2. 解决图片太长往上挤的问题 */
-#heroCarousel,
-.carousel {
-    height: 70vh !important;
-    max-height: 850px !important;
-    min-height: 400px !important;
-    display: block !important;
-    position: relative !important;
-    overflow: hidden !important;
-    background: #808000 !important;
-}
-
-#heroCarousel img,
-.carousel img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-}
-
-/* 3. 所有页面的标题留出空间 */
-.section.active {
-    padding-top: 40px !important;
-    margin-top: 0 !important;
-    position: static !important;
-    transform: none !important;
-}
-
-/* 4. 让 Header 正常排列 */
-header {
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    background: #f5f5f5 !important;
-    z-index: 100 !important;
-}
-     /* ========== HOME 疯狂加宽锁定版 ========== */
-
-/* 1. 锁死 Home 及其所有的父级容器，绝对不允许超过屏幕宽度 */
-html, body {
-    overflow-x: hidden !important;
-    max-width: 100% !important;
-    width: 100% !important;
-}
-
-#home, 
-#home.section, 
-#home.section.active, 
-#home.section.active.hero-section {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    display: block !important;
-    box-sizing: border-box !important;
-}
-
-/* 2. 锁死 Home 里的轮播图，用绝对宽度控制，不再受其他长图影响 */
-#heroCarousel,
-.carousel {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 70vh !important;
-    min-height: 400px !important;
-    max-height: 850px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important;
-    overflow: hidden !important;
-    background: #808000 !important;
-    box-sizing: border-box !important;
-}
-
-/* 3. 确保图片绝对不会把容器撑宽，只会在内部缩放裁剪 */
-#heroCarousel img,
-.carousel img {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important;
 }
 </style>
 </head>
