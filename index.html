@@ -660,6 +660,42 @@ nav .sub-nav.active {
     padding-top: 40px !important;
     margin-top: 0 !important;
 }
+     /* ========== 最终解决方案（物理隔绝 + 完美排版） ========== */
+
+/* 1. 强制所有页面绝对独立，不沾边 */
+.section {
+    display: none !important;
+    position: relative !important;
+    clear: both !important;
+}
+
+.section.active {
+    display: block !important;
+}
+
+/* 2. 给每个页面内部手动加的白条，占满宽度，绝对隔绝 */
+.section-isolation {
+    width: 100% !important;
+    height: 40px !important; /* 这个高度是可以调的数字，完美避开标题遮挡 */
+    background: #f5f5f5 !important; /* 和您的网页底色一样 */
+    margin-bottom: 30px !important;
+}
+
+/* 3. 让 Header 乖乖待在页面最上面，不捣乱 */
+header {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: #f5f5f5 !important;
+    z-index: 100 !important;
+}
+
+/* 4. 强制清洗主内容的多余边距 */
+main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
 </style>
 </head>
 <body>
@@ -801,6 +837,7 @@ nav .sub-nav.active {
 
         <!-- ===== BIO ===== -->
         <section id="bio" class="section">
+            <div class="section-isolation"></div>
             <div class="page-header">
                 <h1>Bio <span>/ 简介</span></h1>
                 <div class="divider"></div>
@@ -834,6 +871,7 @@ nav .sub-nav.active {
 
       <!-- ===== ART ===== -->
 <section id="art" class="active">
+    <div class="section-isolation"></div>
     <div class="page-header">
         <h1>Art <span>/ 艺术</span></h1>
         <div class="divider"></div>
@@ -938,6 +976,7 @@ nav .sub-nav.active {
 
         <!-- ===== TEXTS ===== -->
         <section id="texts" class="section">
+            <div class="section-isolation"></div>
             <div class="page-header">
                 <h1>Texts <span>/ 书文</span></h1>
                 <div class="divider"></div>
@@ -1071,6 +1110,7 @@ nav .sub-nav.active {
 
         <!-- ===== EXPO ===== -->
         <section id="expo" class="section">
+            <div class="section-isolation"></div>
             <div class="page-header">
                 <h1>Expo <span>/ 展览</span></h1>
                 <div class="divider"></div>
@@ -1634,6 +1674,7 @@ nav .sub-nav.active {
         </section>
 <!-- ===== ACAD ===== -->
 <section id="acad" class="section">
+    <div class="section-isolation"></div>
     <div class="page-header">
         <h1>Acad <span>/ 研讨</span></h1>
         <div class="divider"></div>
@@ -2211,6 +2252,7 @@ nav .sub-nav.active {
 
         <!-- ===== LINKS ===== -->
         <section id="links" class="section">
+            <div class="section-isolation"></div>
             <div class="page-header">
                 <h1>Links <span>/ 联系</span></h1>
                 <div class="divider"></div>
