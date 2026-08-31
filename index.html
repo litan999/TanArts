@@ -2269,29 +2269,27 @@ main {
    <script>
     // ===== NAVIGATION =====
     function showSection(sectionId) {
-    // 强制隐藏所有页面
-    var sections = document.querySelectorAll('.section');
-    for (var i = 0; i < sections.length; i++) {
-        sections[i].classList.remove('active');
-        sections[i].style.display = 'none'; // 直接用行内样式强制隐藏！
+    // 强制显示 Header（防丢）
+    var header = document.querySelector('header');
+    if (header) {
+        header.style.display = 'block';
+        header.style.visibility = 'visible';
+        header.style.opacity = '1';
     }
+
+    // 隐藏所有页面
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
 
     // 显示目标页面
     var target = document.getElementById(sectionId);
     if (target) {
         target.classList.add('active');
-        target.style.display = 'block'; // 强制显示！
     } else {
-        var home = document.getElementById('home');
-        home.classList.add('active');
-        home.style.display = 'block';
+        document.getElementById('home').classList.add('active');
     }
-
-    // 隐藏子导航
-    document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
     
-    // 强制滚动到顶部
-    window.scrollTo(0, 0);
+    // 滚回顶部
+    window.scrollTo(0, 0); 
 }
     // ===== 选项卡切换功能 (Art 页面) =====
     function switchCategory(categoryId) {
