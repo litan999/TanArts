@@ -2214,32 +2214,30 @@ header {
    <script>
     // ===== NAVIGATION =====
     function showSection(sectionId) {
-    // 1. 隐藏所有原本激活的页面
+    // 1. 隐藏所有页面
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     
-    // 2. 显示目标页面
+    // 2. 隐藏所有子导航
+    document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
+
+    // 3. 显示目标页面（如果没有ID，强制回Home）
     const target = document.getElementById(sectionId);
     if (target) {
-        target.classList.add('active');
+        target.classList.add('active'); 
     } else {
-        // 如果找不到目标（比如HOME没有id），默认显示Home
         document.getElementById('home').classList.add('active');
     }
-    
-    // 3. 隐藏所有子导航
-    document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
-    
-    // 4. 如果对应ID有子导航，显示它
+
+    // 4. 子导航逻辑（修复 Links 错位问题）
     const subMap = { 'art': 'sub-art', 'texts': 'sub-texts', 'expo': 'sub-expo', 'acad': 'sub-acad' };
     if (subMap[sectionId]) {
         const sub = document.getElementById(subMap[sectionId]);
         if (sub) sub.classList.add('active');
     }
-    
-    // 5. 强制瞬间回到顶部，不让他乱滚
+
+    // 5. 点击后必定瞬间置顶，阻止任何多余滚动
     window.scrollTo(0, 0); 
 }
-
     // ===== 选项卡切换功能 (Art 页面) =====
     function switchCategory(categoryId) {
         const contents = document.querySelectorAll('.category-content');
