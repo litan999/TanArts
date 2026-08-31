@@ -2212,18 +2212,28 @@ main {
     <!-- ===== JAVASCRIPT ===== -->
    <script>
     // ===== NAVIGATION =====
-  function showSection(sectionId, event) {
-    // 1. 如果有事件，阻止默认跳转
+function showSection(sectionId, event) {
     if (event) event.preventDefault();
 
-    // 2. 隐藏所有页面
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    // 3. 隐藏所有子菜单
-    document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
-    // 4. 取消所有导航高亮
-    document.querySelectorAll('.nav-main a').forEach(a => a.classList.remove('active'));
+    // 隐藏所有页面
+    var sections = document.querySelectorAll('.section');
+    for (var i = 0; i < sections.length; i++) {
+        sections[i].classList.remove('active');
+    }
+    
+    // 隐藏所有子导航
+    var subs = document.querySelectorAll('.sub-nav');
+    for (var i = 0; i < subs.length; i++) {
+        subs[i].classList.remove('active');
+    }
 
-    // 5. 显示目标页面
+    // 取消所有导航栏的高亮
+    var navs = document.querySelectorAll('.nav-main a');
+    for (var i = 0; i < navs.length; i++) {
+        navs[i].classList.remove('active');
+    }
+
+    // 显示目标页面（如果找不到目标ID，一律跳回Home）
     var target = document.getElementById(sectionId);
     if (target) {
         target.classList.add('active');
@@ -2231,21 +2241,28 @@ main {
         document.getElementById('home').classList.add('active');
     }
 
-    // 6. 高亮当前导航按钮
-    var navLink = document.querySelector(`[data-section="${sectionId}"]`);
+    // 高亮当前导航
+    var navLink = document.querySelector('[data-section="' + sectionId + '"]');
     if (navLink) {
         navLink.classList.add('active');
     }
 
-    // 7. 展开对应的子菜单（Texts, Expo, Acad）
-    var subMap = { 'texts': 'sub-texts', 'expo': 'sub-expo', 'acad': 'sub-acad' };
+    // 展开对应的子菜单（注意：这里只针对有子菜单的页面）
+    var subMap = {
+        'texts': 'sub-texts',
+        'expo': 'sub-expo',
+        'acad': 'sub-acad',
+        'art': 'sub-art'
+    };
     if (subMap[sectionId]) {
         var sub = document.getElementById(subMap[sectionId]);
-        if (sub) sub.classList.add('active');
+        if (sub) {
+            sub.classList.add('active');
+        }
     }
 
-    // 8. 强制回顶部
-    window.scrollTo(0, 0); 
+    // 强制瞬间滚到顶部
+    window.scrollTo(0, 0);
 }
     // ===== 选项卡切换功能 (Art 页面) =====
     function switchCategory(categoryId) {
