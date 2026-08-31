@@ -2310,29 +2310,29 @@ html, body {
    <script>
     // ===== NAVIGATION =====
     function showSection(sectionId) {
-    // 1. 隐藏所有页面
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    
-    // 2. 隐藏所有子导航
-    document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
+    // 强制隐藏所有页面
+    var sections = document.querySelectorAll('.section');
+    for (var i = 0; i < sections.length; i++) {
+        sections[i].classList.remove('active');
+        sections[i].style.display = 'none'; // 直接用行内样式强制隐藏！
+    }
 
-    // 3. 显示目标页面（如果没有ID，强制回Home）
-    const target = document.getElementById(sectionId);
+    // 显示目标页面
+    var target = document.getElementById(sectionId);
     if (target) {
-        target.classList.add('active'); 
+        target.classList.add('active');
+        target.style.display = 'block'; // 强制显示！
     } else {
-        document.getElementById('home').classList.add('active');
+        var home = document.getElementById('home');
+        home.classList.add('active');
+        home.style.display = 'block';
     }
 
-    // 4. 子导航逻辑（修复 Links 错位问题）
-    const subMap = { 'art': 'sub-art', 'texts': 'sub-texts', 'expo': 'sub-expo', 'acad': 'sub-acad' };
-    if (subMap[sectionId]) {
-        const sub = document.getElementById(subMap[sectionId]);
-        if (sub) sub.classList.add('active');
-    }
-
-    // 5. 点击后必定瞬间置顶，阻止任何多余滚动
-    window.scrollTo(0, 0); 
+    // 隐藏子导航
+    document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
+    
+    // 强制滚动到顶部
+    window.scrollTo(0, 0);
 }
     // ===== 选项卡切换功能 (Art 页面) =====
     function switchCategory(categoryId) {
