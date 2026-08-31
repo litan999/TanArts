@@ -620,6 +620,58 @@ header {
     text-align: center;
     padding: 10px 0 20px !important;
 }
+     /* ========== 终极完美版（永久固定 Header） ========== */
+
+/* 1. 让 Header 固定在顶部，永远显示，绝不隐藏 */
+header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: rgba(245, 245, 245, 0.95) !important;
+    backdrop-filter: blur(10px);
+    z-index: 9999 !important;
+    display: block !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* 2. 给页面内容留出 Header 的高度，防止被遮挡 */
+main {
+    padding-top: 140px !important; /* 假设 Header 高度是 140px */
+}
+
+/* 3. 其他页面依然保留 40px 标题空间 */
+.section.active {
+    padding-top: 40px !important;
+    margin-top: 0 !important;
+}
+
+/* 4. Home 完美贴顶 */
+#home.section.active,
+#home.section.active.hero-section {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+}
+
+/* 5. 轮播图高度锁死，绝不遮挡 */
+#heroCarousel,
+.carousel {
+    width: 100% !important;
+    height: 70vh !important;
+    max-height: 850px !important;
+    overflow: hidden !important;
+    background: #808000 !important;
+}
+
+#heroCarousel img,
+.carousel img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
 </style>
 </head>
 <body>
@@ -2396,17 +2448,6 @@ header {
     function scrollToPub(id) { showSection('texts'); setTimeout(() => { document.getElementById(`pub-${id}`).scrollIntoView({ behavior: 'smooth' }); }, 100); }
     function scrollToExpo(id) { showSection('expo'); setTimeout(() => { document.getElementById(`expo-${id}`).scrollIntoView({ behavior: 'smooth' }); }, 100); }
     function scrollToAcad(id) { showSection('acad'); setTimeout(() => { document.getElementById(`acad-${id}`).scrollIntoView({ behavior: 'smooth' }); }, 100); }
-
-    // ===== HEADER SCROLL EFFECT =====
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        const currentScroll = window.pageYOffset;
-        if (currentScroll > 100) {
-            header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
-        } else {
-            header.style.boxShadow = 'none';
-        }
-    });
 
     // ===== EXPO CAROUSEL =====
     const allExpoImages = ['ExpoPic  (4).jpg', 'ExpoPic  (9).jpg', 'ExpoPic  (19).jpg', 'ExpoPic  (18).jpg', 'ExpoPic  (1).jpg', 'ExpoPic  (7).jpg', 'ExpoPic  (8).jpg', 'ExpoPic  (2).jpg', 'ExpoPic  (3).jpg', 'ExpoPic  (5).jpg', 'ExpoPic  (6).jpg', 'ExpoPic  (13).jpg', 'ExpoPic  (12).jpg', 'ExpoPic  (11).jpg', 'ExpoPic  (10).jpg', 'ExpoPic  (14).jpg', 'ExpoPic  (15).jpg', 'ExpoPic  (16).jpg', 'ExpoPic  (17).jpg', 'ExpoPic  (20).jpg', 'ExpoPic (21).jpg', 'ExpoPic (22).jpg', 'ExpoPic (23).jpg', 'ExpoPic (24).jpg', 'ExpoPic (25).jpg', 'ExpoPic (26).jpg', 'ExpoPic (27).jpg', 'ExpoPic (28).jpg', 'ExpoPic (29).jpg', 'ExpoPic (30).jpg'];
