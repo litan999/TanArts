@@ -556,25 +556,29 @@
             .expo-list-wrapper { max-height: 400px !important; }
             .expo-carousel-wrapper { position: relative !important; top: 0 !important; min-height: 150px; max-height: 220px; }
         }
-/* ========== 最终极度纯净版（无冲突） ========== */
+     /* ========== 终极单一定义版（彻底统一） ========== */
 
-/* 1. 强制让 main 归位 */
-main {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-}
-
-/* 2. Header 正常排列 */
+/* 1. 让 Header 永久固定在顶部，永不消失，永不遮挡 */
 header {
-    position: relative !important;
+    position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
-    background: #f5f5f5 !important;
-    z-index: 100 !important;
+    background: rgba(245, 245, 245, 0.95) !important;
+    z-index: 9999 !important;
+    display: block !important;
+    opacity: 1 !important;
+    transform: none !important;
 }
 
-/* 3. 页面开关逻辑（统一留出标题空间） */
+/* 2. 【核心】给 main 增加 150px 的固定内边距，完美避开 Header */
+main {
+    margin-top: 0 !important;
+    padding-top: 150px !important;
+    box-sizing: border-box !important;
+}
+
+/* 3. 页面显示基础逻辑 */
 .section {
     display: none !important;
 }
@@ -582,12 +586,12 @@ header {
 .section.active {
     display: block !important;
     margin-top: 0 !important;
-    padding-top: 40px !important;
+    padding-top: 0 !important;
     position: static !important;
     transform: none !important;
 }
 
-/* 4. Home 页面完美贴顶，取消多余边距 */
+/* 4. Home 特例：直接贴住 150px 的 padding，完美展示 */
 #home.section.active,
 #home.section.active.hero-section {
     margin: 0 !important;
@@ -595,67 +599,7 @@ header {
     max-width: 100% !important;
 }
 
-/* 5. 图片高度限制 + 裁剪（防止长图挤出标题） */
-#heroCarousel,
-.carousel {
-    height: 70vh !important;
-    max-height: 850px !important;
-    min-height: 400px !important;
-    display: block !important;
-    position: relative !important;
-    overflow: hidden !important;
-    background: #808000 !important;
-}
-
-#heroCarousel img,
-.carousel img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-}
-
-/* 6. Art 页面标题微调 */
-#art .page-header {
-    text-align: center;
-    padding: 10px 0 20px !important;
-}
-     /* ========== 终极完美版（永久固定 Header） ========== */
-
-/* 1. 让 Header 固定在顶部，永远显示，绝不隐藏 */
-header {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    background: rgba(245, 245, 245, 0.95) !important;
-    backdrop-filter: blur(10px);
-    z-index: 9999 !important;
-    display: block !important;
-    opacity: 1 !important;
-    transform: none !important;
-}
-
-/* 2. 给页面内容留出 Header 的高度，防止被遮挡 */
-main {
-    padding-top: 140px !important; /* 假设 Header 高度是 140px */
-}
-
-/* 3. 其他页面依然保留 40px 标题空间 */
-.section.active {
-    padding-top: 40px !important;
-    margin-top: 0 !important;
-}
-
-/* 4. Home 完美贴顶 */
-#home.section.active,
-#home.section.active.hero-section {
-    margin: 0 !important;
-    padding: 0 !important;
-    max-width: 100% !important;
-}
-
-/* 5. 轮播图高度锁死，绝不遮挡 */
+/* 5. 轮播图安全锁死 */
 #heroCarousel,
 .carousel {
     width: 100% !important;
@@ -671,29 +615,6 @@ main {
     height: 100% !important;
     object-fit: cover !important;
     object-position: center !important;
-}
-     //* ========== 精准测量版：解决所有遮挡 ========== */
-
-/* 1. 清除 main 所有多余的内边距，防止叠加 */
-main {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-}
-
-/* 2. 给所有页面统一设置 150px 的顶部间距，避开 Fixed Header */
-.section.active {
-    margin-top: 180px !important; /* 如果觉得还挡着，改成 180px；如果觉得多，改成 120px */
-    padding-top: 0 !important;
-    position: static !important;
-    transform: none !important;
-}
-
-/* 3. Home 不通过 margin 来定位，而是直接让它自己顶上去 */
-#home.section.active,
-#home.section.active.hero-section {
-    margin-top: 0 !important; 
-    padding: 0 !important;
-    max-width: 100% !important;
 }
 </style>
 </head>
@@ -2292,35 +2213,16 @@ main {
    <script>
     // ===== NAVIGATION =====
    function showSection(sectionId) {
-    // 1. 强制隐藏所有页面
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     
-    // 2. 移除导航栏的 active 状态
-    document.querySelectorAll('.nav-main a').forEach(a => a.classList.remove('active'));
-    
-    // 3. 强制显示目标页面，并高亮导航
     var target = document.getElementById(sectionId);
     if (target) {
         target.classList.add('active');
     } else {
         document.getElementById('home').classList.add('active');
     }
-
-    // 给导航栏对应按钮加上 active（修复Links乱跳问题）
-    var navLink = document.querySelector(`[data-section="${sectionId}"]`);
-    if (navLink) {
-        navLink.classList.add('active');
-    }
-
-    // 4. 隐藏所有子导航
-    document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
-    var subMap = { 'art': 'sub-art', 'texts': 'sub-texts', 'expo': 'sub-expo', 'acad': 'sub-acad' };
-    if (subMap[sectionId]) {
-        var sub = document.getElementById(subMap[sectionId]);
-        if (sub) sub.classList.add('active');
-    }
-
-    // 5. 强制滚回顶部
+    
+    // 强制瞬间回到顶部，防止 Fixed Header 乱滚
     window.scrollTo(0, 0); 
 }
     // ===== 选项卡切换功能 (Art 页面) =====
