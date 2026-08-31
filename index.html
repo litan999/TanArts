@@ -672,24 +672,28 @@ main {
     object-fit: cover !important;
     object-position: center !important;
 }
-     /* ========== 终极统一排版（解决所有页面被 Fixed Header 遮挡） ========== */
+     //* ========== 精准测量版：解决所有遮挡 ========== */
 
-/* 1. 给整个网页的内容区统一留出 140px 的顶部空间，刚好让出 Header */
+/* 1. 清除 main 所有多余的内边距，防止叠加 */
 main {
-    padding-top: 140px !important; 
-}
-
-/* 2. 所有激活页面的内容顶部不再需要额外的 padding（因为 main 已经留出位置了） */
-.section.active {
-    padding-top: 0 !important;
     margin-top: 0 !important;
+    padding-top: 0 !important;
 }
 
-/* 3. Home 特殊处理：轮播图完美贴住 Header 底部 */
+/* 2. 给所有页面统一设置 150px 的顶部间距，避开 Fixed Header */
+.section.active {
+    margin-top: 150px !important; /* 如果觉得还挡着，改成 180px；如果觉得多，改成 120px */
+    padding-top: 0 !important;
+    position: static !important;
+    transform: none !important;
+}
+
+/* 3. Home 不通过 margin 来定位，而是直接让它自己顶上去 */
 #home.section.active,
 #home.section.active.hero-section {
-    margin: 0 !important;
+    margin-top: 0 !important; 
     padding: 0 !important;
+    max-width: 100% !important;
 }
 </style>
 </head>
@@ -2287,27 +2291,36 @@ main {
     <!-- ===== JAVASCRIPT ===== -->
    <script>
     // ===== NAVIGATION =====
-    function showSection(sectionId) {
-    // 强制显示 Header（防丢）
-    var header = document.querySelector('header');
-    if (header) {
-        header.style.display = 'block';
-        header.style.visibility = 'visible';
-        header.style.opacity = '1';
-    }
-
-    // 隐藏所有页面
+   function showSection(sectionId) {
+    // 1. 强制隐藏所有页面
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-
-    // 显示目标页面
+    
+    // 2. 移除导航栏的 active 状态
+    document.querySelectorAll('.nav-main a').forEach(a => a.classList.remove('active'));
+    
+    // 3. 强制显示目标页面，并高亮导航
     var target = document.getElementById(sectionId);
     if (target) {
         target.classList.add('active');
     } else {
         document.getElementById('home').classList.add('active');
     }
-    
-    // 滚回顶部
+
+    // 给导航栏对应按钮加上 active（修复Links乱跳问题）
+    var navLink = document.querySelector(`[data-section="${sectionId}"]`);
+    if (navLink) {
+        navLink.classList.add('active');
+    }
+
+    // 4. 隐藏所有子导航
+    document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
+    var subMap = { 'art': 'sub-art', 'texts': 'sub-texts', 'expo': 'sub-expo', 'acad': 'sub-acad' };
+    if (subMap[sectionId]) {
+        var sub = document.getElementById(subMap[sectionId]);
+        if (sub) sub.classList.add('active');
+    }
+
+    // 5. 强制滚回顶部
     window.scrollTo(0, 0); 
 }
     // ===== 选项卡切换功能 (Art 页面) =====
