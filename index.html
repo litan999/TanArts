@@ -617,6 +617,52 @@ header {
 #art .tab-nav {
     margin-bottom: 30px !important;
 }
+     /* ========== 终极收官：完美覆盖所有冲突 ========== */
+
+/* 1. 解决 Home 完美贴顶，不挤压 */
+#home.section.active {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+}
+
+/* 2. 解决图片太长往上挤的问题 */
+#heroCarousel,
+.carousel {
+    height: 70vh !important;
+    max-height: 850px !important;
+    min-height: 400px !important;
+    display: block !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: #808000 !important;
+}
+
+#heroCarousel img,
+.carousel img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* 3. 所有页面的标题留出空间 */
+.section.active {
+    padding-top: 40px !important;
+    margin-top: 0 !important;
+    position: static !important;
+    transform: none !important;
+}
+
+/* 4. 让 Header 正常排列 */
+header {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: #f5f5f5 !important;
+    z-index: 100 !important;
+}
 </style>
 </head>
 <body>
