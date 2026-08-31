@@ -672,6 +672,25 @@ main {
     object-fit: cover !important;
     object-position: center !important;
 }
+     /* ========== 终极统一排版（解决所有页面被 Fixed Header 遮挡） ========== */
+
+/* 1. 给整个网页的内容区统一留出 140px 的顶部空间，刚好让出 Header */
+main {
+    padding-top: 140px !important; 
+}
+
+/* 2. 所有激活页面的内容顶部不再需要额外的 padding（因为 main 已经留出位置了） */
+.section.active {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* 3. Home 特殊处理：轮播图完美贴住 Header 底部 */
+#home.section.active,
+#home.section.active.hero-section {
+    margin: 0 !important;
+    padding: 0 !important;
+}
 </style>
 </head>
 <body>
