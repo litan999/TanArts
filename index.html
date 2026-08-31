@@ -623,7 +623,7 @@ main {
     <header>
         <div class="header-inner">
             <div class="header-top">
-                <a href="#" class="logo" onclick="showSection('home')">
+               <a href="#" class="logo" onclick="showSection('home', event)">
                     <div class="logo-name">LiQin Tan / <span style="font-weight:400;">谭力勤</span></div>
                     <div class="logo-sub">Artist, Professor & Art Futurologist / 艺术家、教授、艺术未来学者</div>
                 </a>
@@ -631,13 +631,13 @@ main {
             </div>
             <nav>
                 <ul class="nav-main">
-                    <li><a href="#home" class="active" data-section="home" onclick="showSection('home')">Home 主页</a></li>
-                    <li><a href="#bio" data-section="bio" onclick="showSection('bio')">Bio 简介</a></li>
-                    <li><a href="#art" data-section="art" onclick="showSection('art')">Art 艺术</a></li>
-                    <li><a href="#texts" data-section="texts" onclick="showSection('texts')">Texts 书文</a></li>
-                    <li><a href="#expo" data-section="expo" onclick="showSection('expo')">Expo 展览</a></li>
-                    <li><a href="#acad" data-section="acad" onclick="showSection('acad')">Acad 研讨</a></li>
-                    <li><a href="#links" data-section="links" onclick="showSection('links')">Links 联系</a></li>
+                   <li><a href="#home" class="active" data-section="home" onclick="showSection('home', event)">Home 主页</a></li>
+                   <li><a href="#bio" data-section="bio" onclick="showSection('bio', event)">Bio 简介</a></li>
+                   <li><a href="#art" data-section="art" onclick="showSection('art', event)">Art 艺术</a></li>
+                   <li><a href="#texts" data-section="texts" onclick="showSection('texts', event)">Texts 书文</a></li>
+                   <li><a href="#expo" data-section="expo" onclick="showSection('expo', event)">Expo 展览</a></li>
+                   <li><a href="#acad" data-section="acad" onclick="showSection('acad', event)">Acad 研讨</a></li>
+                   <li><a href="#links" data-section="links" onclick="showSection('links', event)">Links 联系</a></li>
                 </ul>
                 <ul class="sub-nav" id="sub-art">
                     <li><a href="#" onclick="filterArt('aigc')">AIGC Art / AI生成艺术</a></li>
