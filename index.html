@@ -420,16 +420,17 @@
         #art .category-content { display: none; }
         #art .category-content.active { display: block; }
         #art .category-title { display: none !important; }
-
-        #art .horizontal-scroll-container { width: 100%; overflow-x: auto; scroll-behavior: smooth; margin-bottom: 60px; padding-bottom: 20px; border-bottom: 1px solid #ccc; }
+     
+        #art .horizontal-scroll-container { width: 100%; overflow-x: auto; scroll-behavior: smooth; margin-bottom: 60px; padding-bottom: 20px; border-bottom: 1px solid #ccc;}
         #art .slides-track { display: flex; gap: 16px; align-items: center;}
-
-        #art .slide { width: 350px; height: 260px; flex-shrink: 0; position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); background: #fff; cursor: pointer; }
-        #art .slide-info { background-color: #2b2b2b; color: #fff; padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+     
+        #art .slide { height: 260px; flex-shrink: 0;position: relative; overflow: hidden;border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);background: #fff; cursor: pointer; }
+        #art .slide-info { width: 350px;box-sizing: border-box;background-color: #818589;color: #fff;padding: 30px; display: flex;flex-direction: column; justify-content: center;align-items: flex-start;}
         #art .slide-info h4 { margin: 0 0 10px; font-size: 18px; text-transform: uppercase; }
         #art .slide-info p { font-size: 13px; line-height: 1.6; color: #ccc; margin: 0; }
-        #art .slide-img img, #art .slide-img .placeholder-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        #art .slide-img:hover img, #art .slide-img:hover .placeholder-img { transform: scale(1.05); }
+        #art .slide-img img, {display: block;width: auto;height: 260px;max-width: none;object-fit: contain; transition: transform 0.5s ease; }
+        #art .slide-img:{width: auto; height: 260px; }
+        #art .slide-img:hover img {transform: scale(1.05);
         #art .slide-video { background: #000; display: flex; align-items: center; justify-content: center; color: #fff; }
         #art .slide-video .play-icon { font-size: 40px; border: 2px solid #fff; border-radius: 50%; width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; }
         #art .placeholder-img { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); width: 100%; height: 100%; }
@@ -749,13 +750,13 @@
         <div class="horizontal-scroll-container">
             <div class="slides-track">
                 <div class="slide slide-info" onclick="openLightbox(0)"><h4>AIGC Head Study</h4><p>AI生成头部习作(2025-2026)</p></div>
-                <div class="slide slide-img" onclick="openLightbox(1)"><div class="placeholder-img" style="background: url('AI-HS-1.jpg') alt="AI-HS-1.jpg">;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(2)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1633167606207-d840b5070fc2?') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(3)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(4)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1563089145-599997674d42?') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(5)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1549490349-8643362247b5?') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(6)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?') center/cover;"></div></div>
-                <div class="slide slide-img" onclick="openLightbox(6)"><div class="placeholder-img" style="background: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?') center/cover;"></div></div>
+                <div class="slide slide-img" onclick="openLightbox(1)"><img src="AI-HS-1.jpg" alt="AI-HS-1.jpg"></div>
+                <div class="slide slide-img" onclick="openLightbox(1)"><img src="AI-HS-2.jpg" alt="AI-HS-2.jpg"></div>
+                <div class="slide slide-img" onclick="openLightbox(1)"><img src="AI-HS-3.jpg" alt="AI-HS-3.jpg"></div>
+                <div class="slide slide-img" onclick="openLightbox(1)"><img src="AI-HS-4.jpg" alt="AI-HS-4.jpg"></div>
+                <div class="slide slide-img" onclick="openLightbox(1)"><img src="AI-HS-5.jpg" alt="AI-HS-5.jpg"></div>
+                <div class="slide slide-img" onclick="openLightbox(1)"><img src="AI-HS-6.jpg" alt="AI-HS-6.jpg"></div>
+                <div class="slide slide-img" onclick="openLightbox(1)"><img src="AI-HS-7.jpg" alt="AI-HS-8.jpg"></div>
             </div>
         </div>
 
