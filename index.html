@@ -2445,15 +2445,18 @@
     const imageUrl = bg
         .replace(/^url\(["']?/, '')
         .replace(/["']?\)$/, '');
-    const lightbox = document.getElementById('art-lightbox');
-    const lightboxImage = document.getElementById('lightbox-image');
-    lightboxImage.src = imageUrl;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    if (!lightbox || !lightboxImg) {
+        console.log('Lightbox HTML not found');
+        return;
+    }
+    lightboxImg.src = imageUrl;
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
-
 function closeLightbox() {
-    const lightbox = document.getElementById('art-lightbox');
+    const lightbox = document.getElementById('lightbox');
     if (!lightbox) return;
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
