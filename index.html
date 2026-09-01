@@ -2453,18 +2453,18 @@
 
     let currentIndex = 0;
 
-    function openLightbox(index) {
-        if (index < 0 || index >= artworkData.length) {
-            alert('该作品的数据还未添加到 artworkData 数组中！');
-            return;
-        }
-        currentIndex = index;
-        updateLightbox();
-        if (lightbox) {
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-    }
+    function openLightbox(slide) {
+    const artwork = slide.querySelector('.placeholder-img');
+    if (!artwork) return;
+    const bg = getComputedStyle(artwork).backgroundImage;
+    const imageUrl = bg
+        .replace(/^url\(["']?/, '')
+        .replace(/["']?\)$/, '');
+    const lightboxImage = document.getElementById('lightbox-image');
+    lightboxImage.src = imageUrl;
+    document.getElementById('art-lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
     function closeLightbox() {
         if (!lightbox) return;
