@@ -2460,16 +2460,10 @@
 
 function closeLightbox() {
     const lightbox = document.getElementById('art-lightbox');
-
+    if (!lightbox) return;
     lightbox.classList.remove('active');
-
     document.body.style.overflow = '';
 }
-    function closeLightbox() {
-        if (!lightbox) return;
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    }
 
     function changeSlide(direction) {
         if (!artworkData.length) return;
