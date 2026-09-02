@@ -448,18 +448,13 @@
 -------------------------------- */
 #art .slide-img { width: 350px; height: 260px;}
 /* Background artwork */
-#art .slide-img .placeholder-img {width: 100%;height: 100%;background-size: contain !important;background-position: center !important;background-repeat: no-repeat !important;transition: transform 0.5s ease;}
+#art .slide-img.placeholder-img {width: 100%;height: 100%;background-size: contain !important;background-position: center !important;background-repeat: no-repeat !important;transition: transform 0.5s ease;}
 #art .slide-img.portrait {width: 180px; height: 260px;}
-#art .slide.portrait2 {width: 210px;height: 260px;flex: 0 0 210px;}
+#art .slide-img.portrait2 {width: 210px;height: 260px;flex: 0 0 210px;}
 #art .slide-img.square {width: 260px;height: 260px;}
-#art .slide.rectangle {width: 607px;height: 260px; flex: 0 0 607px;}
+#art .slide-img.rectangle {width: 607px;height: 260px; flex: 0 0 607px;}
 #art .slide-img:hover .placeholder-img {transform: scale(1.04);}
-#art .video-slide {width: 210px; height: 260px;flex: 0 0 210px;}
-/* Video thumbnail — 210 × 260 */
-#art .slide.portrait     → 173 × 260
-#art .slide.portrait2    → 210 × 260
-#art .slide.landscape    → 390 × 260
-#art .slide.installation → 607 × 260
+#art .video-slide {width: 260px; height: 210px;flex: 0 0 210px;}
 #art .video-slide {width: 210px;height: 260px;flex: 0 0 210px;background: #000;display: flex; align-items: center;justify-content: center;color: #fff;}
 #art .video-slide video,
 #art .video-slide img {width: 100%;height: 100%;object-fit: cover;}
