@@ -589,48 +589,45 @@
 .acad-carousel-wrapper .carousel-nav {opacity: 1 !important;pointer-events: auto !important;display: flex !important; visibility: visible !important;z-index: 20 !important;}
 .acad-carousel-wrapper .carousel-nav.prev {left: 12px !important;}
 .acad-carousel-wrapper .carousel-nav.next {right: 12px !important;}
-     /* ===== TEXTS FOUR TABS ===== */
 
-#texts .text-section {
-    display: none;
-}
-
-#texts .text-section.active {
-    display: block;
-}
-
+/* ===== TEXTS TABS — SAME HEIGHT/FONT AS ART ===== */
 #texts .texts-tabs {
     display: flex;
-    width: 1200px;
-    max-width: calc(100% - 60px);
-    margin: 55px auto 45px;
-    border: 1px solid #d7dce2;
-    border-radius: 40px;
-    overflow: hidden;
-    background: #f4f6f8;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    margin: 40px auto 45px;
+    border: none;
+    background: transparent;
+    overflow: visible;
 }
 
 #texts .texts-tab {
-    flex: 1;
-    border: none;
+    flex: 0 0 auto;          /* different width for each button */
+    height: 86px;            /* same height */
+    padding: 0 42px;         /* width determined by text */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #d7dce2;
+    border-radius: 45px;
     background: transparent;
-    color: #999;
-    padding: 18px 12px;
-    font-size: 18px;
+    color: #666;
+
+    font-size: 22px;         /* same text size for ALL buttons */
     font-weight: 600;
-    cursor: pointer;
+    line-height: 1;
     white-space: nowrap;
-    transition: all 0.25s ease;
+    cursor: pointer;
 }
 
 #texts .texts-tab.active {
     background: #181d23;
     color: #fff;
-    border-radius: 40px;
-}
-
-#texts .texts-tab:hover:not(.active) {
-    color: #333;
+    border-color: #181d23;
 }
  </style>
 </head>
