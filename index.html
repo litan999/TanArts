@@ -589,6 +589,49 @@
 .acad-carousel-wrapper .carousel-nav {opacity: 1 !important;pointer-events: auto !important;display: flex !important; visibility: visible !important;z-index: 20 !important;}
 .acad-carousel-wrapper .carousel-nav.prev {left: 12px !important;}
 .acad-carousel-wrapper .carousel-nav.next {right: 12px !important;}
+     /* ===== TEXTS FOUR TABS ===== */
+
+#texts .text-section {
+    display: none;
+}
+
+#texts .text-section.active {
+    display: block;
+}
+
+#texts .texts-tabs {
+    display: flex;
+    width: 1200px;
+    max-width: calc(100% - 60px);
+    margin: 55px auto 45px;
+    border: 1px solid #d7dce2;
+    border-radius: 40px;
+    overflow: hidden;
+    background: #f4f6f8;
+}
+
+#texts .texts-tab {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: #999;
+    padding: 18px 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+}
+
+#texts .texts-tab.active {
+    background: #181d23;
+    color: #fff;
+    border-radius: 40px;
+}
+
+#texts .texts-tab:hover:not(.active) {
+    color: #333;
+}
  </style>
 </head>
 <body>
@@ -617,11 +660,12 @@
                     <li><a href="#art" onclick="openArtCategory('installation', event)">Installation / 装置</a></li>
                     <li><a href="#art" onclick="openArtCategory('digital', event)">Digital Prints/ 数码打印</a></li>
                 </ul>
-                <ul class="sub-nav" id="sub-texts">
-                    <li><a href="#pub-books" onclick="scrollToPub('books', event)">Books / 著作</a></li>
-                    <li><a href="#pub-catalogues" onclick="scrollToPub('catalogues', event)">Catalogues / 画文集</a></li>
-                    <li><a href="#pub-articles" onclick="scrollToPub('articles', event)">Articles / 论文</a></li>
-                </ul>
+               <ul class="sub-nav" id="sub-texts">
+    <li><a href="#pub-books" onclick="scrollToPub('books', event)">Books / 著作 </a></li>
+    <li> <a href="#pub-catalogues" onclick="scrollToPub('catalogues', event)">Catalogues / 画文集 </a> </li>
+    <li><a href="#pub-conference" onclick="scrollToPub('conference', event)">Conference Articles / 会议论文选 </a> </li>
+    <li><a href="#pub-articles" onclick="scrollToPub('articles', event)"> Selected Articles / 论文精选 </a> </li>
+</ul>
                 <ul class="sub-nav" id="sub-expo">
                     <li><a href="#expo" onclick="openExpoTab('solo', event)">Solo / 个展</a></li>
                     <li><a href="#expo" onclick="openExpoTab('group', event)">Group / 群展</a></li>
@@ -1029,11 +1073,15 @@
             <div class="page-header">
                 <h1>Texts <span>/ 书文</span></h1>
                 <div class="divider"></div>
-                <p>Books / Catalogues / Articles</p>
+               <div class="texts-tabs">
+    <button class="texts-tab active" onclick="showTextSection('pub-books', this)"> Books / 著作 </button>
+    <button class="texts-tab" onclick="showTextSection('pub-catalogues', this)"> Catalogues / 画文集 </button>
+    <button class="texts-tab" onclick="showTextSection('pub-conference', this)">  Conference Articles / 会议论文选 </button>           
+    <button class="texts-tab" onclick="showTextSection('pub-articles', this)"> Articles / 论文 </button>
+</div>
             </div>
 
-            <div class="pub-section" id="pub-books">
-                <h3>Books / 著作</h3>
+            <div class="pub-section text-section active" id="pub-books">
                 <div class="book-item">
                     <div class="book-cover">
                         <img src="Book SinArt.jpg" alt="Singularity Art Cover">
@@ -1087,8 +1135,7 @@
                 </div>
             </div>
 
-            <div class="pub-section" id="pub-catalogues">
-                <h3>Catalogues / 画文集</h3>
+            <div class="pub-section text-section" id="pub-catalogues">
                 <div class="book-item">
                     <div class="book-cover">
                         <img src="Digital NArt.jpg" alt="Catalogue Cover">
@@ -1125,8 +1172,7 @@
                 </div>
             </div>
 
-                <div class="pub-section" id="pub-conference">
-                  <h3>Conference Articles / 会议论文选</h3>
+                <div class="pub-section text-section" id="pub-conference">
                  <ul class="article-list">
                   <li class="article-item" data-id="conf-2018">
             <div class="acad-year">2018</div>
@@ -1166,8 +1212,7 @@
     </ul>
 </div>    
             
-        <div class="pub-section" id="pub-articles">
-             <h3>Selected Articles / 论文精选</h3>
+        <div class="pub-section text-section" id="pub-articles">
                 <ul class="article-list">
                     <li class="article-item">
                         <p>Tan, L. (2026). "The Ultimate Mission of Biodesign(1 & 2)." Tan's Column, "Towards Post-human Art", <em>Art Monthly</em>,（6-7), 84-90, 85-91</p>
@@ -2901,6 +2946,18 @@ function closeLightbox() {
         showSection(sectionIds.includes(hashId) ? hashId : 'home', null, false);
         syncHeaderOffset();
     });
+        function showTextSection(sectionId, button) {
+    document.querySelectorAll('#texts .text-section').forEach(section => {
+        section.classList.remove('active');
+    });
+
+    document.querySelectorAll('#texts .texts-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+
+    document.getElementById(sectionId).classList.add('active');
+    button.classList.add('active');
+}
 </script>
 </body>
 </html>
