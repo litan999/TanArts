@@ -590,55 +590,38 @@
 .acad-carousel-wrapper .carousel-nav.prev {left: 12px !important;}
 .acad-carousel-wrapper .carousel-nav.next {right: 12px !important;}
 
-/* ===== TEXTS TABS — SAME HEIGHT/FONT AS ART ===== */
-#texts .texts-tabs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    width: 100%;
-    margin: 40px auto 45px;
-    border: none;
-    background: transparent;
-}
+/* ==================================================
+   TEXTS SECTION — CLEAN FINAL VERSION
+   ================================================== */
+/* ---------- Four large TEXTS buttons ---------- */
+#texts .texts-tabs { display: flex;justify-content: center;align-items: center;gap: 24px;width: 100%;margin: 40px auto 45px;border: none;background: transparent;}
 
-#texts .texts-tab {
-    flex: 0 0 auto;
-    height: 64px;
-    padding: 0 28px;
+     /* Individual button */
+#texts .texts-tab {flex: 0 0 auto;height: 44px;padding: 0 24px;display: flex;align-items: center;justify-content: center;box-sizing: border-box;border: 1px solid #d7dce2;border-radius: 24px;
+    background: transparent;color: #666; font-size: 15px;font-weight: 600;line-height: 1;white-space: nowrap;cursor: pointer;transition:background 0.2s ease, color 0.2s ease,border-color 0.2s ease;}
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Active button */
+#texts .texts-tab.active {background: #181d23;color: #fff;border-color: #181d23;}
 
-    border: 1px solid #d7dce2;
-    border-radius: 34px;
-    background: transparent;
-    color: #666;
+     /* Optional hover */
+#texts .texts-tab:not(.active):hover {border-color: #aaa;color: #444;}
 
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1;
-    white-space: nowrap;
-    cursor: pointer;
-}
+/* ---------- Four TEXTS content sections ---------- */
+     /* Hide all sections */
+#texts .text-section {display: none;}
+     
+     /* Show selected section */
+#texts .text-section.active {display: block;}
 
-#texts .texts-tab.active {
-    background: #181d23;
-    color: #fff;
-    border-color: #181d23;
-}
-     #pub-books,
+     /* Prevent fixed/sticky navigation from covering content */
+#pub-books,
 #pub-catalogues,
 #pub-conference,
-#pub-articles {
-    scroll-margin-top: 270px;
-}
-     #texts .pub-year,
-#texts .acad-year {
-    color: #c51616;
-    font-weight: 600;
-}
+#pub-articles { scroll-margin-top: 270px;}
+
+     /* ---------- Year ---------- */
+#texts .pub-year,
+#texts .acad-year {color: #c51616;font-weight: 600;}
  </style>
 </head>
 <body>
