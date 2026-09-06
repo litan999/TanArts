@@ -608,16 +608,14 @@
 
 /* ---------- Four TEXTS content sections ---------- */
      /* Hide all sections */
-#texts .text-section {display: none;}
-     
+#texts .text-section {display: none;} 
      /* Show selected section */
 #texts .text-section.active {display: block;}
-
      /* Prevent fixed/sticky navigation from covering content */
 #pub-books,
 #pub-catalogues,
 #pub-conference,
-#pub-articles {scroll-margin-top: 230px;}
+#pub-articles {scroll-margin-top: 220px;}
 
      /* ---------- Year ---------- */
 #texts .pub-year,
@@ -626,30 +624,18 @@
 
 /* Conference text */
 #texts #pub-conference .acad-title-zh,
-#texts #pub-conference .acad-title {
-    color: #555;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.5;
-}
-
+#texts #pub-conference .acad-title {color: #555;font-size: 15px;font-weight: 400;line-height: 1.5;}
 /* Articles text */
 #texts #pub-articles .pub-title-en,
-#texts #pub-articles .pub-title {
-    color: #555;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.5;
-}
-
+#texts #pub-articles .pub-title {color: #555;font-size: 15px;font-weight: 400;line-height: 1.5;}
 /* Same year size for Conference + Articles */
 #texts #pub-conference .acad-year,
-#texts #pub-articles .pub-year {
-    color: #c51616;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.4;
-}
+#texts #pub-articles .pub-year {color: #c51616; font-size: 15px;font-weight: 600;line-height: 1.4;}
+     .sub-nav {display: none !important;}
+#sub-art,
+#sub-texts,
+#sub-expo,
+#sub-acad { display: none !important;}
  </style>
 </head>
 <body>
@@ -673,26 +659,6 @@
                    <li><a href="#expo" data-section="expo" onclick="showSection('expo', event)">Expo 展览</a></li>
                    <li><a href="#acad" data-section="acad" onclick="showSection('acad', event)">Acad 研讨</a></li>
                    <li><a href="#links" data-section="links" onclick="showSection('links', event)">Links 联系</a></li>
-                </ul>
-                <ul class="sub-nav" id="sub-art">
-                    <li><a href="#art" onclick="openArtCategory('aigc', event)">AIGC Art / AI生成艺术</a></li>
-                    <li><a href="#art" onclick="openArtCategory('installation', event)">Installation / 装置</a></li>
-                    <li><a href="#art" onclick="openArtCategory('digital', event)">Digital Prints/ 数码打印</a></li>
-                </ul>
-               <ul class="sub-nav" id="sub-texts">
-    <li><a href="#pub-books" onclick="scrollToPub('books', event)">Books / 著作 </a></li>
-    <li> <a href="#pub-catalogues" onclick="scrollToPub('catalogues', event)">Catalogues / 画文集 </a> </li>
-    <li><a href="#pub-conference" onclick="scrollToPub('conference', event)">Conference Proceedings / 会议论文选 </a> </li>
-    <li><a href="#pub-articles" onclick="scrollToPub('articles', event)"> Selected Articles / 论文精选 </a> </li>
-</ul>
-                <ul class="sub-nav" id="sub-expo">
-                    <li><a href="#expo" onclick="openExpoTab('solo', event)">Solo / 个展</a></li>
-                    <li><a href="#expo" onclick="openExpoTab('group', event)">Group / 群展</a></li>
-                </ul>
-                <ul class="sub-nav" id="sub-acad">
-                    <li><a href="#acad" onclick="openAcadTab('acad-keynotes', event)">Keynotes / 主旨演讲</a></li>
-                    <li><a href="#acad" onclick="openAcadTab('acad-invited', event)">Invited / 特邀演讲</a></li>
-                    <li><a href="#acad" onclick="openAcadTab('acad-workshops', event)">Workshops / 工作坊</a></li>
                 </ul>
             </nav>
         </div>
