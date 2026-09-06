@@ -628,6 +628,17 @@
     color: #fff;
     border-color: #181d23;
 }
+     #pub-books,
+#pub-catalogues,
+#pub-conference,
+#pub-articles {
+    scroll-margin-top: 270px;
+}
+     #texts .pub-year,
+#texts .acad-year {
+    color: #c51616;
+    font-weight: 600;
+}
  </style>
 </head>
 <body>
@@ -659,7 +670,7 @@
                <ul class="sub-nav" id="sub-texts">
     <li><a href="#pub-books" onclick="scrollToPub('books', event)">Books / 著作 </a></li>
     <li> <a href="#pub-catalogues" onclick="scrollToPub('catalogues', event)">Catalogues / 画文集 </a> </li>
-    <li><a href="#pub-conference" onclick="scrollToPub('conference', event)">Conference Articles / 会议论文选 </a> </li>
+    <li><a href="#pub-conference" onclick="scrollToPub('conference', event)">Conference Proceedings / 会议论文选 </a> </li>
     <li><a href="#pub-articles" onclick="scrollToPub('articles', event)"> Selected Articles / 论文精选 </a> </li>
 </ul>
                 <ul class="sub-nav" id="sub-expo">
@@ -1072,7 +1083,7 @@
                <div class="texts-tabs">
     <button class="texts-tab active" onclick="showTextSection('pub-books', this)"> Books / 著作 </button>
     <button class="texts-tab" onclick="showTextSection('pub-catalogues', this)"> Catalogues / 画文集 </button>
-    <button class="texts-tab" onclick="showTextSection('pub-conference', this)">  Conference Articles / 会议论文选 </button>           
+    <button class="texts-tab" onclick="showTextSection('pub-conference', this)">  Conference Proceedings / 会议论文选 </button>           
     <button class="texts-tab" onclick="showTextSection('pub-articles', this)"> Articles / 论文 </button>
 </div>
             </div>
@@ -2702,15 +2713,21 @@ function closeLightbox() {
     }
 
     // ===== TEXT SUB-NAVIGATION =====
-    function scrollToPub(id, event) {
-        if (event) event.preventDefault();
-        showSection('texts', null);
-        setTimeout(() => {
-            const target = document.getElementById('pub-' + id);
-            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 50);
-    }
-
+   function scrollToPub(id, event) {
+    if (event) event.preventDefault(); showSection('texts', null);
+    setTimeout(() => {const targetId = 'pub-' + id; const target = document.getElementById(targetId);
+        // Hide all TEXTS sections
+        document.querySelectorAll('#texts .text-section').forEach(section => {section.classList.remove('active');});
+        // Show selected section
+        if (target) {target.classList.add('active');}
+        // Synchronize the four large buttons
+        document.querySelectorAll('#texts .texts-tab').forEach(tab => {tab.classList.remove('active'); });
+        const matchingButton = document.querySelector('#texts .texts-tab[onclick*="' + targetId + '"]' );
+        if (matchingButton) {matchingButton.classList.add('active'); }
+        // Scroll to selected content
+        if (target) {target.scrollIntoView({behavior: 'smooth',block: 'start'});}
+    }, 50);
+}
     // ===== EXPO CAROUSEL =====
     const allExpoImages = ['ExpoPic  (1).jpg', 'ExpoPic  (2).jpg', 'ExpoPic  (3).jpg', 'ExpoPic  (4).jpg', 'ExpoPic  (5).jpg', 'ExpoPic  (6).jpg', 'ExpoPic  (7).jpg', 'ExpoPic  (8).jpg', 'ExpoPic  (9).jpg', 'ExpoPic  (10).jpg', 'ExpoPic  (11).jpg', 'ExpoPic  (12).jpg', 'ExpoPic  (13).jpg', 'ExpoPic  (14).jpg', 'ExpoPic  (15).jpg', 'ExpoPic  (16).jpg', 'ExpoPic  (17).jpg', 'ExpoPic  (18).jpg', 'ExpoPic  (19).jpg', 'ExpoPic  (20).jpg', 'ExpoPic (21).jpg', 'ExpoPic (22).jpg', 'ExpoPic (23).jpg', 'ExpoPic (24).jpg', 'ExpoPic (25).jpg', 'ExpoPic (26).jpg', 'ExpoPic (27).jpg', 'ExpoPic (28).jpg', 'ExpoPic (29).jpg', ];
     function getImages2(expoId) { return allExpoImages; }
