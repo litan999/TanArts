@@ -617,14 +617,43 @@
 #pub-books,
 #pub-catalogues,
 #pub-conference,
-#pub-articles { scroll-margin-top: 270px;}
+#pub-articles { scroll-margin-top: 245px;}
 
      /* ---------- Year ---------- */
 #texts .pub-year,
 #texts .acad-year {color: #c51616;font-weight: 600;}
+     /* ===== TEXTS: CONFERENCE + ARTICLES TYPOGRAPHY ===== */
+
+/* Conference text */
+#texts #pub-conference .acad-title-zh,
+#texts #pub-conference .acad-title {
+    color: #555;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Articles text */
+#texts #pub-articles .pub-title-en,
+#texts #pub-articles .pub-title {
+    color: #555;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Same year size for Conference + Articles */
+#texts #pub-conference .acad-year,
+#texts #pub-articles .pub-year {
+    color: #c51616;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
  </style>
 </head>
 <body>
+    
     <!-- ===== HEADER ===== -->
     <header>
         <div class="header-inner">
@@ -1341,7 +1370,6 @@
             <div class="page-header">
                 <h1>Expo <span>/ 展览</span></h1>
                 <div class="divider"></div>
-                <p>Solo / Group · 精选展览</p>
             </div>
 
             <div class="toggle-wrapper" style="display:flex; gap:0; margin-bottom:20px; border:1px solid #dce1e8; border-radius:30px; overflow:hidden; width:fit-content; background:#f0f2f5;">
